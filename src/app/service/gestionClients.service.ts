@@ -1,0 +1,87 @@
+import { Injectable } from '@angular/core';
+import { Clients } from '../modeles/Clients';
+import { Client } from '../modeles/Client';
+
+@Injectable() 
+export class GestionClientsService {
+
+	constructor() {}
+
+	//récupère tout les clients
+	getClients() {return Clients;}
+
+	
+	
+
+	//SPECIFIQUE A CLIENT notification cette fonction marche
+	getNumberOfNotAttClients() {
+		var nbClients = 0;
+		for (var i=0; i<Clients.length; i++) {
+			if(Clients[i].idConseiller === null) {
+				nbClients++;
+			}
+		}
+		return nbClients;
+	}
+	//SPECIFIQUE A CLIENTcomponent attribué les clients celle ci ne marche pas :s
+	getNotAttributedClients() {
+		var clients: Client[];
+		for (var i=0; i<Clients.length; i++) {
+			if(Clients[i].idConseiller === null) {
+				clients.push(Clients[i]);
+			}
+		}
+		return clients;
+	}
+
+	getClientById(id: number) {
+		return Clients[id - 1];
+	}
+
+	getClientBylastName(lastName: string) {
+		for (var i=0; i<Clients.length; i++)
+			if(Clients[i].lastName === lastName) 
+				{return Clients[i];}
+		}
+
+	getClientByIdClient(idClient: number) {
+		for (var i=0; i<Clients.length; i++)
+			if(Clients[i].idClient === idClient) 
+				{return Clients[i];}
+	}
+
+
+		
+	addClient(client) {
+		client.id = Clients.length + 1;
+		Clients.push(client);
+	}
+
+	editClient(client) {
+		let oldClient = this.getClientById(client.id);
+		client.idClient = oldClient.idClient;
+		client.idConseiller = oldClient.idConseiller;
+		client.password = oldClient.password;
+		let index = (client.id - 1);
+		Clients.splice(index, 1, client);
+	}
+
+	deleteClient(client) {
+		let index = Clients.indexOf(client);
+		Clients.splice(index, 1);	
+	}
+
+	//generation aleatoire de numéro client avec vérification si le numéroClient éxiste déjà
+	idClientGenerator(client) {
+		let idClientExist: boolean = true;
+		while (idClientExist) {
+			let tempIdClient : number = Math.round(Math.random()*(9999-1111));
+			if(!this.getClientByIdClient(tempIdClient))
+			{
+				client.idClient = tempIdClient;
+				idClientExist = false;
+			}	
+		}
+	}
+
+}
