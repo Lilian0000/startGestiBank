@@ -1,3 +1,10 @@
+<div class="wrapper">
+    <div class="sidebar" data-color="red" data-image="">
+        <app-sidebar [utilisateur] = "userType"></app-sidebar>
+        <div class="sidebar-background" style="background-image: url(/assets/img/sidebar-5.jpg)"></div>
+    </div>
+    <div class="main-panel">
+    <!--<navbar-cmp></navbar-cmp>-->
 <nav>
 	<a routerLink="/admin" routerLinkActive="active">Espace Admin</a>
 	<a routerLink="/client" routerLinkActive="active">Espace Client</a>
@@ -6,3 +13,5 @@
 	<a routerLink="/connexion" routerLinkActive="active">Connexion</a>
 </nav>
 <router-outlet></router-outlet>
+    </div>
+</div>
