@@ -1,10 +1,13 @@
 
-<div class="main-content" >
+<div class="row">
+<div class="col-md-1"></div>
+<div class="col-md-10 col-offset-md-1">
+
     
     <div class="container-fluid">
-        <div class="row">
+        
             
-                <div class="card list-card">
+                <div class="card">
                     <div class="header">
                         <h4 class="title">Liste des clients</h4>                      
                     </div>
@@ -38,15 +41,18 @@
                                     </tr>  
                                 </tbody>
                             </table>
+                        <div class="row">
                             <div class="col-md-10"></div>
                             <div class="col-md-2">
                                 <button type="button" class="btn btn-primary btn-fill" (click)="redirectNewClientPage()">Nouveau client</button>  
                             </div>
-                        </div>		
+                        </div>
+                        
+            </div>		
              
-    </div>
+   </div>
 
 <router-outlet></router-outlet>
 
-</div>
+
 </div>

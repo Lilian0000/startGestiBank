@@ -50,6 +50,12 @@ export class GestionClientsService {
 				{return Clients[i];}
 	}
 
+	getClientByMail(email: string) {
+		for (var i=0; i<Clients.length; i++)
+			if(Clients[i].email === email) 
+				{return Clients[i];}
+	}
+
 
 		
 	addClient(client) {

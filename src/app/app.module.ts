@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
@@ -10,6 +9,7 @@ import { ConseillerModule } from './conseiller/conseiller.module';
 import { FormInscriptionComponent } from './form-inscription/form-inscription.component';
 import { FormConnexionComponent } from './form-connexion/form-connexion.component';
 import { GestionClientsService } from './service/gestionClients.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,9 @@ import { GestionClientsService } from './service/gestionClients.service';
     HttpModule,
     AdminModule,
     ClientModule,
-    ConseillerModule
+    ConseillerModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [GestionClientsService],
   bootstrap: [AppComponent]
