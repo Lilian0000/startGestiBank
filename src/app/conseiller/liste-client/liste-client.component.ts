@@ -24,7 +24,8 @@ export class ListeClientComponent implements OnInit {
 		this.getClients();
 	}
 	getClients() {
-		this.clients = this.gestionClientsService.getClientsByConseiller(conseiller);
+
+		this.clients = this.gestionClientsService.getClientsByConseiller(this.conseiller.id);
 	}
 
 }

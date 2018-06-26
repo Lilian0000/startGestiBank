@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Clients } from '../modeles/Clients';
 import { Client } from '../modeles/Client';
-import { Conseiller } from './Conseiller';
+import { Conseiller } from '../modeles/Conseiller';
 
 @Injectable() 
 export class GestionClientsService {
@@ -11,8 +11,8 @@ export class GestionClientsService {
 	//récupère tout les clients
 	getClients() {return Clients;}
 
-	getClientsByConseiller(idConseiller: int){
-		var clients: Client[];
+	getClientsByConseiller(idConseiller: number){
+		let clients: Client[] = [];
 		for (var i=0; i<Clients.length; i++) {
 			if(Clients[i].idConseiller === idConseiller) {
 				clients.push(Clients[i]);
