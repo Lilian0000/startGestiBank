@@ -1,22 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Client } from '../modeles/Client';
-import { GestionClientsService } from "../service/gestionClients.service";
 import { Observable } from 'rxjs/';
-
+import { AuthentificationService } from "../service/authentification.service";
 @Component({
 	selector: 'app-form-connexion',
 	templateUrl: './form-connexion.component.html',
 	styleUrls: ['./form-connexion.component.css'],
-	providers: [GestionClientsService]
+	providers: [AuthentificationService]
 })
 export class FormConnexionComponent implements OnInit {
 	email: string;
-	client: Client;
+	user;
 	guestSubscribeForm: FormGroup;
 
-	constructor(private router: Router, private gestionClientService: GestionClientsService) { }
+	constructor(private router: Router,
+		private authentificationService: AuthentificationService) { }
 
 	ngOnInit() { 
 		this.guestSubscribeForm = new FormGroup({
@@ -30,20 +29,33 @@ export class FormConnexionComponent implements OnInit {
 
 	onSubmit() {
 		if(this.guestSubscribeForm.valid) {
-			this.client = this.gestionClientService.getClientByMail(this.guestSubscribeForm.controls['email'].value);
-			console.log(this.client);
-			if (this.client == null)
+			console.log(this.guestSubscribeForm.controls['email'].value);
+			this.user = this.authentificationService.getUserAtConnexion(this.guestSubscribeForm.controls['email'].value,
+			this.guestSubscribeForm.controls['password'].value);
+
+			//console.log(this.user);
+
+			if (this.user == null)
 			{
-				console.log("Email erroné!");
+				console.log("Email ou mot de passe erroné!");
 			}
-			else if (this.client.password != this.guestSubscribeForm.controls['password'].value)
-			{
-				console.log("Mot de passe erroné!");
-			}
+			
 			else
-			{
+			{	
+				this.authentificationService.inputUserInLocalSession(this.user);
+				this.authentificationService.inputUserInTempSession(this.user);
+				console.log(this.authentificationService.getUserInTempSession());
+				console.log(this.authentificationService.getUserInLocalSession());
 				console.log("Connexion réussi!");
-				this.router.navigate(['/admin']);
+				if (this.user.idClient) {
+					this.router.navigate(['/client']);
+				}
+				if (this.user.matricule) {
+					if (this.user.fonction) {
+						this.router.navigate(['/admin']);
+					}
+					else {this.router.navigate(['/conseiller']);}
+				}
 			}			
 		}
 	}

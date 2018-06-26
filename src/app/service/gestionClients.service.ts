@@ -11,8 +11,6 @@ export class GestionClientsService {
 	getClients() {return Clients;}
 
 	
-	
-
 	//SPECIFIQUE A CLIENT notification cette fonction marche
 	getNumberOfNotAttClients() {
 		var nbClients = 0;
@@ -23,9 +21,9 @@ export class GestionClientsService {
 		}
 		return nbClients;
 	}
-	//SPECIFIQUE A CLIENTcomponent attribué les clients celle ci ne marche pas :s
+	//SPECIFIQUE A CLIENTcomponent attribué les clients
 	getNotAttributedClients() {
-		var clients: Client[];
+		var clients: Client[] = [];
 		for (var i=0; i<Clients.length; i++) {
 			if(Clients[i].idConseiller === null) {
 				clients.push(Clients[i]);

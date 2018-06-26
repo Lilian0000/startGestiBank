@@ -9,10 +9,14 @@ export class Client extends User {
 		email: string,
 		password: string,
 		address: string,
-		phonenumber: string,		
+		phonenumber: string,	
 		public idClient: number,
 		public idConseiller: number)
 	
 	{super(id, lastName, firstName, email, password, address, phonenumber);} 
 
+	getType() {
+		return "Client";
+	}
+	
 	}
