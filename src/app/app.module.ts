@@ -11,6 +11,7 @@ import { FormConnexionComponent } from './form-connexion/form-connexion.componen
 import { GestionClientsService } from './service/gestionClients.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SidebarModule } from './sidebar/sidebar.module';
+import { NavbarModule } from './navbar/navbar.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { SidebarModule } from './sidebar/sidebar.module';
     ConseillerModule,
     FormsModule,
     ReactiveFormsModule,
-    SidebarModule
+    SidebarModule,
+    NavbarModule
   ],
   providers: [GestionClientsService],
   bootstrap: [AppComponent]

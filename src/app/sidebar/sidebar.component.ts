@@ -15,10 +15,10 @@ export const ROUTES: RouteInfo[] = [
     { path: 'simulateurCredit', title: 'Simulateur de crédit',  icon: '', class: '', userSpace: 'guest'  },
     { path: 'convertisseurDevise', title: 'Convertisseur de devise',  icon: '', class: '', userSpace: 'guest'  },
     { path: 'contact', title: 'Contacter la banque',  icon: '', class: '', userSpace: 'guest'  },
-    { path: 'dashboard', title: 'Dashboard',  icon: '', class: '', userSpace: 'admin'  },
+    { path: 'admin', title: 'Dashboard',  icon: '', class: '', userSpace: 'admin'  },
     { path: 'affectation', title: "Demandes d'affectation",  icon: '', class: '', userSpace: 'admin'  },
     { path: 'gestionConseillers', title: 'Gestion conseillers',  icon: '', class: '', userSpace: 'admin'  },
-    { path: 'dashboardClients', title: 'Gestions clients',  icon: '', class: '', userSpace: 'admin'  },
+    { path: 'admin/gestion_client', title: 'Gestions clients',  icon: '', class: '', userSpace: 'admin'  },
     { path: 'consulter', title: 'Consulter',  icon: '', class: '', userSpace: 'client'  },
     { path: 'gerer', title: 'Gérer',  icon: '', class: '', userSpace: 'client'  },
     { path: 'demandeChequier', title: 'Demande chéquier',  icon: '', class: '', userSpace: 'client'  },
@@ -30,6 +30,7 @@ export const ROUTES: RouteInfo[] = [
   templateUrl: './sidebar.component.html'
 })
 export class SidebarComponent implements OnInit {
+  //On reçoit le paramètre utilisateur en input depuis le composant app.component.ts
   @Input() utilisateur;
 
   menuItems: any[];

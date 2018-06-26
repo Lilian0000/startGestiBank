@@ -4,7 +4,7 @@
         <div class="sidebar-background" style="background-image: url(/assets/img/sidebar-5.jpg)"></div>
     </div>
     <div class="main-panel">
-    <!--<navbar-cmp></navbar-cmp>-->
+    <navbar-cmp [utilisateur] = "userType"></navbar-cmp>
 <nav>
 	<a routerLink="/admin" routerLinkActive="active">Espace Admin</a>
 	<a routerLink="/client" routerLinkActive="active">Espace Client</a>
