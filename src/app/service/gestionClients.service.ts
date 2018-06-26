@@ -11,7 +11,7 @@ export class GestionClientsService {
 	getClients() {return Clients;}
 
 	
-	//SPECIFIQUE A CLIENT notification cette fonction marche
+	//SPECIFIQUE A CLIENT notification
 	getNumberOfNotAttClients() {
 		var nbClients = 0;
 		for (var i=0; i<Clients.length; i++) {

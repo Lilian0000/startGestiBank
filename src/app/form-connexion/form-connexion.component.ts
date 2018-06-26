@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/';
 import { AuthentificationService } from "../service/authentification.service";
+
 @Component({
 	selector: 'app-form-connexion',
 	templateUrl: './form-connexion.component.html',
@@ -18,6 +19,8 @@ export class FormConnexionComponent implements OnInit {
 		private authentificationService: AuthentificationService) { }
 
 	ngOnInit() { 
+		console.log(this.authentificationService.getUserInTempSession());
+		console.log(this.authentificationService.getUserInLocalSession());
 		this.guestSubscribeForm = new FormGroup({
 			email: new FormControl('', [
 				Validators.required,
@@ -25,11 +28,11 @@ export class FormConnexionComponent implements OnInit {
 				]),
 			password: new FormControl('', Validators.required),
 		});
+		
 	}
 
 	onSubmit() {
 		if(this.guestSubscribeForm.valid) {
-			console.log(this.guestSubscribeForm.controls['email'].value);
 			this.user = this.authentificationService.getUserAtConnexion(this.guestSubscribeForm.controls['email'].value,
 			this.guestSubscribeForm.controls['password'].value);
 
@@ -47,15 +50,7 @@ export class FormConnexionComponent implements OnInit {
 				console.log(this.authentificationService.getUserInTempSession());
 				console.log(this.authentificationService.getUserInLocalSession());
 				console.log("Connexion réussi!");
-				if (this.user.idClient) {
-					this.router.navigate(['/client']);
-				}
-				if (this.user.matricule) {
-					if (this.user.fonction) {
-						this.router.navigate(['/admin']);
-					}
-					else {this.router.navigate(['/conseiller']);}
-				}
+				this.authentificationService.connexionRedirection(this.user);
 			}			
 		}
 	}

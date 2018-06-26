@@ -8,6 +8,5 @@ export abstract class User {
 		public password: string,
 		public address: string,
 		public phonenumber: string) {}
-
 }
 
