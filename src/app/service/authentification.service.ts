@@ -5,7 +5,7 @@ import { Conseillers } from '../modeles/Conseillers';
 import { Conseiller } from '../modeles/Conseiller';
 import { Admin } from '../modeles/Admin';
 import { Admins } from '../modeles/Admins';
-import { Session } from '../modeles/currentSession';
+
 import { Routes, RouterModule, Router} from '@angular/router';
 @Injectable()
 export class AuthentificationService {
@@ -42,9 +42,6 @@ getUserAtConnexion(email: string, password: string) {
 	return User;
 }
 
-inputUserInSession(user){
-	Session.push(user);
-}
 
 inputUserInLocalSession(user) {
 	localStorage.setItem('Token', JSON.stringify(user));				

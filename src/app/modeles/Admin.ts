@@ -18,8 +18,6 @@ export class Admin extends User {
 
 	
 
-	getType() {
-		return "Admin";
-	}
+	
 
 	}
