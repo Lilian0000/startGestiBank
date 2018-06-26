@@ -16,8 +16,4 @@ export class Admin extends User {
 
 	{super(id, lastName, firstName, email, password, address, phonenumber);} 
 
-	
-
-	
-
 	}
