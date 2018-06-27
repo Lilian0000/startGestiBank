@@ -24,9 +24,11 @@ export class EditClientComponent implements OnInit {
 	ngOnInit() {
 
 	this.sub = this.route.params.subscribe(params => {
-    this.id = +params['id'];});
+    this.id = +params['id']; 
 
-	this.client=this.gestionClientsService.getClientById(this.id);
+    this.client=this.gestionClientsService.getClientById(this.id);});
+
+	
 
 	this.clientForm = new FormGroup({
 			firstName: new FormControl('', Validators.required),

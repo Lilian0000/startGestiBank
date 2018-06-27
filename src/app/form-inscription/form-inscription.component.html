@@ -3,7 +3,7 @@
               <div class="col-md-10">
 
     <div class="col">
-      <div class="card">
+      <div class="card list-card">
         <div class="header">
           <h4 class="title">Inscription</h4>
         </div>
@@ -35,8 +35,8 @@
             <label>Phone Number</label>
             <input type="email" class="form-control" formControlName="phonenumber">
           </div>
-          <button type="submit" class="btn btn-fill btn-primary float-right" [disabled]="!clientForm.valid">Submit</button>
-          <button type="button" class="btn btn-fill btn-warning float-right" (click)="redirectUserPage()">Cancel</button>
+          <button type="submit" class="btn btn-fill btn-primary pull-right" [disabled]="!clientForm.valid">Submit</button>
+          <button type="button" class="btn btn-fill btn-warning pull-right" (click)="redirectUserPage()">Cancel</button>
         </form>
      </div>
     </div>

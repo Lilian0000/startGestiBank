@@ -26,5 +26,7 @@ export class AttributeClientsComponent implements OnInit {
   getClients() {
   	this.clients = this.gestionClientsService.getNotAttributedClients();
   }
-
+  AttributeClientToConseiller(client) {
+      this.router.navigate(['admin/attribute_clients/attribute_client_to_conseiller', client.id]);
+    }
 }

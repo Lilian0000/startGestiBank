@@ -75,6 +75,10 @@ export class GestionClientsService {
 		Clients.splice(index, 1);	
 	}
 
+	attributeClientToConseiller(client, idConseiller) {
+			client.idConseiller = idConseiller;
+	}
+
 	//generation aleatoire de numéro client avec vérification si le numéroClient éxiste déjà
 	idClientGenerator(client) {
 		let idClientExist: boolean = true;

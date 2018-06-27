@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {AppComponent} from '../app.component';
+import { AppComponent } from '../app.component';
 
 declare const $: any;
 declare interface RouteInfo {
@@ -16,7 +16,7 @@ export const ROUTES: RouteInfo[] = [
     { path: 'convertisseurDevise', title: 'Convertisseur de devise',  icon: '', class: '', userSpace: 'guest'  },
     { path: 'contact', title: 'Contacter la banque',  icon: '', class: '', userSpace: 'guest'  },
     { path: 'admin', title: 'Dashboard',  icon: '', class: '', userSpace: 'admin'  },
-    { path: 'affectation', title: "Demandes d'affectation",  icon: '', class: '', userSpace: 'admin'  },
+    { path: 'admin/attribute_clients', title: "Demandes d'affectation",  icon: '', class: '', userSpace: 'admin'  },
     { path: 'gestionConseillers', title: 'Gestion conseillers',  icon: '', class: '', userSpace: 'admin'  },
     { path: 'admin/gestion_client', title: 'Gestions clients',  icon: '', class: '', userSpace: 'admin'  },
     { path: 'consulter', title: 'Consulter',  icon: '', class: '', userSpace: 'client'  },

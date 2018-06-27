@@ -19,8 +19,14 @@ export class FormConnexionComponent implements OnInit {
 		private authentificationService: AuthentificationService) { }
 
 	ngOnInit() { 
-		console.log(this.authentificationService.getUserInTempSession());
-		console.log(this.authentificationService.getUserInLocalSession());
+
+
+		//console.log(this.authentificationService.getUserInTempSession());
+		//console.log(this.authentificationService.getUserInLocalSession());
+
+		//pour michel
+		//console.log(this.authentificationService.getUserType(this.authentificationService.getUserinSession()));
+		//console.log(this.authentificationService.isConnected());
 		this.guestSubscribeForm = new FormGroup({
 			email: new FormControl('', [
 				Validators.required,
