@@ -9,6 +9,9 @@ import { EventEmitter, Input, Output} from '@angular/core';
 })
 export class AppComponent {
 
+	userType: string = 'admin';
+=======
+
 	constructor(private authentificationService: AuthentificationService) {}
 
 	Deconexion() {
@@ -16,6 +19,7 @@ export class AppComponent {
 		console.log(this.authentificationService.getUserInTempSession());
 		console.log(this.authentificationService.getUserInLocalSession());
 	}
+
 }
 
 

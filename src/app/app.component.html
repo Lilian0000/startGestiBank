@@ -1,3 +1,10 @@
+<div class="wrapper">
+    <div class="sidebar" data-color="red" data-image="">
+        <app-sidebar [utilisateur] = "userType"></app-sidebar>
+        <div class="sidebar-background" style="background-image: url(/assets/img/sidebar-5.jpg)"></div>
+    </div>
+    <div class="main-panel">
+    <navbar-cmp [utilisateur] = "userType"></navbar-cmp>
 <nav>
 	<a routerLink="/admin" routerLinkActive="active">Espace Admin</a>
 	<a routerLink="/client" routerLinkActive="active">Espace Client</a>
@@ -7,3 +14,5 @@
 	<button type="button" class="btn btn-info btn-fill" (click)="Deconexion()">Deconexion</button>
 </nav>
 <router-outlet></router-outlet>
+    </div>
+</div>
