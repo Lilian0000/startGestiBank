@@ -9,3 +9,4 @@ export abstract class User {
 		public address: string,
 		public phonenumber: string) {}
 }
+

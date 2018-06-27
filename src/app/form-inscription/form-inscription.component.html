@@ -1,7 +1,13 @@
-<div class="container">
-  <div class="row">
+ <div class="row">
+          <div class="col-md-1"></div>
+              <div class="col-md-10">
+
     <div class="col">
-      <section>
+      <div class="card">
+        <div class="header">
+          <h4 class="title">Inscription</h4>
+        </div>
+        <div class="content">
         <form novalidate [formGroup]="clientForm" (ngSubmit)="onSubmit()">
           <fieldset>
             <div class="form-group">
@@ -29,10 +35,11 @@
             <label>Phone Number</label>
             <input type="email" class="form-control" formControlName="phonenumber">
           </div>
-          <button type="submit" class="btn btn-primary" [disabled]="!clientForm.valid">Submit</button>
-          <button type="button" class="btn btn-warning" (click)="redirectUserPage()">Cancel</button>
+          <button type="submit" class="btn btn-fill btn-primary float-right" [disabled]="!clientForm.valid">Submit</button>
+          <button type="button" class="btn btn-fill btn-warning float-right" (click)="redirectUserPage()">Cancel</button>
         </form>
-      </section>
+     </div>
     </div>
   </div>
+</div>
 </div>
