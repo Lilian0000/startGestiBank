@@ -6,7 +6,7 @@ export const Admins: Admin[] = [
 		id: 1,
 		lastName: "Admin",
 		firstName: "Admin",
-		email: "Admin@mail.com",
+		email: "admin@mail.com",
 		password: "Admin", 
 		address: "55 Rue de la Croix Blanche, 01000, Bourg-en-Bresse",
 		phonenumber: "0637425869",

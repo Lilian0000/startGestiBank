@@ -10,14 +10,17 @@ import { FormInscriptionComponent } from './form-inscription/form-inscription.co
 import { FormConnexionComponent } from './form-connexion/form-connexion.component';
 import { GestionClientsService } from './service/gestionClients.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { SidebarModule } from './sidebar/sidebar.module';
 import { NavbarModule } from './navbar/navbar.module';
+import { GuestComponent } from './guest/guest.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FormInscriptionComponent,
-    FormConnexionComponent
+    FormConnexionComponent,
+    GuestComponent
   ],
   imports: [
     BrowserModule,
