@@ -10,7 +10,6 @@ import { EventEmitter, Input, Output} from '@angular/core';
 export class AppComponent {
 
 	userType: string = 'admin';
-=======
 
 	constructor(private authentificationService: AuthentificationService) {}
 

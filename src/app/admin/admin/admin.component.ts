@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NotificationsComponent } from './notifications/notifications.component';
-import {PasswordModule} from 'primeng/password';
 
 
 @Component({
