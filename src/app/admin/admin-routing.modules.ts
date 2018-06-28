@@ -8,7 +8,6 @@ import { NotificationsComponent} from './admin/notifications/notifications.compo
 import { AttributeClientsComponent } from './attribute-clients/attribute-clients.component';
 const adminRoutes: Routes = [
 	{path: 'admin', component: AdminComponent,},
-	{path: 'admin/attribute_client', component: AttributeClientsComponent,},
 	{path :'admin/gestion_client', component: GestionClientComponent,
 		children: [
 			{
