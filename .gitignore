@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Created by https://www.gitignore.io/api/angular
 
 ### Angular ###
@@ -32,4 +33,9 @@ testem.log
 .DS_Store
 
 
-# End of https://www.gitignore.io/api/angul
+
+
+
+
+
+>>>>>>> conseiller2

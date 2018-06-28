@@ -11,11 +11,16 @@ import { FormConnexionComponent } from './form-connexion/form-connexion.componen
 import { GestionClientsService } from './service/gestionClients.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { SidebarModule } from './sidebar/sidebar.module';
+import { NavbarModule } from './navbar/navbar.module';
+import { GuestComponent } from './guest/guest.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     FormInscriptionComponent,
-    FormConnexionComponent
+    FormConnexionComponent,
+    GuestComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +30,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ClientModule,
     ConseillerModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SidebarModule,
+    NavbarModule
   ],
   providers: [GestionClientsService],
   bootstrap: [AppComponent]

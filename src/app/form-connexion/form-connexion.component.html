@@ -1,4 +1,12 @@
-<div>
+
+<div class="row">
+          <div class="col-md-3"></div>
+              <div class="col-md-6">
+                <div class="card">
+<div class="header">
+	 <h4 class="title">Connexion</h4>
+</div>
+<div class="content">
 <form novalidate [formGroup]="guestSubscribeForm" (ngSubmit)="onSubmit()">
 	<div class="form-group">
 		<label>Email </label>
@@ -8,7 +16,13 @@
 		<label>Mot de passe</label>
 		<input type="password" class="form-control" formControlName="password" required/>
 	</div>
-		<button type="submit" name="Se connecter">Se connecter</button>
+	
+		
+		<button type="submit" name="Se connecter" class="btn btn-fill btn-info float-right" >Se connecter</button>
+	
 	
 </form>
+</div>
+</div>
+</div>
 </div>

@@ -52,6 +52,7 @@ export class FormInscriptionComponent implements OnInit {
 				null,
 				null);
 			this.gestionClients.addClient(client);
+			this.gestionClients.idClientGenerator(client);
 			this.clientForm.reset();
 			this.router.navigate(['/client']);
 		}
