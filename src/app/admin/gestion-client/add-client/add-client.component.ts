@@ -23,8 +23,8 @@ export class AddClientComponent implements OnInit {
 	ngOnInit() {
 
 		this.clientForm = new FormGroup({
-			firstName: new FormControl('', Validators.required),
 			lastName: new FormControl('', Validators.required),
+			firstName: new FormControl('', Validators.required),
 			email: new FormControl('', [
 				Validators.required,
 				Validators.pattern("[^ @]*@[^ @]*")
@@ -42,8 +42,8 @@ export class AddClientComponent implements OnInit {
 	onSubmit() {
 		if(this.clientForm.valid) {
 			let client: Client = new Client(this.id,
-				this.clientForm.controls['firstName'].value,
 				this.clientForm.controls['lastName'].value,
+				this.clientForm.controls['firstName'].value,
 				this.clientForm.controls['email'].value,
 				this.clientForm.controls['password'].value,
 				this.clientForm.controls['address'].value,

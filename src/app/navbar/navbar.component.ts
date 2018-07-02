@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef, Input } from '@angular/core';
 import { ROUTES } from '../sidebar/sidebar.component';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
-
+import { AuthentificationService } from '../service/authentification.service';
 @Component({
     // moduleId: module.id,
     selector: 'navbar-cmp',
@@ -16,8 +16,9 @@ export class NavbarComponent implements OnInit{
     location: Location;
     private toggleButton: any;
     private sidebarVisible: boolean;
+    private sub:any;
 
-    constructor(location: Location,  private element: ElementRef) {
+    constructor(location: Location,  private element: ElementRef, private authentificationService : AuthentificationService) {
       this.location = location;
           this.sidebarVisible = false;
     }
@@ -52,6 +53,14 @@ export class NavbarComponent implements OnInit{
             this.sidebarClose();
         }
     };
+
+    Deconexion() {
+    this.authentificationService.logout();
+    console.log(this.authentificationService.getUserInTempSession());
+    console.log(this.authentificationService.getUserInLocalSession());
+    this.authentificationService.clearUserType();
+    this.authentificationService.setUserType('guest');
+  }
     /*
     getTitle(){
       var titlee = this.location.prepareExternalUrl(this.location.path());
@@ -68,7 +77,10 @@ export class NavbarComponent implements OnInit{
       return 'Espace '+ this.utilisateur;
     }
 
-    isGuest(){
-      return this.utilisateur==='guest';
-    }
+   isGuest(){
+     if (this.utilisateur==='guest')
+      return true;
+    else 
+      return false;
+   }
 }

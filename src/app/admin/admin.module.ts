@@ -8,6 +8,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditClientComponent } from './gestion-client/edit-client/edit-client.component';
 import { NotificationsComponent } from './admin/notifications/notifications.component';
 import { AttributeClientsComponent } from './attribute-clients/attribute-clients.component';
+import { AttributeClientToConseillerComponent } from './attribute-clients/attribute-client-to-conseiller/attribute-client-to-conseiller.component';
+
 
 
 @NgModule({
@@ -17,7 +19,7 @@ import { AttributeClientsComponent } from './attribute-clients/attribute-clients
     FormsModule,
     ReactiveFormsModule
   ],
-  declarations: [AdminComponent, GestionClientComponent, AddClientComponent, EditClientComponent, NotificationsComponent, AttributeClientsComponent]
+  declarations: [AdminComponent, GestionClientComponent, AddClientComponent, EditClientComponent, NotificationsComponent, AttributeClientsComponent, AttributeClientToConseillerComponent]
   
 })
 export class AdminModule { }
