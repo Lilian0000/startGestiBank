@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AppComponent } from '../app.component';
-
+import { AuthentificationService } from '../service/authentification.service';
+import { Subscription } from 'rxjs/Subscription';
 declare const $: any;
 declare interface RouteInfo {
     path: string;
@@ -31,14 +32,17 @@ export const ROUTES: RouteInfo[] = [
 })
 export class SidebarComponent implements OnInit {
   //On reçoit le paramètre utilisateur en input depuis le composant app.component.ts
-  @Input() utilisateur;
-
+  utilisateur;
+  subscription: Subscription;
   menuItems: any[];
 
-  constructor() { }
+  constructor(private authentificationService : AuthentificationService) { }
 
   ngOnInit() {
+   
+    this.subscription = this.authentificationService.getuserTypeasObs().subscribe(userType => { this.utilisateur = userType; 
     this.menuItems = ROUTES.filter(menuItem => menuItem.userSpace===this.utilisateur);
+    });
   }
   isMobileMenu() {
       if ($(window).width() > 991) {

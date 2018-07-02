@@ -74,7 +74,7 @@
                         <p>Se connecter</p>
                     </a>
                 </li>
-                <li>
+                <li *ngIf=!isGuest()>
                     <a href="#">
                         <p>Se deconnecter</p>
                     </a>

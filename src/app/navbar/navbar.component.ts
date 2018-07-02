@@ -16,6 +16,7 @@ export class NavbarComponent implements OnInit{
     location: Location;
     private toggleButton: any;
     private sidebarVisible: boolean;
+    private sub:any;
 
     constructor(location: Location,  private element: ElementRef) {
       this.location = location;
@@ -68,7 +69,10 @@ export class NavbarComponent implements OnInit{
       return 'Espace '+ this.utilisateur;
     }
 
-    isGuest(){
-      return this.utilisateur==='guest';
-    }
+   isGuest(){
+     if (this.utilisateur==='guest')
+      return true;
+    else 
+      return false;
+   }
 }

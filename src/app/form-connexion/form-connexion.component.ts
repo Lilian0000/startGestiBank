@@ -3,18 +3,20 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/';
 import { AuthentificationService } from "../service/authentification.service";
-
+import { EventEmitter, Input, Output} from '@angular/core';
 @Component({
 	selector: 'app-form-connexion',
 	templateUrl: './form-connexion.component.html',
 	styleUrls: ['./form-connexion.component.css'],
-	providers: [AuthentificationService]
+	providers: []
 })
 export class FormConnexionComponent implements OnInit {
 	email: string;
 	user;
 	guestSubscribeForm: FormGroup;
 
+	//@Output() notifySideBar: EventEmitter<any> = new EventEmitter();
+	
 	constructor(private router: Router,
 		private authentificationService: AuthentificationService) { }
 
@@ -56,6 +58,9 @@ export class FormConnexionComponent implements OnInit {
 				console.log(this.authentificationService.getUserInTempSession());
 				console.log(this.authentificationService.getUserInLocalSession());
 				console.log("Connexion réussi!");
+				//this.notifySideBar.emit(this.authentificationService.getUserType(this.user));
+				this.authentificationService.clearUserType();
+				this.authentificationService.setUserType(this.authentificationService.getUserType(this.user));
 				this.authentificationService.connexionRedirection(this.user);
 			}			
 		}

@@ -1,12 +1,18 @@
 import { Injectable } from '@angular/core';
+import { User } from '../modeles/User';
 import { Clients } from '../modeles/Clients';
 import { Client } from '../modeles/Client';
 import { Conseillers } from '../modeles/Conseillers';
 import { Conseiller } from '../modeles/Conseiller';
 import { Admin } from '../modeles/Admin';
 import { Admins } from '../modeles/Admins';
-
 import { Routes, RouterModule, Router} from '@angular/router';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
+import { EventEmitter, Input, Output} from '@angular/core';
+import { Subject } from 'rxjs/Subject';
+
 @Injectable()
 export class AuthentificationService {
 	
@@ -79,15 +85,15 @@ getUserinSession() {
 	{return JSON.parse(sessionStorage.getItem('Token'));}
 }
 //fonction prenant un objet user (client/admin ou conseiller) et renvoie une String correspondant au type d'utilisateur
-getUserType(user) {
+getUserType(user) : string {
 	if (user.idClient) {
-		return "Client";
+		return "client";
 	}
 	if (user.matricule) {
 		if (user.fonction) {
-			return "Admin";
+			return "admin";
 		}
-	else {return "Conseiller";}
+	else {return "conseiller";}
 	}
 }
 
@@ -105,4 +111,32 @@ logout() {
 	localStorage.removeItem('Token');
 	this.router.navigate(['']);
 }
+
+/*myObservable = Observable.of(this.getUserinSession())
+
+myObserver = {
+	next: user => this.getUserType(user),
+	error: err => console.error,
+	complete: () => console.log('Observer is done'),
+};
+
+getUserTypeinSession(): Observable<any> {
+	return this.getUserType(this.getUserinSession()).asObservable();
+}*/
+
+//onConnexion: EventEmmitter<any> = new EventEmitter<any>();
+	private subject = new Subject<any>();
+ 	
+
+    setUserType(usertype: string) {
+        this.subject.next(usertype);
+    }
+ 
+    clearUserType() {
+        this.subject.next();
+    }
+ 
+    getuserTypeasObs(): Observable<any> {
+        return this.subject.asObservable();
+    }
 }
