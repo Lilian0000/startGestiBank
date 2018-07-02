@@ -18,24 +18,11 @@ export class AppComponent{
 	constructor(private authentificationService: AuthentificationService) {
 		//if (this.authentificationService.getUserinSession()) {
 		
-			this.subscription = this.authentificationService.getuserTypeasObs().subscribe(userType => { this.userType = userType; });
+		this.subscription = this.authentificationService.getuserTypeasObs().subscribe(userType => { this.userType = userType; });
 		//}
 		//this.userType = this.authentificationService.getUserType(this.authentificationService.getUserinSession());*/
 		//notifySideBar.subscribe(userType => this.userType = this.authentificationService.getUserType(this.authentificationService.getUserinSession()));
-	}
-
-	//ne marche pas
-	
-	Deconexion() {
-		console.log(this.userType);
-		this.authentificationService.logout();
-		console.log(this.authentificationService.getUserInTempSession());
-		console.log(this.authentificationService.getUserInLocalSession());
-		this.authentificationService.clearUserType();
-		this.authentificationService.setUserType('guest');
-		console.log(this.authentificationService.setUserType('guest'));
-	}
-
+	}		
 }
 
 

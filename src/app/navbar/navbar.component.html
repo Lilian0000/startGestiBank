@@ -67,15 +67,16 @@
                     </ul>
                 </li>-->
                 <li *ngIf=isGuest()>
-                    <a href="#">
+                    <a routerLink="/inscription">
                         <p>Inscription</p>
                     </a>
-                    <a href="#">
+                <li *ngIf=isGuest()>
+                    <a routerLink="/connexion">
                         <p>Se connecter</p>
                     </a>
                 </li>
                 <li *ngIf=!isGuest()>
-                    <a href="#">
+                    <a (click)="Deconexion()">
                         <p>Se deconnecter</p>
                     </a>
                 </li>

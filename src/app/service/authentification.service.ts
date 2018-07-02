@@ -125,18 +125,24 @@ getUserTypeinSession(): Observable<any> {
 }*/
 
 //onConnexion: EventEmmitter<any> = new EventEmitter<any>();
-	private subject = new Subject<any>();
- 	
 
-    setUserType(usertype: string) {
-        this.subject.next(usertype);
-    }
- 
-    clearUserType() {
-        this.subject.next();
-    }
- 
-    getuserTypeasObs(): Observable<any> {
-        return this.subject.asObservable();
-    }
+//partie du service servant à faire fonctionner les bar de nav en fonction des espaces
+//on créé d'abord un Subject que l'on pourra envoyer en tant qu'Observable afin de pouvoir faire une sousciption dessus
+//la souscription à ce Subject se fait dans AppComponent pour la navbar et dans le SideBarComponent pour la sidebar
+private subject = new Subject<any>();
+ 	
+//fonction permettant d'input une string dans le Subject (utilisé dans les component devant provoquer une action sur les bars de nav !!!)
+setUserType(usertype: string) {
+  this.subject.next(usertype);
+}
+
+//vide le Subject
+clearUserType() {
+  this.subject.next();
+}
+
+//récupère la string  "type d'utilisateur" comme observable
+getuserTypeasObs(): Observable<any> {
+  return this.subject.asObservable();
+}
 }
