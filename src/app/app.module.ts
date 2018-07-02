@@ -21,7 +21,7 @@ import { GuestComponent } from './guest/guest.component';
     AppComponent,
     FormInscriptionComponent,
     FormConnexionComponent,
-    GuestComponent
+    GuestComponent,
     
   ],
   imports: [

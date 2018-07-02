@@ -4,8 +4,8 @@ export class Client extends User {
 
 	constructor(
 		id: number,
-		firstName: string,
 		lastName: string,
+		firstName: string,
 		email: string,
 		password: string,
 		address: string,

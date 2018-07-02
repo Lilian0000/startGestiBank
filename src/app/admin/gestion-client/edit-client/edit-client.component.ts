@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GestionClientsService } from "../../../service/gestionClients.service";
 import { Observable } from 'rxjs/';
@@ -25,21 +25,20 @@ export class EditClientComponent implements OnInit {
 
 	this.sub = this.route.params.subscribe(params => {
     this.id = +params['id']; 
+    this.client=this.gestionClientsService.getClientById(this.id);
 
-    this.client=this.gestionClientsService.getClientById(this.id);});
-
-	
+});
 
 	this.clientForm = new FormGroup({
-			firstName: new FormControl('', Validators.required),
-			lastName: new FormControl('', Validators.required),
-			email: new FormControl('', [
+			lastName: new FormControl(this.client.lastName, Validators.required),
+			firstName: new FormControl(this.client.firstName, Validators.required),
+			email: new FormControl(this.client.email, [
 				Validators.required,
 				Validators.pattern("[^ @]*@[^ @]*")
 				]),
 			
-			address: new FormControl('', Validators.required),
-			phonenumber: new FormControl('', Validators.required),
+			address: new FormControl(this.client.address, Validators.required),
+			phonenumber: new FormControl(this.client.phonenumber, Validators.required),
 		});	
 	}
 
@@ -47,8 +46,8 @@ export class EditClientComponent implements OnInit {
 		if(this.clientForm.valid) {
 			let client: Client = new Client
 				(this.id,
-				this.clientForm.controls['firstName'].value,
 				this.clientForm.controls['lastName'].value,
+				this.clientForm.controls['firstName'].value,
 				this.clientForm.controls['email'].value,
 				null,
 				this.clientForm.controls['address'].value,
