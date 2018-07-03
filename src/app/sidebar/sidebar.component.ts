@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {AppComponent} from '../app.component';
-
+import { AppComponent } from '../app.component';
+import { AuthentificationService } from '../service/authentification.service';
+import { Subscription } from 'rxjs/Subscription';
 declare const $: any;
 declare interface RouteInfo {
     path: string;
@@ -16,7 +17,7 @@ export const ROUTES: RouteInfo[] = [
     { path: 'convertisseurDevise', title: 'Convertisseur de devise',  icon: '', class: '', userSpace: 'guest'  },
     { path: 'contact', title: 'Contacter la banque',  icon: '', class: '', userSpace: 'guest'  },
     { path: 'admin', title: 'Dashboard',  icon: '', class: '', userSpace: 'admin'  },
-    { path: 'affectation', title: "Demandes d'affectation",  icon: '', class: '', userSpace: 'admin'  },
+    { path: 'admin/attribute_clients', title: "Demandes d'affectation",  icon: '', class: '', userSpace: 'admin'  },
     { path: 'gestionConseillers', title: 'Gestion conseillers',  icon: '', class: '', userSpace: 'admin'  },
     { path: 'admin/gestion_client', title: 'Gestions clients',  icon: '', class: '', userSpace: 'admin'  },
     { path: 'consulter', title: 'Consulter',  icon: '', class: '', userSpace: 'client'  },
@@ -31,14 +32,17 @@ export const ROUTES: RouteInfo[] = [
 })
 export class SidebarComponent implements OnInit {
   //On reçoit le paramètre utilisateur en input depuis le composant app.component.ts
-  @Input() utilisateur;
-
+  utilisateur;
+  subscription: Subscription;
   menuItems: any[];
 
-  constructor() { }
+  constructor(private authentificationService : AuthentificationService) { }
 
   ngOnInit() {
+   
+    this.subscription = this.authentificationService.getuserTypeasObs().subscribe(userType => { this.utilisateur = userType; 
     this.menuItems = ROUTES.filter(menuItem => menuItem.userSpace===this.utilisateur);
+    });
   }
   isMobileMenu() {
       if ($(window).width() > 991) {
