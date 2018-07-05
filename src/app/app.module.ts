@@ -14,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SidebarModule } from './sidebar/sidebar.module';
 import { NavbarModule } from './navbar/navbar.module';
 import { GuestComponent } from './guest/guest.component';
+import {GestionComptesService} from './service/gestion-comptes.service'
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { GuestComponent } from './guest/guest.component';
     SidebarModule,
     NavbarModule
   ],
-  providers: [GestionClientsService],
+  providers: [GestionClientsService, GestionComptesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

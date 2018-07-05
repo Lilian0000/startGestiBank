@@ -9,12 +9,13 @@ import { EventEmitter, Input, Output} from '@angular/core';
   selector: 'app-gestion-client',
   templateUrl: './gestion-client.component.html',
   styleUrls: ['./gestion-client.component.css'],
-  providers: [ GestionClientsService ]
+  //providers: [ GestionClientsService ]
 })
 export class GestionClientComponent implements OnInit {
 
   
   clients;
+
   @Input() client;
   
   constructor(private router: Router, private gestionClientsService: GestionClientsService) { }
