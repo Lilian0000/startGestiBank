@@ -1,6 +1,6 @@
 <div class="wrapper">
     <div class="sidebar" data-color="red" data-image="">
-        <app-sidebar [utilisateur] = "userType"></app-sidebar>
+        <app-sidebar></app-sidebar>
         <div class="sidebar-background" style="background-image: url(/assets/img/sidebar-5.jpg)"></div>
     </div>
     <div class="main-panel">
@@ -9,9 +9,6 @@
 	<a routerLink="/admin" routerLinkActive="active">Espace Admin</a>
 	<a routerLink="/client" routerLinkActive="active">Espace Client</a>
 	<a routerLink="/conseiller" routerLinkActive="active">Espace Conseiller</a>
-	<a routerLink="/inscription" routerLinkActive="active">Inscription</a>
-	<a routerLink="/connexion" routerLinkActive="active">Connexion</a>
-	<button type="button" class="btn btn-info btn-fill" (click)="Deconexion()">Deconexion</button>
 </nav>
 <router-outlet></router-outlet>
     </div>
