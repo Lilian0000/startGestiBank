@@ -11,7 +11,6 @@ export class GestionClientsService {
 	//récupère tout les clients
 	getClients() {return Clients;}
 
-<<<<<<< HEAD
 	getClientsByConseiller(idConseiller: number){
 		let clients: Client[] = [];
 		for (var i=0; i<Clients.length; i++) {
@@ -22,12 +21,7 @@ export class GestionClientsService {
 		return clients;
 	}
 	
-
-	//SPECIFIQUE A CLIENT notification cette fonction marche
-=======
-	
 	//SPECIFIQUE A CLIENT notification
->>>>>>> conseiller2
 	getNumberOfNotAttClients() {
 		var nbClients = 0;
 		for (var i=0; i<Clients.length; i++) {
@@ -37,6 +31,7 @@ export class GestionClientsService {
 		}
 		return nbClients;
 	}
+	
 	//SPECIFIQUE A CLIENTcomponent attribué les clients
 	getNotAttributedClients() {
 		var clients: Client[] = [];

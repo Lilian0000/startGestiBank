@@ -6,6 +6,7 @@ import { Clients } from '../../modeles/Clients';
 import { Conseiller } from '../../modeles/Conseiller';
 import { Conseillers } from '../../modeles/Conseillers';
 import { EventEmitter, Input, Output} from '@angular/core';
+import { AuthentificationService } from '../../service/authentification.service';
 
 @Component({
 	selector: 'app-liste-client',
@@ -16,9 +17,10 @@ import { EventEmitter, Input, Output} from '@angular/core';
 export class ListeClientComponent implements OnInit {
 
 	clients;
-	@Input() conseiller;
+	conseiller;
 
-	constructor(private router: Router, private gestionClientsService: GestionClientsService) { }
+	constructor(private router: Router, private gestionClientsService: GestionClientsService, private authentificationService: AuthentificationService) 
+		{ this.conseiller = this.authentificationService.getUserinSession(); }
 
 	ngOnInit() {
 		this.getClients();

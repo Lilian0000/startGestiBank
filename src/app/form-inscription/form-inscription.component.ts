@@ -59,7 +59,7 @@ export class FormInscriptionComponent implements OnInit {
 	}
 
 	redirectUserPage() {
-		this.router.navigate(['/connexion']);
+		this.router.navigate(['']);
 	}
 
 
