@@ -10,6 +10,7 @@ import { AttributeClientToConseillerComponent } from './attribute-clients/attrib
 
 const adminRoutes: Routes = [
 	{path: 'admin', component: AdminComponent,},
+
 	{path: 'admin/attribute_clients', component: AttributeClientsComponent,},
 	{path: 'admin/attribute_clients/attribute_client_to_conseiller/:id', component: AttributeClientToConseillerComponent,},
 	{path :'admin/gestion_client', component: GestionClientComponent,

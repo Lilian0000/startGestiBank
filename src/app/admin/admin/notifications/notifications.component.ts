@@ -15,7 +15,7 @@ import { EventEmitter, Input, Output} from '@angular/core';
 export class NotificationsComponent implements OnInit {
 
 	nbNotAttributedClients: number;
-  notificatioNotAttributedClients: String;
+  notificationNotAttributedClients: String;
 
 constructor(private gestionClientsService: GestionClientsService) { }
 	
@@ -24,7 +24,6 @@ constructor(private gestionClientsService: GestionClientsService) { }
   ngOnInit() {
   	this.getNbOfClientsNotAttributed();
     this.notificationColorChange();
-
   }
 
   getNbOfClientsNotAttributed() {
@@ -33,10 +32,9 @@ constructor(private gestionClientsService: GestionClientsService) { }
 
   notificationColorChange() {
     if (this.nbNotAttributedClients === 0) {
-        this.notificatioNotAttributedClients = "alert-info";
+        this.notificationNotAttributedClients = "alert-info";
     }
-    else { this.notificatioNotAttributedClients = "alert-danger" }
+    else { this.notificationNotAttributedClients = "alert-danger" }
 
   }
-
 }
