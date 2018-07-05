@@ -15,6 +15,7 @@ export class GestionClientComponent implements OnInit {
 
   
   clients;
+
   @Input() client;
   
   constructor(private router: Router, private gestionClientsService: GestionClientsService) { }
