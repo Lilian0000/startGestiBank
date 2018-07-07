@@ -2,14 +2,24 @@ import { Injectable } from '@angular/core';
 import { Clients } from '../modeles/Clients';
 import { Client } from '../modeles/Client';
 import { Conseiller } from '../modeles/Conseiller';
+import { Http, Response } from "@angular/http";
+import { map } from "rxjs/operators/map";
+import { catchError } from 'rxjs/operators/catchError';
+import { Observable } from "rxjs/Observable";
 
 @Injectable() 
 export class GestionClientsService {
 
-	constructor() {}
+	private apiUrl = 'http://localhost:9090/GestBankBack/clients';
+	constructor(private http: Http) {}
 
 	//récupère tout les clients
-	getClients() {return Clients;}
+	getClients(): Observable<Client[]> {
+		//return Clients;
+		return  this.http.get(this.apiUrl).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
+		
+		
+	}
 
 	getClientsByConseiller(idConseiller: number){
 		let clients: Client[] = [];
@@ -55,7 +65,7 @@ export class GestionClientsService {
 
 		getClientByIdClient(idClient: number) {
 			for (var i=0; i<Clients.length; i++)
-				if(Clients[i].idClient === idClient) 
+				if(Clients[i].numeroclient === idClient) 
 					{return Clients[i];}
 			}
 
@@ -74,7 +84,7 @@ export class GestionClientsService {
 
 				editClient(client) {
 					let oldClient = this.getClientById(client.id);
-					client.idClient = oldClient.idClient;
+					client.idClient = oldClient.numeroclient;
 					client.idConseiller = oldClient.idConseiller;
 					client.password = oldClient.password;
 					let index = (client.id - 1);
@@ -97,7 +107,7 @@ export class GestionClientsService {
 			let tempIdClient : number = Math.round(Math.random()*(9999-1111));
 			if(!this.getClientByIdClient(tempIdClient))
 			{
-				client.idClient = tempIdClient;
+				client.numeroclient = tempIdClient;
 				idClientExist = false;
 			}	
 		}

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { AuthentificationService } from './service/authentification.service';
 import { EventEmitter, Input, Output} from '@angular/core';
 import { FormConnexionComponent } from './form-connexion/form-connexion.component';
@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs/Subscription';
   styleUrls: ['./app.component.css'],
   providers: []
 })
-export class AppComponent{
+export class AppComponent implements OnInit {
 
 	userType: any = "guest";
 	subscription: Subscription;
@@ -23,6 +23,12 @@ export class AppComponent{
 		//this.userType = this.authentificationService.getUserType(this.authentificationService.getUserinSession());*/
 		//notifySideBar.subscribe(userType => this.userType = this.authentificationService.getUserType(this.authentificationService.getUserinSession()));
 	}		
+
+	ngOnInit() {
+		if (this.authentificationService.getUserinSession()) {
+			this.userType=this.authentificationService.getUserType(this.authentificationService.getUserinSession());
+		}
+	}
 }
 
 

@@ -35,11 +35,11 @@ export class SidebarComponent implements OnInit {
   utilisateur;
   subscription: Subscription;
   menuItems: any[];
+ 
 
   constructor(private authentificationService : AuthentificationService) { }
 
   ngOnInit() {
-   
     this.subscription = this.authentificationService.getuserTypeasObs().subscribe(userType => { this.utilisateur = userType; 
     this.menuItems = ROUTES.filter(menuItem => menuItem.userSpace===this.utilisateur);
     });

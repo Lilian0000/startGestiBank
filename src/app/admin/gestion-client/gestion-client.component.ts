@@ -24,7 +24,9 @@ export class GestionClientComponent implements OnInit {
   	this.getClients();
   }
   getClients() {
-  	this.clients = this.gestionClientsService.getClients();
+  	this.gestionClientsService.getClients().subscribe(clients => {this.clients=clients;}
+      , err => {console.log(err);} 
+      );
   }
   redirectNewClientPage() {
   	this.router.navigate(['admin/gestion_client/add_client']);
