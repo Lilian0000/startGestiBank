@@ -49,7 +49,7 @@ getUserAtConnexion(email: string, password: string) {
 }
 
 connexionRedirection(user) {
-	if (user.idClient) {
+	if (user.numeroclient) {
 		this.router.navigate(['/client']);
 	}
 	if (user.matricule) {
@@ -86,7 +86,7 @@ getUserinSession() {
 }
 //fonction prenant un objet user (client/admin ou conseiller) et renvoie une String correspondant au type d'utilisateur
 getUserType(user) : string {
-	if (user.idClient) {
+	if (user.numeroclient) {
 		return "client";
 	}
 	if (user.matricule) {
