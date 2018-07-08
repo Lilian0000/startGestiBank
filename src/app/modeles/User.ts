@@ -7,6 +7,7 @@ export abstract class User {
 		public email: string,
 		public password: string,
 		public address: string,
-		public phonenumber: string) {}
+		public phonenumber: string,
+		) {}
 }
 

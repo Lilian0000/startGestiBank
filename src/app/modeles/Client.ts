@@ -10,7 +10,7 @@ export class Client extends User {
 		password: string,
 		address: string,
 		phonenumber: string,	
-		public idClient: number,
+		public numeroclient: number,
 		public idConseiller: number)
 	
 	{super(id, lastName, firstName, email, password, address, phonenumber);} 

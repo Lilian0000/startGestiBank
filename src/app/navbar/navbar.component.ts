@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef, Input } from '@angular/core';
 import { ROUTES } from '../sidebar/sidebar.component';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import { AuthentificationService } from '../service/authentification.service';
+import { Router } from '@angular/router';
 @Component({
     // moduleId: module.id,
     selector: 'navbar-cmp',
@@ -18,12 +19,15 @@ export class NavbarComponent implements OnInit{
     private sidebarVisible: boolean;
     private sub:any;
 
-    constructor(location: Location,  private element: ElementRef, private authentificationService : AuthentificationService) {
+    constructor(location: Location,  private element: ElementRef, private authentificationService : AuthentificationService,
+      private router: Router) {
       this.location = location;
           this.sidebarVisible = false;
     }
 
     ngOnInit(){
+     this.authentificationService.clearUserType();
+     this.authentificationService.setUserType(this.utilisateur);
       this.listTitles = ROUTES.filter(listTitle => listTitle);
       const navbar: HTMLElement = this.element.nativeElement;
       this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
@@ -60,6 +64,7 @@ export class NavbarComponent implements OnInit{
     console.log(this.authentificationService.getUserInLocalSession());
     this.authentificationService.clearUserType();
     this.authentificationService.setUserType('guest');
+    this.router.navigate(['']);
   }
     /*
     getTitle(){

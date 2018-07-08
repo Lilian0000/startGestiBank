@@ -8,6 +8,7 @@ import { Conseiller } from '../../../modeles/Conseiller';
 import { GestionConseillersService } from '../../../service/gestionConseillers.service';
 import { EventEmitter, Input, Output} from '@angular/core';
 
+
 @Component({
   selector: 'app-attribute-client-to-conseiller',
   templateUrl: './attribute-client-to-conseiller.component.html',
@@ -29,10 +30,13 @@ export class AttributeClientToConseillerComponent implements OnInit {
 		private gestionClientsService: GestionClientsService) { }
 
 	ngOnInit() {
+
 	this.getConseillers();
 	this.sub = this.route.params.subscribe(params => {
     this.id = +params['id'];});
-	this.client=this.gestionClientsService.getClientById(this.id);
+	this.gestionClientsService.getClientById(this.id).subscribe(client => {this.client=client;}
+      , err => {console.log(err);} 
+      );
 	}
 
 	getConseillers() {

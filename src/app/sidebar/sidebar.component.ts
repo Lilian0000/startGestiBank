@@ -32,14 +32,14 @@ export const ROUTES: RouteInfo[] = [
 })
 export class SidebarComponent implements OnInit {
   //On reçoit le paramètre utilisateur en input depuis le composant app.component.ts
-  utilisateur;
+ 
   subscription: Subscription;
   menuItems: any[];
+  utilisateur;
 
   constructor(private authentificationService : AuthentificationService) { }
 
   ngOnInit() {
-   
     this.subscription = this.authentificationService.getuserTypeasObs().subscribe(userType => { this.utilisateur = userType; 
     this.menuItems = ROUTES.filter(menuItem => menuItem.userSpace===this.utilisateur);
     });
