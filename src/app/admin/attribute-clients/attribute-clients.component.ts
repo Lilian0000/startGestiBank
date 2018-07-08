@@ -7,6 +7,7 @@ import { Conseiller } from '../../modeles/Conseiller';
 import { Conseillers } from '../../modeles/Conseillers';
 import { EventEmitter, Input, Output} from '@angular/core';
 
+
 @Component({
   selector: 'app-attribute-clients',
   templateUrl: './attribute-clients.component.html',
@@ -22,6 +23,7 @@ export class AttributeClientsComponent implements OnInit {
 
   ngOnInit() {
   	this.getClients();
+      
   }
   getClients() {
   	this.clients = this.gestionClientsService.getNotAttributedClients();

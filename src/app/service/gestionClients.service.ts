@@ -53,8 +53,8 @@ export class GestionClientsService {
 		return clients;
 	}
 
-	getClientById(id: number) {
-		return Clients[id - 1];
+	getClientById(id: number): Observable<Client> {
+		return  this.http.get(this.apiUrl + '/' + id).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
 	}
 
 	getClientBylastName(lastName: string) {
@@ -77,23 +77,22 @@ export class GestionClientsService {
 
 
 
-				addClient(client) {
-					client.id = Clients.length + 1;
-					Clients.push(client);
+				addClient(client): Observable<Client> {
+					return  this.http.post(this.apiUrl, client).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
 				}
 
-				editClient(client) {
-					let oldClient = this.getClientById(client.id);
+				editClient(client): Observable<Client> {
+					return  this.http.put(this.apiUrl + '/' + client.id, client).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
+					/*let oldClient = this.getClientById(client.id);
 					client.idClient = oldClient.numeroclient;
 					client.idConseiller = oldClient.idConseiller;
 					client.password = oldClient.password;
 					let index = (client.id - 1);
-					Clients.splice(index, 1, client);
+					Clients.splice(index, 1, client);*/
 				}
 
-				deleteClient(client) {
-					let index = Clients.indexOf(client);
-					Clients.splice(index, 1);	
+				deleteClient(id: number): Observable<number> {
+					return  this.http.delete(this.apiUrl + '/' + id).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
 				}
 
 	attributeClientToConseiller(client, idConseiller) {

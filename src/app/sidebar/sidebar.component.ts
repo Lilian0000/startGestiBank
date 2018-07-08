@@ -32,10 +32,10 @@ export const ROUTES: RouteInfo[] = [
 })
 export class SidebarComponent implements OnInit {
   //On reçoit le paramètre utilisateur en input depuis le composant app.component.ts
-  utilisateur;
+ 
   subscription: Subscription;
   menuItems: any[];
- 
+  utilisateur;
 
   constructor(private authentificationService : AuthentificationService) { }
 

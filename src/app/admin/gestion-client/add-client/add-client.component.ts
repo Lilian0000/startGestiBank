@@ -6,19 +6,21 @@ import { Observable } from 'rxjs/';
 import { Client } from '../../../modeles/Client';
 
 @Component({
-  selector: 'app-add-client',
-  templateUrl: './add-client.component.html',
-  styleUrls: ['./add-client.component.css']
+	selector: 'app-add-client',
+	templateUrl: './add-client.component.html',
+	styleUrls: ['./add-client.component.css']
 })
 export class AddClientComponent implements OnInit {
 
- 	id: number;
+	id: number;
 	client: Client;
 	clientForm: FormGroup;
 
 	constructor(private route: ActivatedRoute, 
 		private router: Router, 
-		private gestionClients: GestionClientsService) { }
+		private gestionClients: GestionClientsService) {
+		this.router.routeReuseStrategy.shouldReuseRoute = function(){return false;}  
+	}
 
 	ngOnInit() {
 
@@ -34,9 +36,9 @@ export class AddClientComponent implements OnInit {
 			phonenumber: new FormControl('', Validators.required),
 		});
 
-		if(this.id) {
+		/*if(this.id) {
 			this.gestionClients.getClientById(this.id);
-		}
+		}*/
 	}
 
 	onSubmit() {
@@ -50,8 +52,8 @@ export class AddClientComponent implements OnInit {
 				this.clientForm.controls['phonenumber'].value,
 				null,
 				null);
-			this.gestionClients.addClient(client);
-			this.gestionClients.idClientGenerator(client);
+			this.gestionClients.addClient(client).subscribe();
+			//this.gestionClients.idClientGenerator(client);
 			this.clientForm.reset();
 			this.router.navigate(['/admin/gestion_client']);
 		}
@@ -61,10 +63,10 @@ export class AddClientComponent implements OnInit {
 			this.gestionClients.getClientById(this.id);
 		}*/
 		
-	redirectUserPage() {
-		this.router.navigate(['/admin/gestion_client']);
+		redirectUserPage() {
+			this.router.navigate(['/admin/gestion_client']);
+		}
+
+
+
 	}
-
-
-
-}
