@@ -7,12 +7,12 @@
                         <h4 class="title">Administration des Clients : Modifier un Client</h4>
                    
                     <div class="content">
-                        <form novalidate [formGroup]="clientForm" (ngSubmit)="onSubmit()">
+                        <form novalidate [formGroup]="editClientForm" (ngSubmit)="onSubmit()">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Nom</label>
-                                        <input type="text" class="form-control" formControlName="lastName" value="{{client.lastName}}">
+                                        <input type="text" class="form-control" value="{{client.lastName}}" formControlName="lastName">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -50,7 +50,7 @@
                             </div>
 
                             
-                            <button type="submit" class="btn btn-info btn-fill pull-right" [disabled]="!clientForm.valid">Submit</button>
+                            <button type="submit" class="btn btn-info btn-fill pull-right" [disabled]="!editClientForm.valid">Submit</button>
                              <button type="button" class="btn btn-warning btn-fill pull-right" (click)="redirectUserPage()">Cancel</button>
                             <div class="clearfix"></div>
                         </form>

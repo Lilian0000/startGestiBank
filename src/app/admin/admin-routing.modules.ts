@@ -11,10 +11,13 @@ import { AttributeClientToConseillerComponent } from './attribute-clients/attrib
 const adminRoutes: Routes = [
 	{path: 'admin', component: AdminComponent,},
 
-	{path: 'admin/attribute_clients', component: AttributeClientsComponent,},
-	{path: 'admin/attribute_clients/attribute_client_to_conseiller/:id', component: AttributeClientToConseillerComponent,},
-	{path :'admin/gestion_client', component: GestionClientComponent,
-		children: [
+	{path: 'admin/attribute_clients', component: AttributeClientsComponent},
+	{path: 'admin/attribute_clients/attribute_client_to_conseiller/:id', component: AttributeClientToConseillerComponent},
+	
+	{path :'admin/add_client', component: AddClientComponent},
+	{path :'admin/edit_client/:id', component: EditClientComponent},
+	{path :'admin/gestion_client', component: GestionClientComponent,}
+		/*children: [
 			{
 				path: 'add_client', component: AddClientComponent,
 			},
@@ -22,7 +25,7 @@ const adminRoutes: Routes = [
 				path: 'edit_client/:id', component: EditClientComponent,
 			}	
 		]
-	}
+	}*/
 ];
 
 @NgModule({

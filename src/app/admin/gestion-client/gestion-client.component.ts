@@ -30,11 +30,11 @@ export class GestionClientComponent implements OnInit {
           );
       }
       redirectNewClientPage() {
-        this.router.navigate(['admin/gestion_client/add_client']);
+        this.router.navigate(['admin/add_client']);
       }
       editClientPage(client) {
         if (client) {
-          this.router.navigate(['admin/gestion_client/edit_client', client.id]);
+          this.router.navigate(['admin/edit_client', client.id]);
         }
       }s
       onDelete(client) {
