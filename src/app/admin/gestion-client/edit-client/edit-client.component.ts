@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators} from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GestionClientsService } from "../../../service/gestionClients.service";
 import { Observable } from 'rxjs/';
@@ -14,53 +14,56 @@ export class EditClientComponent implements OnInit {
 
 	id: number;
 	client: Client;
-	clientForm: FormGroup;
+	editClientForm: FormGroup;
 	private sub: any;
 
 	constructor(private route: ActivatedRoute, 
 		private router: Router, 
 		private gestionClientsService: GestionClientsService) { 
-	this.router.routeReuseStrategy.shouldReuseRoute = function(){return false;}  
+	//this.router.routeReuseStrategy.shouldReuseRoute = function(){return false;}  
 }
 
 	ngOnInit() {
 
 	this.sub = this.route.params.subscribe(params => {
-    this.id = +params['id'];  });
-		
-	this.gestionClientsService.getClientById(this.id).subscribe(client => {this.client=client;
-		this.clientForm = new FormGroup({
+    this.id = +params['id'];  
+
+	this.gestionClientsService.getClientById(this.id).subscribe(client => {
+		this.client=client;
+
+		this.editClientForm = new FormGroup({
 			lastName: new FormControl(this.client.lastName, Validators.required),
 			firstName: new FormControl(this.client.firstName, Validators.required),
 			email: new FormControl(this.client.email, [
 				Validators.required,
 				Validators.pattern("[^ @]*@[^ @]*")
 				]),
-			
 			address: new FormControl(this.client.address, Validators.required),
 			phonenumber: new FormControl(this.client.phonenumber, Validators.required),
 		});	}
+
       , err => {console.log(err);} );
 
-
-	
+	});
 	}
 
 	onSubmit() {
-		if(this.clientForm.valid) {
+		if(this.editClientForm.valid) {
 			let client: Client = new Client
 				(this.id,
-				this.clientForm.controls['lastName'].value,
-				this.clientForm.controls['firstName'].value,
-				this.clientForm.controls['email'].value,
+				this.editClientForm.controls['lastName'].value,
+				this.editClientForm.controls['firstName'].value,
+				this.editClientForm.controls['email'].value,
 				null,
-				this.clientForm.controls['address'].value,
-				this.clientForm.controls['phonenumber'].value,
+				this.editClientForm.controls['address'].value,
+				this.editClientForm.controls['phonenumber'].value,
 				null,
 				null);
-			this.gestionClientsService.editClient(client).subscribe();
-			this.clientForm.reset();
-			this.router.navigate(['/admin/gestion_client']);
+			this.gestionClientsService.editClient(client).subscribe(bool => {
+				this.router.navigate(['/admin/gestion_client']);
+			 	this.editClientForm.reset();});
+			
+			
 		}
 	}
 

@@ -82,6 +82,7 @@ export class GestionClientsService {
 				}
 
 				editClient(client): Observable<Client> {
+					console.log(client);
 					return  this.http.put(this.apiUrl + '/' + client.id, client).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
 					/*let oldClient = this.getClientById(client.id);
 					client.idClient = oldClient.numeroclient;

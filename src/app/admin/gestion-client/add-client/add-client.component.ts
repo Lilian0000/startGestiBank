@@ -19,7 +19,7 @@ export class AddClientComponent implements OnInit {
 	constructor(private route: ActivatedRoute, 
 		private router: Router, 
 		private gestionClients: GestionClientsService) {
-		this.router.routeReuseStrategy.shouldReuseRoute = function(){return false;}  
+		//this.router.routeReuseStrategy.shouldReuseRoute = function(){return false;}  
 	}
 
 	ngOnInit() {
@@ -52,10 +52,11 @@ export class AddClientComponent implements OnInit {
 				this.clientForm.controls['phonenumber'].value,
 				null,
 				null);
-			this.gestionClients.addClient(client).subscribe();
+			this.gestionClients.addClient(client).subscribe(client => {
+				this.clientForm.reset();
+				this.router.navigate(['/admin/gestion_client']);
+			});
 			//this.gestionClients.idClientGenerator(client);
-			this.clientForm.reset();
-			this.router.navigate(['/admin/gestion_client']);
 		}
 	}
 		//si on veut rajouter 
