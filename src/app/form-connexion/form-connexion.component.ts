@@ -13,7 +13,7 @@ import { EventEmitter, Input, Output} from '@angular/core';
 export class FormConnexionComponent implements OnInit {
 	email: string;
 	user;
-	guestSubscribeForm: FormGroup;
+	guestConnexionForm: FormGroup;
 
 	//@Output() notifySideBar: EventEmitter<any> = new EventEmitter();
 	
@@ -21,15 +21,13 @@ export class FormConnexionComponent implements OnInit {
 		private authentificationService: AuthentificationService) { }
 
 	ngOnInit() { 
-
-
 		//console.log(this.authentificationService.getUserInTempSession());
 		//console.log(this.authentificationService.getUserInLocalSession());
 
 		//pour michel
 		//console.log(this.authentificationService.getUserType(this.authentificationService.getUserinSession()));
 		//console.log(this.authentificationService.isConnected());
-		this.guestSubscribeForm = new FormGroup({
+		this.guestConnexionForm = new FormGroup({
 			email: new FormControl('', [
 				Validators.required,
 				Validators.pattern("[^ @]*@[^ @]*")
@@ -40,9 +38,13 @@ export class FormConnexionComponent implements OnInit {
 	}
 
 	onSubmit() {
-		if(this.guestSubscribeForm.valid) {
-			this.user = this.authentificationService.getUserAtConnexion(this.guestSubscribeForm.controls['email'].value,
-			this.guestSubscribeForm.controls['password'].value);
+
+		console.log(this.guestConnexionForm.value)
+		if(this.guestConnexionForm.valid) {
+
+
+			this.authentificationService.getUserAtConnexion(this.guestConnexionForm.value).subscribe(user => {this.user=user 
+
 
 			//console.log(this.user);
 
@@ -62,7 +64,8 @@ export class FormConnexionComponent implements OnInit {
 				this.authentificationService.clearUserType();
 				this.authentificationService.setUserType(this.authentificationService.getUserType(this.user));
 				this.authentificationService.connexionRedirection(this.user);
-			}			
+			}	
+			});		
 		}
 	}
 
