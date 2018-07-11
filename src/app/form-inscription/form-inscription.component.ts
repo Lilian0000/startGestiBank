@@ -51,10 +51,12 @@ export class FormInscriptionComponent implements OnInit {
 				this.clientForm.controls['phonenumber'].value,
 				null,
 				null);
-			this.gestionClients.addClient(client);
-			this.gestionClients.idClientGenerator(client);
-			this.clientForm.reset();
-			this.router.navigate(['/client']);
+			this.gestionClients.addClient(client).subscribe(client => { 
+				this.clientForm.reset();
+				this.router.navigate(['/client']);
+			});
+			//this.gestionClients.idClientGenerator(client);
+			
 		}
 	}
 

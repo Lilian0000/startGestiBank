@@ -13,7 +13,10 @@ export class Client extends User {
 		public numeroclient: number,
 		public idConseiller: number)
 	
-	{super(id, lastName, firstName, email, password, address, phonenumber);} 
+	{
+		super(id, lastName, firstName, email, password, address, phonenumber);
+	    console.log("lastName ="+lastName+", firstName ="+firstName);
+	} 
 
 	
 	

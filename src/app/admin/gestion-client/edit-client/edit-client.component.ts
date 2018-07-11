@@ -49,7 +49,8 @@ export class EditClientComponent implements OnInit {
 
 	onSubmit() {
 		if(this.editClientForm.valid) {
-			let client: Client = new Client
+			console.log (">>> lastname on subit = "+this.editClientForm.controls['lastName'].value);
+			let modifiedClient: Client = new Client
 				(this.id,
 				this.editClientForm.controls['lastName'].value,
 				this.editClientForm.controls['firstName'].value,
@@ -59,7 +60,7 @@ export class EditClientComponent implements OnInit {
 				this.editClientForm.controls['phonenumber'].value,
 				null,
 				null);
-			this.gestionClientsService.editClient(client).subscribe(bool => {
+			this.gestionClientsService.editClient(modifiedClient).subscribe(bool => {
 				this.router.navigate(['/admin/gestion_client']);
 			 	this.editClientForm.reset();});
 			

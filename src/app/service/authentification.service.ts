@@ -12,16 +12,17 @@ import { map } from 'rxjs/operators';
 import { catchError } from 'rxjs/operators';
 import { EventEmitter, Input, Output} from '@angular/core';
 import { Subject } from 'rxjs/Subject';
+import { Http, Response } from "@angular/http";
 
 @Injectable()
 export class AuthentificationService {
 	
-	constructor(private router: Router) {}
+	constructor(private router: Router, private http: Http) {}
+	private apiUrl = 'http://localhost:9090/GestBankBack/users/connexion';
 
+getUserAtConnexion(form): Observable<Boolean | {}> {
 
-getUserAtConnexion(email: string, password: string) {
-
-	let User;
+	/*let User;
 
 	for (var i=0; i<Clients.length; i++) {
 		if (email === Clients[i].email) 
@@ -45,7 +46,9 @@ getUserAtConnexion(email: string, password: string) {
 		}
 	}
 
-	return User;
+	return User;*/
+
+		return  this.http.post(this.apiUrl, form).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
 }
 
 connexionRedirection(user) {
