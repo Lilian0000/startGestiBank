@@ -7,7 +7,7 @@
                     <h4 class="title">Administration des Clients : Modifier un Client</h4>
                     
                     <div class="content">
-                        <form novalidate [formGroup]="editClientForm" (ngSubmit)="onSubmit()">
+                        <form [formGroup]="editClientForm" (ngSubmit)="onSubmit()">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -22,7 +22,6 @@
                                     </div>
                                 </div>    
                             </div>
-
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
@@ -31,7 +30,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -39,14 +37,12 @@
                                         <input type="email" class="form-control" value="{{client.email}}" formControlName="email">
                                     </div>
                                 </div>
-                                
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Phone number</label>
                                         <input class="form-control" value="{{client.phonenumber}}" formControlName="phonenumber">
                                     </div>
                                 </div>
-                                
                             </div>
 
                             
