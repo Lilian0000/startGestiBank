@@ -32,7 +32,7 @@ export class EditClientComponent implements OnInit {
 		this.client=client;
 
 		this.editClientForm = new FormGroup({
-			lastName: new FormControl(this.client.lastName, Validators.required),
+			lastName2: new FormControl(this.client.lastName, Validators.required),
 			firstName: new FormControl(this.client.firstName, Validators.required),
 			email: new FormControl(this.client.email, [
 				Validators.required,
@@ -49,10 +49,10 @@ export class EditClientComponent implements OnInit {
 
 	onSubmit() {
 		if(this.editClientForm.valid) {
-			console.log (">>> lastname on subit = "+this.editClientForm.controls['lastName'].value);
+			console.log (">>> lastname on subit = "+this.editClientForm.controls['lastName2'].value);
 			let modifiedClient: Client = new Client
 				(this.id,
-				this.editClientForm.controls['lastName'].value,
+				this.editClientForm.controls['lastName2'].value,
 				this.editClientForm.controls['firstName'].value,
 				this.editClientForm.controls['email'].value,
 				null,

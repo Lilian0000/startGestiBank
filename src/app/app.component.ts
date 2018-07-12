@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class AppComponent implements OnInit {
 
-	userType: any = "guest";
+	userType: any = 'guest';
 	subscription: Subscription;
 	//sub : any;
 

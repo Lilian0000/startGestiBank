@@ -98,6 +98,7 @@ getUserType(user) : string {
 		}
 	else {return "conseiller";}
 	}
+	else {return "guest";}
 }
 
 //si une session existe retourne true
