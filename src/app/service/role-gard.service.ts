@@ -17,7 +17,7 @@ export class RoleGardService implements CanActivate {
 				console.log(this.role);
 				
 			if (this.role !== this.expectedRole) {
-				this.router.navigate(['']);
+				this.router.navigate(['unauthorizedUserSpace']);
 				return false;
 			}
 			return true;

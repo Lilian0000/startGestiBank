@@ -16,6 +16,7 @@ import { NavbarModule } from './navbar/navbar.module';
 import { GuestComponent } from './guest/guest.component';
 import { GestionComptesService } from './service/gestion-comptes.service'
 import { RoleGardService } from './service/role-gard.service';
+import { UnauthorizedEspacePageComponent } from './errorPages/unauthorized-espace-page/unauthorized-espace-page.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { RoleGardService } from './service/role-gard.service';
     FormInscriptionComponent,
     FormConnexionComponent,
     GuestComponent,
+    UnauthorizedEspacePageComponent,
     
   ],
   imports: [
