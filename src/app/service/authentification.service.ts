@@ -20,7 +20,7 @@ export class AuthentificationService {
 	constructor(private router: Router, private http: Http) {}
 	private apiUrl = 'http://localhost:9090/GestBankBack/users/connexion';
 
-getUserAtConnexion(form): Observable<Boolean | {}> {
+	getUserAtConnexion(form): Observable<Boolean | {}> {
 
 	/*let User;
 
@@ -48,7 +48,7 @@ getUserAtConnexion(form): Observable<Boolean | {}> {
 
 	return User;*/
 
-		return  this.http.post(this.apiUrl, form).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
+	return  this.http.post(this.apiUrl, form).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
 }
 
 connexionRedirection(user) {
@@ -59,7 +59,7 @@ connexionRedirection(user) {
 		if (user.fonction) {
 			this.router.navigate(['/admin']);
 		}
-	else {this.router.navigate(['/conseiller']);}
+		else {this.router.navigate(['/conseiller']);}
 	}
 }
 //session permatente jusqu'à logout() : "Remember Me" 
@@ -83,9 +83,9 @@ getUserInTempSession() {
 //recupère l'objet User quelque soit le type de session
 getUserinSession() {
 	if (this.getUserInLocalSession())
-	{return JSON.parse(localStorage.getItem('Token'));}
+		{return JSON.parse(localStorage.getItem('Token'));}
 	else
-	{return JSON.parse(sessionStorage.getItem('Token'));}
+		{return JSON.parse(sessionStorage.getItem('Token'));}
 }
 //fonction prenant un objet user (client/admin ou conseiller) et renvoie une String correspondant au type d'utilisateur
 getUserType(user) : string {
@@ -96,7 +96,7 @@ getUserType(user) : string {
 		if (user.fonction) {
 			return "admin";
 		}
-	else {return "conseiller";}
+		else {return "conseiller";}
 	}
 }
 
@@ -133,19 +133,19 @@ getUserTypeinSession(): Observable<any> {
 //on créé d'abord un Subject que l'on pourra envoyer en tant qu'Observable afin de pouvoir faire une sousciption dessus
 //la souscription à ce Subject se fait dans AppComponent pour la navbar et dans le SideBarComponent pour la sidebar
 private subject = new Subject<any>();
- 	
+
 //fonction permettant d'input une string dans le Subject (utilisé dans les component devant provoquer une action sur les bars de nav !!!)
 setUserType(usertype: string) {
-  this.subject.next(usertype);
+	this.subject.next(usertype);
 }
 
 //vide le Subject
 clearUserType() {
-  this.subject.next();
+	this.subject.next();
 }
 
 //récupère la string  "type d'utilisateur" comme observable
 getuserTypeasObs(): Observable<any> {
-  return this.subject.asObservable();
+	return this.subject.asObservable();
 }
 }
