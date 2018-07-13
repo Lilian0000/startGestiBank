@@ -9,26 +9,23 @@ import { Subscription } from 'rxjs/Subscription';
   styleUrls: ['./app.component.css'],
   providers: []
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
-	userType: any = 'guest';
+	userType: String ="guest";
 	subscription: Subscription;
 	//sub : any;
 
 	constructor(private authentificationService: AuthentificationService) {
 		//if (this.authentificationService.getUserinSession()) {
-		
+		if (this.authentificationService.getUserinSession()) {
+			this.userType=this.authentificationService.getUserType(this.authentificationService.getUserinSession());
+		}
 		this.subscription = this.authentificationService.getuserTypeasObs().subscribe(userType => { this.userType = userType; });
 		//}
 		//this.userType = this.authentificationService.getUserType(this.authentificationService.getUserinSession());*/
 		//notifySideBar.subscribe(userType => this.userType = this.authentificationService.getUserType(this.authentificationService.getUserinSession()));
 	}		
 
-	ngOnInit() {
-		if (this.authentificationService.getUserinSession()) {
-			this.userType=this.authentificationService.getUserType(this.authentificationService.getUserinSession());
-		}
-	}
 }
 
 

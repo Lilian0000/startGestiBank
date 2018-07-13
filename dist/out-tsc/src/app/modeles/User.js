@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var User = /** @class */ (function () {
-    function User(id, firstName, lastName, email, password, address, phonenumber) {
+    function User(id, lastName, firstName, email, password, address, phonenumber) {
         this.id = id;
-        this.firstName = firstName;
         this.lastName = lastName;
+        this.firstName = firstName;
         this.email = email;
         this.password = password;
         this.address = address;

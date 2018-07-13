@@ -10,6 +10,7 @@ var core_1 = require("@angular/core");
 var common_1 = require("@angular/common");
 var client_component_1 = require("./client/client.component");
 var client_routing_module_1 = require("./client-routing.module");
+var gestion_comptes_component_1 = require("./gestion-comptes/gestion-comptes.component");
 var ClientModule = /** @class */ (function () {
     function ClientModule() {
     }
@@ -19,7 +20,7 @@ var ClientModule = /** @class */ (function () {
                 common_1.CommonModule,
                 client_routing_module_1.ClientRoutingModule
             ],
-            declarations: [client_component_1.ClientComponent]
+            declarations: [client_component_1.ClientComponent, gestion_comptes_component_1.GestionComptesComponent]
         })
     ], ClientModule);
     return ClientModule;

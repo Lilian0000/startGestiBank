@@ -16,7 +16,14 @@ var client_module_1 = require("./client/client.module");
 var conseiller_module_1 = require("./conseiller/conseiller.module");
 var form_inscription_component_1 = require("./form-inscription/form-inscription.component");
 var form_connexion_component_1 = require("./form-connexion/form-connexion.component");
+var authentification_service_1 = require("./service/authentification.service");
 var gestionClients_service_1 = require("./service/gestionClients.service");
+var forms_1 = require("@angular/forms");
+var sidebar_module_1 = require("./sidebar/sidebar.module");
+var navbar_module_1 = require("./navbar/navbar.module");
+var guest_component_1 = require("./guest/guest.component");
+var gestion_comptes_service_1 = require("./service/gestion-comptes.service");
+var role_gard_service_1 = require("./service/role-gard.service");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -25,7 +32,8 @@ var AppModule = /** @class */ (function () {
             declarations: [
                 app_component_1.AppComponent,
                 form_inscription_component_1.FormInscriptionComponent,
-                form_connexion_component_1.FormConnexionComponent
+                form_connexion_component_1.FormConnexionComponent,
+                guest_component_1.GuestComponent,
             ],
             imports: [
                 platform_browser_1.BrowserModule,
@@ -33,9 +41,13 @@ var AppModule = /** @class */ (function () {
                 http_1.HttpModule,
                 admin_module_1.AdminModule,
                 client_module_1.ClientModule,
-                conseiller_module_1.ConseillerModule
+                conseiller_module_1.ConseillerModule,
+                forms_1.FormsModule,
+                forms_1.ReactiveFormsModule,
+                sidebar_module_1.SidebarModule,
+                navbar_module_1.NavbarModule
             ],
-            providers: [gestionClients_service_1.GestionClientsService],
+            providers: [authentification_service_1.AuthentificationService, gestionClients_service_1.GestionClientsService, gestion_comptes_service_1.GestionComptesService, role_gard_service_1.RoleGardService],
             bootstrap: [app_component_1.AppComponent]
         })
     ], AppModule);

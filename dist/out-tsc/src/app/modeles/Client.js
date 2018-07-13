@@ -13,10 +13,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var User_1 = require("./User");
 var Client = /** @class */ (function (_super) {
     __extends(Client, _super);
-    function Client(id, firstName, lastName, email, password, address, phonenumber, idClient, idConseiller) {
+    function Client(id, lastName, firstName, email, password, address, phonenumber, numeroclient, idConseiller) {
         var _this = _super.call(this, id, lastName, firstName, email, password, address, phonenumber) || this;
-        _this.idClient = idClient;
+        _this.numeroclient = numeroclient;
         _this.idConseiller = idConseiller;
+        console.log("lastName =" + lastName + ", firstName =" + firstName);
         return _this;
     }
     return Client;

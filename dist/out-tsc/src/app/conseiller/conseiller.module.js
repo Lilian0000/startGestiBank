@@ -10,6 +10,7 @@ var core_1 = require("@angular/core");
 var common_1 = require("@angular/common");
 var conseiller_routing_modules_1 = require("./conseiller-routing.modules");
 var conseiller_component_1 = require("./conseiller/conseiller.component");
+var liste_client_component_1 = require("./liste-client/liste-client.component");
 var ConseillerModule = /** @class */ (function () {
     function ConseillerModule() {
     }
@@ -19,7 +20,7 @@ var ConseillerModule = /** @class */ (function () {
                 common_1.CommonModule,
                 conseiller_routing_modules_1.ConseillerRoutingModule
             ],
-            declarations: [conseiller_component_1.ConseillerComponent]
+            declarations: [conseiller_component_1.ConseillerComponent, liste_client_component_1.ListeClientComponent]
         })
     ], ConseillerModule);
     return ConseillerModule;

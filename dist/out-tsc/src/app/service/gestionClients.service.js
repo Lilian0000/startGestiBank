@@ -11,13 +11,51 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var Clients_1 = require("../modeles/Clients");
+var http_1 = require("@angular/http");
+var map_1 = require("rxjs/operators/map");
+var catchError_1 = require("rxjs/operators/catchError");
+var Observable_1 = require("rxjs/Observable");
 var GestionClientsService = /** @class */ (function () {
-    function GestionClientsService() {
+    function GestionClientsService(http) {
+        this.http = http;
+        this.apiUrl = 'http://localhost:9090/GestBankBack/clients';
     }
     //récupère tout les clients
-    GestionClientsService.prototype.getClients = function () { return Clients_1.Clients; };
+    GestionClientsService.prototype.getClients = function () {
+        //return Clients;
+        return this.http.get(this.apiUrl).pipe(map_1.map(function (res) { return res.json(); }), catchError_1.catchError(function (error) { return Observable_1.Observable.throw(error.json().error || "Server error"); }));
+    };
+    GestionClientsService.prototype.getClientsByConseiller = function (idConseiller) {
+        var clients = [];
+        for (var i = 0; i < Clients_1.Clients.length; i++) {
+            if (Clients_1.Clients[i].idConseiller === idConseiller) {
+                clients.push(Clients_1.Clients[i]);
+            }
+        }
+        return clients;
+    };
+    //SPECIFIQUE A CLIENT notification
+    GestionClientsService.prototype.getNumberOfNotAttClients = function () {
+        var nbClients = 0;
+        for (var i = 0; i < Clients_1.Clients.length; i++) {
+            if (Clients_1.Clients[i].idConseiller === null) {
+                nbClients++;
+            }
+        }
+        return nbClients;
+    };
+    //SPECIFIQUE A CLIENTcomponent attribué les clients
+    GestionClientsService.prototype.getNotAttributedClients = function () {
+        var clients = [];
+        for (var i = 0; i < Clients_1.Clients.length; i++) {
+            if (Clients_1.Clients[i].idConseiller === null) {
+                clients.push(Clients_1.Clients[i]);
+            }
+        }
+        return clients;
+    };
     GestionClientsService.prototype.getClientById = function (id) {
-        return Clients_1.Clients[id - 1];
+        return this.http.get(this.apiUrl + '/' + id).pipe(map_1.map(function (res) { return res.json(); }), catchError_1.catchError(function (error) { return Observable_1.Observable.throw(error.json().error || "Server error"); }));
     };
     GestionClientsService.prototype.getClientBylastName = function (lastName) {
         for (var i = 0; i < Clients_1.Clients.length; i++)
@@ -27,21 +65,34 @@ var GestionClientsService = /** @class */ (function () {
     };
     GestionClientsService.prototype.getClientByIdClient = function (idClient) {
         for (var i = 0; i < Clients_1.Clients.length; i++)
-            if (Clients_1.Clients[i].idClient === idClient) {
+            if (Clients_1.Clients[i].numeroclient === idClient) {
+                return Clients_1.Clients[i];
+            }
+    };
+    GestionClientsService.prototype.getClientByMail = function (email) {
+        for (var i = 0; i < Clients_1.Clients.length; i++)
+            if (Clients_1.Clients[i].email === email) {
                 return Clients_1.Clients[i];
             }
     };
     GestionClientsService.prototype.addClient = function (client) {
-        client.id = Clients_1.Clients.length + 1;
-        Clients_1.Clients.push(client);
+        return this.http.post(this.apiUrl, client).pipe(map_1.map(function (res) { return res.json(); }), catchError_1.catchError(function (error) { return Observable_1.Observable.throw(error.json().error || "Server error"); }));
     };
     GestionClientsService.prototype.editClient = function (client) {
-        var index = Clients_1.Clients.indexOf(client);
-        Clients_1.Clients.splice(index, 1, client);
+        console.log(client);
+        return this.http.put(this.apiUrl + '/' + client.id, client).pipe(map_1.map(function (res) { return res.json(); }), catchError_1.catchError(function (error) { return Observable_1.Observable.throw(error.json().error || "Server error"); }));
+        /*let oldClient = this.getClientById(client.id);
+        client.idClient = oldClient.numeroclient;
+        client.idConseiller = oldClient.idConseiller;
+        client.password = oldClient.password;
+        let index = (client.id - 1);
+        Clients.splice(index, 1, client);*/
     };
-    GestionClientsService.prototype.deleteClient = function (client) {
-        var index = Clients_1.Clients.indexOf(client);
-        Clients_1.Clients.splice(index, 1);
+    GestionClientsService.prototype.deleteClient = function (id) {
+        return this.http.delete(this.apiUrl + '/' + id).pipe(map_1.map(function (res) { return res.json(); }), catchError_1.catchError(function (error) { return Observable_1.Observable.throw(error.json().error || "Server error"); }));
+    };
+    GestionClientsService.prototype.attributeClientToConseiller = function (client, idConseiller) {
+        client.idConseiller = idConseiller;
     };
     //generation aleatoire de numéro client avec vérification si le numéroClient éxiste déjà
     GestionClientsService.prototype.idClientGenerator = function (client) {
@@ -49,14 +100,14 @@ var GestionClientsService = /** @class */ (function () {
         while (idClientExist) {
             var tempIdClient = Math.round(Math.random() * (9999 - 1111));
             if (!this.getClientByIdClient(tempIdClient)) {
-                client.idClient = tempIdClient;
+                client.numeroclient = tempIdClient;
                 idClientExist = false;
             }
         }
     };
     GestionClientsService = __decorate([
         core_1.Injectable(),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [http_1.Http])
     ], GestionClientsService);
     return GestionClientsService;
 }());

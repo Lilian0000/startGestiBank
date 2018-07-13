@@ -19,34 +19,40 @@ var EditClientComponent = /** @class */ (function () {
         this.route = route;
         this.router = router;
         this.gestionClientsService = gestionClientsService;
+        //this.router.routeReuseStrategy.shouldReuseRoute = function(){return false;}  
     }
     EditClientComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.sub = this.route.params.subscribe(function (params) {
             _this.id = +params['id'];
-            _this.client = _this.gestionClientsService.getClients;
-            _this.clientForm = new forms_1.FormGroup({
-                firstName: new forms_1.FormControl('', forms_1.Validators.required),
-                lastName: new forms_1.FormControl('', forms_1.Validators.required),
-                email: new forms_1.FormControl('', [
-                    forms_1.Validators.required,
-                    forms_1.Validators.pattern("[^ @]*@[^ @]*")
-                ]),
-                password: new forms_1.FormControl('', forms_1.Validators.required),
-                address: new forms_1.FormControl('', forms_1.Validators.required),
-                phonenumber: new forms_1.FormControl('', forms_1.Validators.required),
-            });
-        }, onSubmit(), {
-            if: function (clientForm, valid) {
-                var client = new Client_1.Client(this.id, this.clientForm.controls['firstName'].value, this.clientForm.controls['lastName'].value, this.clientForm.controls['email'].value, this.clientForm.controls['password'].value, this.clientForm.controls['address'].value, this.clientForm.controls['phonenumber'].value, null, null);
-                this.gestionClients.editClient(client);
-                this.gestionClients.idClientGenerator(client);
-                this.clientForm.reset();
-                this.router.navigate(['/admin/gestion_client']);
-            }
-        }, redirectUserPage(), {
-            this: .router.navigate(['/admin/gestion_client'])
+            _this.gestionClientsService.getClientById(_this.id).subscribe(function (client) {
+                _this.client = client;
+                _this.editClientForm = new forms_1.FormGroup({
+                    lastName2: new forms_1.FormControl(_this.client.lastName, forms_1.Validators.required),
+                    firstName: new forms_1.FormControl(_this.client.firstName, forms_1.Validators.required),
+                    email: new forms_1.FormControl(_this.client.email, [
+                        forms_1.Validators.required,
+                        forms_1.Validators.pattern("[^ @]*@[^ @]*")
+                    ]),
+                    address: new forms_1.FormControl(_this.client.address, forms_1.Validators.required),
+                    phonenumber: new forms_1.FormControl(_this.client.phonenumber, forms_1.Validators.required),
+                });
+            }, function (err) { console.log(err); });
         });
+    };
+    EditClientComponent.prototype.onSubmit = function () {
+        var _this = this;
+        if (this.editClientForm.valid) {
+            console.log(">>> lastname on subit = " + this.editClientForm.controls['lastName2'].value);
+            var modifiedClient = new Client_1.Client(this.id, this.editClientForm.controls['lastName2'].value, this.editClientForm.controls['firstName'].value, this.editClientForm.controls['email'].value, null, this.editClientForm.controls['address'].value, this.editClientForm.controls['phonenumber'].value, null, null);
+            this.gestionClientsService.editClient(modifiedClient).subscribe(function (bool) {
+                _this.router.navigate(['/admin/gestion_client']);
+                _this.editClientForm.reset();
+            });
+        }
+    };
+    EditClientComponent.prototype.redirectUserPage = function () {
+        this.router.navigate(['/admin/gestion_client']);
     };
     EditClientComponent = __decorate([
         core_1.Component({
