@@ -23,9 +23,19 @@
                         <td>{{conseiller.address}}</td>
                         <td>{{conseiller.email}}</td>
                         <td>
-                            <button type="button" class="btn btn-warning btn-fill" (click)="AttributeConseiller(conseiller)">Attribué {{client.lastName}} {{client.firstName}} à ce Conseiller</button>
+                            <button type="button" class="btn btn-info btn-fill pull-right" (click)="AttributeConseiller(conseiller)">Attribué {{client.lastName}} {{client.firstName}} à ce Conseiller</button>
                         </td>          
-                    </tr>  
+                    </tr>
+                    <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <button type="button" class="btn btn-warning btn-fill pull-right" (click)="Cancel()">Annulé</button>
+                    </td> 
+                </tr>  
                 </tbody>
             </table>   
         </div>

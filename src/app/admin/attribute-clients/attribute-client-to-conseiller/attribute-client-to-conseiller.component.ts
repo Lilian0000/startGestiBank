@@ -56,5 +56,9 @@ export class AttributeClientToConseillerComponent implements OnInit {
 				error =>  {console.log(error);});
 		}
 
+		Cancel() {
+			this.router.navigate(['admin/attribute_clients']);
+		}
+
 	}
 

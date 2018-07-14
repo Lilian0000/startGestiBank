@@ -41,9 +41,12 @@ export class SidebarComponent implements OnInit {
   constructor(private authentificationService : AuthentificationService, private router: Router) { }
 
   ngOnInit() {
-    this.utilisateur=this.authentificationService.getUserType(this.authentificationService.getUserinSession());
-    console.log(this.utilisateur);
-    switch (this.utilisateur) {
+    if (this.utilisateur==null) {
+      this.utilisateur=this.authentificationService.getUserType(this.authentificationService.getUserinSession());
+      this.menuItems = ROUTES.filter(menuItem => menuItem.userSpace===this.utilisateur); 
+    }
+    
+   /* switch (this.utilisateur) {
     case "client":
       this.router.navigate(['client']);
       break;
@@ -59,10 +62,12 @@ export class SidebarComponent implements OnInit {
     default:
       this.router.navigate(['']);
       break;
-    }
+    }*/
+   
     this.authentificationService.getuserTypeasObs().subscribe(userType => {this.utilisateur=userType;
     this.menuItems = ROUTES.filter(menuItem => menuItem.userSpace===this.utilisateur); 
     });
+    
   }
   isMobileMenu() {
       if ($(window).width() > 991) {

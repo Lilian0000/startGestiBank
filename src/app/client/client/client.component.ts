@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthentificationService } from '../../service/authentification.service';
 
 @Component({
 	selector: 'app-client',
@@ -8,13 +7,9 @@ import { AuthentificationService } from '../../service/authentification.service'
 })
 export class ClientComponent implements OnInit {
 
-	constructor(private authentificationService: AuthentificationService) { }
+	constructor() { }
 
-	ngOnInit() {
-		console.log("client component is loading");
-		this.authentificationService.clearUserType();
-		this.authentificationService.setUserType("client");
-		
+	ngOnInit() {	
 	}
 
 }

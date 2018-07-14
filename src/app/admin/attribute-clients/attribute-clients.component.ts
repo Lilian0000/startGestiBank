@@ -31,4 +31,8 @@ export class AttributeClientsComponent implements OnInit {
   AttributeClientToConseiller(client) {
       this.router.navigate(['admin/attribute_clients/attribute_client_to_conseiller', client.id]);
     }
+
+  RedirectAdminPage() {
+    this.router.navigate(['admin']);
+  }
 }

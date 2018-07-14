@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthentificationService } from '../service/authentification.service';
+
 @Component({
   selector: 'app-guest',
   templateUrl: './guest.component.html',
@@ -7,11 +7,9 @@ import { AuthentificationService } from '../service/authentification.service';
 })
 export class GuestComponent implements OnInit {
 
-  constructor(private authentificationService: AuthentificationService) { }
+  constructor() { }
 
   ngOnInit() {
-  	this.authentificationService.clearUserType();
-	this.authentificationService.setUserType('guest');
   }
 
 }
