@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AppComponent } from '../app.component';
 import { AuthentificationService } from '../service/authentification.service';
-import { Subscription } from 'rxjs/Subscription';
+import { Router } from '@angular/router';
+
 declare const $: any;
 declare interface RouteInfo {
     path: string;
@@ -33,15 +34,34 @@ export const ROUTES: RouteInfo[] = [
 export class SidebarComponent implements OnInit {
   //On reçoit le paramètre utilisateur en input depuis le composant app.component.ts
  
-  subscription: Subscription;
+  
   menuItems: any[];
-  utilisateur;
+  utilisateur: string;
 
-  constructor(private authentificationService : AuthentificationService) { }
+  constructor(private authentificationService : AuthentificationService, private router: Router) { }
 
   ngOnInit() {
-    this.subscription = this.authentificationService.getuserTypeasObs().subscribe(userType => { this.utilisateur = userType; 
-    this.menuItems = ROUTES.filter(menuItem => menuItem.userSpace===this.utilisateur);
+    this.utilisateur=this.authentificationService.getUserType(this.authentificationService.getUserinSession());
+    console.log(this.utilisateur);
+    switch (this.utilisateur) {
+    case "client":
+      this.router.navigate(['client']);
+      break;
+    
+    case "conseiller":
+      this.router.navigate(['conseiller']);
+      break;
+
+    case "admin":
+      this.router.navigate(['admin']);
+      break;
+
+    default:
+      this.router.navigate(['']);
+      break;
+    }
+    this.authentificationService.getuserTypeasObs().subscribe(userType => {this.utilisateur=userType;
+    this.menuItems = ROUTES.filter(menuItem => menuItem.userSpace===this.utilisateur); 
     });
   }
   isMobileMenu() {

@@ -16,9 +16,7 @@ export class GestionClientsService {
 	//récupère tout les clients
 	getClients(): Observable<Client[]> {
 		//return Clients;
-		return  this.http.get(this.apiUrl).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
-		
-		
+		return  this.http.get(this.apiUrl).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));	
 	}
 
 	getClientsByConseiller(idConseiller: number){
@@ -82,7 +80,7 @@ export class GestionClientsService {
 
 				addClient(client): Observable<Client> {
 					return  this.http.post(this.apiUrl, client).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
-				}
+				}			
 
 				editClient(client): Observable<Client> {
 					//console.log(client);
@@ -99,7 +97,7 @@ export class GestionClientsService {
 					return  this.http.delete(this.apiUrl + '/' + id).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
 				}
 
-	
+
 
 	//generation aleatoire de numéro client avec vérification si le numéroClient éxiste déjà
 	idClientGenerator(client) {

@@ -40,7 +40,7 @@ var AddClientComponent = /** @class */ (function () {
     AddClientComponent.prototype.onSubmit = function () {
         var _this = this;
         if (this.clientForm.valid) {
-            var client = new Client_1.Client(this.id, this.clientForm.controls['lastName'].value, this.clientForm.controls['firstName'].value, this.clientForm.controls['email'].value, this.clientForm.controls['password'].value, this.clientForm.controls['address'].value, this.clientForm.controls['phonenumber'].value, null, null);
+            var client = new Client_1.Client(this.id, this.clientForm.controls['lastName'].value, this.clientForm.controls['firstName'].value, this.clientForm.controls['email'].value, this.clientForm.controls['password'].value, this.clientForm.controls['address'].value, this.clientForm.controls['phonenumber'].value, null, 0);
             this.gestionClients.addClient(client).subscribe(function (client) {
                 _this.clientForm.reset();
                 _this.router.navigate(['/admin/gestion_client']);

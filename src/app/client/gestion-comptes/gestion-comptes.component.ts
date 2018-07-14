@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {GestionComptesService} from '../../service/gestion-comptes.service'
-import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -12,7 +12,7 @@ export class GestionComptesComponent implements OnInit {
 
   comptes;
 
-  constructor(private router: Router, private gestionComptesService: GestionComptesService) { }
+  constructor(private gestionComptesService: GestionComptesService) { }
 
   ngOnInit() {
   	this.comptes = this.gestionComptesService.getComptes();

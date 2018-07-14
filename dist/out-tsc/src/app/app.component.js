@@ -12,17 +12,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var authentification_service_1 = require("./service/authentification.service");
 var AppComponent = /** @class */ (function () {
-    //sub : any;
     function AppComponent(authentificationService) {
-        //if (this.authentificationService.getUserinSession()) {
-        var _this = this;
         this.authentificationService = authentificationService;
-        this.subscription = this.authentificationService.getuserTypeasObs().subscribe(function (userType) { _this.userType = userType; });
+        //if (this.authentificationService.getUserinSession()) {
+        /*console.log(this.authentificationService.getUserinSession());
+        this.authentificationService.setUserType(this.authentificationService.getUserType(this.authentificationService.getUserinSession()));
+        console.log(this.userType);
+        this.authentificationService.getuserTypeasObs().subscribe(userType => { this.userType = userType; });*/
         //}
         //this.userType = this.authentificationService.getUserType(this.authentificationService.getUserinSession());*/
         //notifySideBar.subscribe(userType => this.userType = this.authentificationService.getUserType(this.authentificationService.getUserinSession()));
     }
     AppComponent.prototype.ngOnInit = function () {
+        this.authentificationService.setUserType(this.authentificationService.getUserType(this.authentificationService.getUserinSession()));
     };
     AppComponent = __decorate([
         core_1.Component({
