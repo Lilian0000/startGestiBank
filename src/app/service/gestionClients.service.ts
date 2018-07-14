@@ -32,25 +32,28 @@ export class GestionClientsService {
 	}
 	
 	//SPECIFIQUE A CLIENT notification
-	getNumberOfNotAttClients() {
-		var nbClients = 0;
+	getNumberOfNotAttClients(): Observable<number> {
+		/*var nbClients = 0;
 		for (var i=0; i<Clients.length; i++) {
 			if(Clients[i].idConseiller === null) {
 				nbClients++;
 			}
 		}
-		return nbClients;
+		return nbClients;*/
+		return  this.http.get(this.apiUrl + '/nbnotattributed').pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
+
 	}
 	
 	//SPECIFIQUE A CLIENTcomponent attribué les clients
-	getNotAttributedClients() {
-		var clients: Client[] = [];
+	getNotAttributedClients(): Observable<Client[]> {
+		/*var clients: Client[] = [];
 		for (var i=0; i<Clients.length; i++) {
 			if(Clients[i].idConseiller === null) {
 				clients.push(Clients[i]);
 			}
 		}
-		return clients;
+		return clients;*/
+		return  this.http.get(this.apiUrl + '/notAttributed').pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
 	}
 
 	getClientById(id: number): Observable<Client> {
@@ -82,7 +85,7 @@ export class GestionClientsService {
 				}
 
 				editClient(client): Observable<Client> {
-					console.log(client);
+					//console.log(client);
 					return  this.http.put(this.apiUrl + '/' + client.id, client).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
 					/*let oldClient = this.getClientById(client.id);
 					client.idClient = oldClient.numeroclient;
@@ -96,9 +99,7 @@ export class GestionClientsService {
 					return  this.http.delete(this.apiUrl + '/' + id).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
 				}
 
-	attributeClientToConseiller(client, idConseiller) {
-			client.idConseiller = idConseiller;
-	}
+	
 
 	//generation aleatoire de numéro client avec vérification si le numéroClient éxiste déjà
 	idClientGenerator(client) {

@@ -15,26 +15,28 @@ import { EventEmitter, Input, Output} from '@angular/core';
 export class NotificationsComponent implements OnInit {
 
 	nbNotAttributedClients: number;
-  notificationNotAttributedClients: String;
+  notificationNotAttributedClients: string;
+  notifMessage: string;
 
-constructor(private gestionClientsService: GestionClientsService) { }
-	
+  constructor(private gestionClientsService: GestionClientsService) { }
+
   
 
   ngOnInit() {
-  	this.getNbOfClientsNotAttributed();
-    this.notificationColorChange();
+    this.gestionClientsService.getNumberOfNotAttClients().subscribe(nbNotAttributed => {this.nbNotAttributedClients=nbNotAttributed;
+       this.notificationColorChange();
+      }, 
+      error => {console.log(error);}
+      );
   }
 
-  getNbOfClientsNotAttributed() {
-  	this.nbNotAttributedClients = this.gestionClientsService.getNumberOfNotAttClients();
-  }
-
-  notificationColorChange() {
-    if (this.nbNotAttributedClients === 0) {
+    notificationColorChange() {
+      if (this.nbNotAttributedClients == 0) {
         this.notificationNotAttributedClients = "alert-info";
-    }
-    else { this.notificationNotAttributedClients = "alert-danger" }
+        this.notifMessage = "";
+      }
+      else { this.notificationNotAttributedClients = "alert-danger";
+      this.notifMessage = ": Clické pour les attribuer" }
 
-  }
+    }
 }

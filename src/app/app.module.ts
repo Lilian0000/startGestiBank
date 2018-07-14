@@ -14,8 +14,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SidebarModule } from './sidebar/sidebar.module';
 import { NavbarModule } from './navbar/navbar.module';
 import { GuestComponent } from './guest/guest.component';
-import {GestionComptesService} from './service/gestion-comptes.service'
-
+import { GestionComptesService } from './service/gestion-comptes.service'
+import { RoleGardService } from './service/role-gard.service';
+import { UnauthorizedEspacePageComponent } from './errorPages/unauthorized-espace-page/unauthorized-espace-page.component';
+import { PageNotFoundComponent } from './errorPages/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import {GestionComptesService} from './service/gestion-comptes.service'
     FormInscriptionComponent,
     FormConnexionComponent,
     GuestComponent,
+    UnauthorizedEspacePageComponent,
+    PageNotFoundComponent,
     
   ],
   imports: [
@@ -37,7 +41,7 @@ import {GestionComptesService} from './service/gestion-comptes.service'
     SidebarModule,
     NavbarModule
   ],
-  providers: [AuthentificationService, GestionClientsService, GestionComptesService],
+  providers: [AuthentificationService, GestionClientsService, GestionComptesService, RoleGardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -10,7 +10,9 @@ var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var form_inscription_component_1 = require("./form-inscription/form-inscription.component");
 var form_connexion_component_1 = require("./form-connexion/form-connexion.component");
+var guest_component_1 = require("./guest/guest.component");
 var routes = [
+    { path: '', component: guest_component_1.GuestComponent },
     { path: 'inscription', component: form_inscription_component_1.FormInscriptionComponent },
     { path: 'connexion', component: form_connexion_component_1.FormConnexionComponent }
 ];

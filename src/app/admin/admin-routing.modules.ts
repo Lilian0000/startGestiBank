@@ -7,16 +7,17 @@ import { EditClientComponent } from './gestion-client/edit-client/edit-client.co
 import { NotificationsComponent} from './admin/notifications/notifications.component';
 import { AttributeClientsComponent } from './attribute-clients/attribute-clients.component';
 import { AttributeClientToConseillerComponent } from './attribute-clients/attribute-client-to-conseiller/attribute-client-to-conseiller.component';
+import { RoleGardService as RoleGard} from '../service/role-gard.service';
 
 const adminRoutes: Routes = [
-	{path: 'admin', component: AdminComponent,},
+	{path: 'admin', component: AdminComponent, canActivate: [RoleGard], data: {expectedRole: 'admin'}},
 
-	{path: 'admin/attribute_clients', component: AttributeClientsComponent},
-	{path: 'admin/attribute_clients/attribute_client_to_conseiller/:id', component: AttributeClientToConseillerComponent},
+	{path: 'admin/attribute_clients', component: AttributeClientsComponent, canActivate: [RoleGard], data: {expectedRole: 'admin'}},
+	{path: 'admin/attribute_clients/attribute_client_to_conseiller/:id', component: AttributeClientToConseillerComponent, canActivate: [RoleGard], data: {expectedRole: 'admin'}},
 	
-	{path :'admin/add_client', component: AddClientComponent},
-	{path :'admin/edit_client/:id', component: EditClientComponent},
-	{path :'admin/gestion_client', component: GestionClientComponent,}
+	{path :'admin/add_client', component: AddClientComponent, canActivate: [RoleGard], data: {expectedRole: 'admin'}},
+	{path :'admin/edit_client/:id', component: EditClientComponent, canActivate: [RoleGard], data: {expectedRole: 'admin'}},
+	{path :'admin/gestion_client', component: GestionClientComponent, canActivate: [RoleGard], data: {expectedRole: 'admin'}}
 		/*children: [
 			{
 				path: 'add_client', component: AddClientComponent,

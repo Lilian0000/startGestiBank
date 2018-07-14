@@ -13,10 +13,7 @@ import { EventEmitter, Input, Output} from '@angular/core';
 })
 export class GestionClientComponent implements OnInit {
 
-
   clients;
-
-  @Input() client;
   
   constructor(private router: Router, private gestionClientsService: GestionClientsService) { }
 

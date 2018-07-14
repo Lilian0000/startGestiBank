@@ -19,11 +19,12 @@ var AddClientComponent = /** @class */ (function () {
         this.route = route;
         this.router = router;
         this.gestionClients = gestionClients;
+        //this.router.routeReuseStrategy.shouldReuseRoute = function(){return false;}  
     }
     AddClientComponent.prototype.ngOnInit = function () {
         this.clientForm = new forms_1.FormGroup({
-            firstName: new forms_1.FormControl('', forms_1.Validators.required),
             lastName: new forms_1.FormControl('', forms_1.Validators.required),
+            firstName: new forms_1.FormControl('', forms_1.Validators.required),
             email: new forms_1.FormControl('', [
                 forms_1.Validators.required,
                 forms_1.Validators.pattern("[^ @]*@[^ @]*")
@@ -32,19 +33,22 @@ var AddClientComponent = /** @class */ (function () {
             address: new forms_1.FormControl('', forms_1.Validators.required),
             phonenumber: new forms_1.FormControl('', forms_1.Validators.required),
         });
-        if (this.id) {
+        /*if(this.id) {
             this.gestionClients.getClientById(this.id);
-        }
+        }*/
     };
     AddClientComponent.prototype.onSubmit = function () {
+        var _this = this;
         if (this.clientForm.valid) {
-            var client = new Client_1.Client(this.id, this.clientForm.controls['firstName'].value, this.clientForm.controls['lastName'].value, this.clientForm.controls['email'].value, this.clientForm.controls['password'].value, this.clientForm.controls['address'].value, this.clientForm.controls['phonenumber'].value, null, null);
-            this.gestionClients.addClient(client);
-            this.gestionClients.idClientGenerator(client);
-            this.clientForm.reset();
-            this.router.navigate(['/admin/gestion_client']);
+            var client = new Client_1.Client(this.id, this.clientForm.controls['lastName'].value, this.clientForm.controls['firstName'].value, this.clientForm.controls['email'].value, this.clientForm.controls['password'].value, this.clientForm.controls['address'].value, this.clientForm.controls['phonenumber'].value, null, null);
+            this.gestionClients.addClient(client).subscribe(function (client) {
+                _this.clientForm.reset();
+                _this.router.navigate(['/admin/gestion_client']);
+            });
+            //this.gestionClients.idClientGenerator(client);
         }
     };
+    //si on veut rajouter 
     /*if(this.gestionClients.getClientBylastName(lastName)) {
         this.gestionClients.getClientById(this.id);
     }*/

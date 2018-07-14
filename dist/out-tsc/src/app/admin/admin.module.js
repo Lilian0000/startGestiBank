@@ -14,6 +14,9 @@ var gestion_client_component_1 = require("./gestion-client/gestion-client.compon
 var add_client_component_1 = require("./gestion-client/add-client/add-client.component");
 var forms_1 = require("@angular/forms");
 var edit_client_component_1 = require("./gestion-client/edit-client/edit-client.component");
+var notifications_component_1 = require("./admin/notifications/notifications.component");
+var attribute_clients_component_1 = require("./attribute-clients/attribute-clients.component");
+var attribute_client_to_conseiller_component_1 = require("./attribute-clients/attribute-client-to-conseiller/attribute-client-to-conseiller.component");
 var AdminModule = /** @class */ (function () {
     function AdminModule() {
     }
@@ -25,7 +28,7 @@ var AdminModule = /** @class */ (function () {
                 forms_1.FormsModule,
                 forms_1.ReactiveFormsModule
             ],
-            declarations: [admin_component_1.AdminComponent, gestion_client_component_1.GestionClientComponent, add_client_component_1.AddClientComponent, edit_client_component_1.EditClientComponent]
+            declarations: [admin_component_1.AdminComponent, gestion_client_component_1.GestionClientComponent, add_client_component_1.AddClientComponent, edit_client_component_1.EditClientComponent, notifications_component_1.NotificationsComponent, attribute_clients_component_1.AttributeClientsComponent, attribute_client_to_conseiller_component_1.AttributeClientToConseillerComponent]
         })
     ], AdminModule);
     return AdminModule;

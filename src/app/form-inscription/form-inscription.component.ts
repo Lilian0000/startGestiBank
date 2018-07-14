@@ -50,7 +50,7 @@ export class FormInscriptionComponent implements OnInit {
 				this.clientForm.controls['address'].value,
 				this.clientForm.controls['phonenumber'].value,
 				null,
-				null);
+				0);
 			this.gestionClients.addClient(client).subscribe(client => { 
 				this.clientForm.reset();
 				this.router.navigate(['/client']);

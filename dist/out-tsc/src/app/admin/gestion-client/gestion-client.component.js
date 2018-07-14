@@ -22,19 +22,24 @@ var GestionClientComponent = /** @class */ (function () {
         this.getClients();
     };
     GestionClientComponent.prototype.getClients = function () {
-        this.clients = this.gestionClientsService.getClients();
+        var _this = this;
+        this.gestionClientsService.getClients().subscribe(function (clients) { _this.clients = clients; }, function (err) { console.log(err); });
     };
     GestionClientComponent.prototype.redirectNewClientPage = function () {
-        this.router.navigate(['admin/gestion_client/add_client']);
+        this.router.navigate(['admin/add_client']);
     };
     GestionClientComponent.prototype.editClientPage = function (client) {
         if (client) {
-            this.router.navigate(['admin/gestion_client/edit_client', client.id]);
+            this.router.navigate(['admin/edit_client', client.id]);
         }
     };
     GestionClientComponent.prototype.onDelete = function (client) {
+        var _this = this;
         {
-            this.gestionClientsService.deleteClient(client);
+            this.gestionClientsService.deleteClient(client.id).subscribe(function (res) {
+                _this.getClients();
+                _this.router.navigate(['admin/gestion_client']);
+            });
         }
     };
     __decorate([
@@ -46,7 +51,7 @@ var GestionClientComponent = /** @class */ (function () {
             selector: 'app-gestion-client',
             templateUrl: './gestion-client.component.html',
             styleUrls: ['./gestion-client.component.css'],
-            providers: [gestionClients_service_1.GestionClientsService]
+            providers: []
         }),
         __metadata("design:paramtypes", [router_1.Router, gestionClients_service_1.GestionClientsService])
     ], GestionClientComponent);

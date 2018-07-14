@@ -10,7 +10,7 @@ exports.Clients = [
         password: "User",
         address: "55 Rue de la Croix Blanche, 01000, Bourg-en-Bresse",
         phonenumber: "0658479845",
-        idClient: 3216,
+        numeroclient: 3216,
         idConseiller: 1,
     },
     {
@@ -21,7 +21,7 @@ exports.Clients = [
         password: "MJ",
         address: "112 rue Paul Bert, 69003, Lyon",
         phonenumber: "0658983214",
-        idClient: 4987,
+        numeroclient: 4987,
         idConseiller: 1,
     },
     {
@@ -32,7 +32,7 @@ exports.Clients = [
         password: "lili",
         address: "19 rue Danton, 69003, Lyon",
         phonenumber: "0613938741",
-        idClient: 9987,
+        numeroclient: 9987,
         idConseiller: 2,
     },
     {
@@ -43,7 +43,7 @@ exports.Clients = [
         password: "Amin",
         address: "45 boulevard des Belges, 69006, Lyon",
         phonenumber: "0713938741",
-        idClient: 1125,
+        numeroclient: 1125,
         idConseiller: 2,
     },
     {
@@ -54,7 +54,7 @@ exports.Clients = [
         password: "Lilian",
         address: "38 cours André Philippe, 69100, Villeurbanne",
         phonenumber: "0787986134",
-        idClient: 8746,
+        numeroclient: 8746,
         idConseiller: null
     },
     {
@@ -65,7 +65,7 @@ exports.Clients = [
         password: "Michel",
         address: "38 cours André Philippe, 69100, Villeurbanne",
         phonenumber: "0787915786",
-        idClient: 4698,
+        numeroclient: 4698,
         idConseiller: null
     },
     {
@@ -76,7 +76,7 @@ exports.Clients = [
         password: "Client",
         address: "55 Rue de la Croix Blanche, 01000, Bourg-en-Bresse",
         phonenumber: "0658479845",
-        idClient: 3742,
+        numeroclient: 3742,
         idConseiller: null
     },
     {
@@ -87,7 +87,7 @@ exports.Clients = [
         password: "Client2",
         address: "55 Rue de la Croix Blanche, 01000, Bourg-en-Bresse",
         phonenumber: "0658479845",
-        idClient: 4258,
+        numeroclient: 4258,
         idConseiller: null,
     },
     {
@@ -98,7 +98,7 @@ exports.Clients = [
         password: "Client3",
         address: "55 Rue de la Croix Blanche, 01000, Bourg-en-Bresse",
         phonenumber: "0658479845",
-        idClient: 1458,
+        numeroclient: 1458,
         idConseiller: null,
     },
 ];

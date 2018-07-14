@@ -22,33 +22,7 @@ export class AuthentificationService {
 
 getUserAtConnexion(form): Observable<Boolean | {}> {
 
-	/*let User;
-
-	for (var i=0; i<Clients.length; i++) {
-		if (email === Clients[i].email) 
-		{
-			if (password === Clients[i].password)
-				{User = Clients[i];}
-		}
-	}
-	for (var i=0; i<Conseillers.length; i++) {
-		if (email === Conseillers[i].email) 
-		{
-			if (password === Conseillers[i].password)
-				{User = Conseillers[i];}
-		}
-	}
-	for (var i=0; i<Admins.length; i++) {
-		if (email === Admins[i].email) 
-		{
-			if (password === Admins[i].password)
-				{User = Admins[i];}
-		}
-	}
-
-	return User;*/
-
-		return  this.http.post(this.apiUrl, form).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
+	return  this.http.post(this.apiUrl, form).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error)));
 }
 
 connexionRedirection(user) {
@@ -61,6 +35,7 @@ connexionRedirection(user) {
 		}
 	else {this.router.navigate(['/conseiller']);}
 	}
+	else { this.router.navigate([''])}
 }
 //session permatente jusqu'à logout() : "Remember Me" 
 inputUserInLocalSession(user) {
@@ -89,6 +64,7 @@ getUserinSession() {
 }
 //fonction prenant un objet user (client/admin ou conseiller) et renvoie une String correspondant au type d'utilisateur
 getUserType(user) : string {
+	if (user) {
 	if (user.numeroclient) {
 		return "client";
 	}
@@ -96,7 +72,13 @@ getUserType(user) : string {
 		if (user.fonction) {
 			return "admin";
 		}
-	else {return "conseiller";}
+		else {
+			return "conseiller";
+		}
+	}
+}
+	else {
+		return "guest";
 	}
 }
 
