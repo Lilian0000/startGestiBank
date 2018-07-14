@@ -41,7 +41,7 @@ export class FormConnexionComponent implements OnInit {
 
 		console.log(this.guestConnexionForm.value)
 		if(this.guestConnexionForm.valid) {
-
+			this.authentificationService.clearUserType();
 
 			this.authentificationService.getUserAtConnexion(this.guestConnexionForm.value).subscribe(user => {this.user=user;
 
@@ -51,7 +51,6 @@ export class FormConnexionComponent implements OnInit {
 				console.log(this.authentificationService.getUserInLocalSession());
 				console.log("Connexion réussi!");*/
 				//this.notifySideBar.emit(this.authentificationService.getUserType(this.user));
-				this.authentificationService.clearUserType();
 				this.authentificationService.setUserType(this.authentificationService.getUserType(this.user));
 				this.authentificationService.connexionRedirection(this.user);
 			

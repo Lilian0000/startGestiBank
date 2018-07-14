@@ -10,6 +10,7 @@ const routes: Routes = [
 {path: 'inscription', component: FormInscriptionComponent},
 {path: 'connexion', component: FormConnexionComponent},
 {path: 'unauthorizedUserSpace', component : UnauthorizedEspacePageComponent}
+//{path: '**', redirectTo:''}
 ];
 
 @NgModule({

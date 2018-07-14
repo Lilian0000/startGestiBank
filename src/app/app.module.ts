@@ -17,6 +17,7 @@ import { GuestComponent } from './guest/guest.component';
 import { GestionComptesService } from './service/gestion-comptes.service'
 import { RoleGardService } from './service/role-gard.service';
 import { UnauthorizedEspacePageComponent } from './errorPages/unauthorized-espace-page/unauthorized-espace-page.component';
+import { PageNotFoundComponent } from './errorPages/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { UnauthorizedEspacePageComponent } from './errorPages/unauthorized-espac
     FormConnexionComponent,
     GuestComponent,
     UnauthorizedEspacePageComponent,
+    PageNotFoundComponent,
     
   ],
   imports: [

@@ -6,22 +6,18 @@ import { Subscription } from 'rxjs/Subscription';
 @Injectable()
 export class RoleGardService implements CanActivate {
 
-		expectedRole;
-		role;
+		expectedRole: string;
+		role: string;
 		constructor(public authentificationService: AuthentificationService, public router: Router)	{}
 
 		canActivate(route: ActivatedRouteSnapshot): boolean {
 			this.expectedRole = route.data.expectedRole;
-				console.log(this.expectedRole);
 			this.role = this.authentificationService.getUserType(this.authentificationService.getUserinSession());
-				console.log(this.role);
 				
 			if (this.role !== this.expectedRole) {
 				this.router.navigate(['unauthorizedUserSpace']);
 				return false;
 			}
 			return true;
-		
-
 	}
 }

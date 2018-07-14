@@ -10,49 +10,51 @@ import { EventEmitter, Input, Output} from '@angular/core';
 
 
 @Component({
-  selector: 'app-attribute-client-to-conseiller',
-  templateUrl: './attribute-client-to-conseiller.component.html',
-  styleUrls: ['./attribute-client-to-conseiller.component.css'],
-  providers: [GestionClientsService, GestionConseillersService]
+	selector: 'app-attribute-client-to-conseiller',
+	templateUrl: './attribute-client-to-conseiller.component.html',
+	styleUrls: ['./attribute-client-to-conseiller.component.css'],
+	providers: [GestionClientsService, GestionConseillersService]
 })
 
 export class AttributeClientToConseillerComponent implements OnInit {
 
-  	id: number;
-	client: Client;
-	conseillers;
+	id: number;
+	conseillers: Conseiller[];
+	nbNotAttributedClients: number;
 	private sub: any;
-	@Input() conseiller;
+	client;
 
 	constructor(private route: ActivatedRoute, 
 		private router: Router, 
 		private gestionConseillersService: GestionConseillersService, 
-		private gestionClientsService: GestionClientsService) { }
+		private gestionClientsService: GestionClientsService) {}
 
 	ngOnInit() {
-
-	this.getConseillers();
-	this.sub = this.route.params.subscribe(params => {
-    this.id = +params['id'];});
-	this.gestionClientsService.getClientById(this.id).subscribe(client => {this.client=client;}
-      , err => {console.log(err);} 
-      );
-	}
-
-	getConseillers() {
-		this.conseillers = this.gestionConseillersService.getConseillers();
-	}
-
-	AttributeConseiller(conseiller) {
-		this.gestionClientsService.attributeClientToConseiller(this.client, conseiller.id);
-		if (this.gestionClientsService.getNumberOfNotAttClients() == 0)
-		{
-			this.router.navigate(['admin'])
+		this.sub = this.route.params.subscribe(params => {
+			this.id = +params['id'];
+			this.gestionClientsService.getClientById(this.id).subscribe(client => {this.client=client;},
+				error => {console.log(error);});
+			}	
+			);
+			this.gestionConseillersService.getConseillers().subscribe(conseillers => {this.conseillers= conseillers;},
+				error => {console.log(error);});
+			this.gestionClientsService.getNumberOfNotAttClients().subscribe(nbofnotatt => {this.nbNotAttributedClients=nbofnotatt;},
+				error => {console.log(error);})
 		}
-		else {
-			this.router.navigate(['admin/attribute_clients']);
+		
+		AttributeConseiller(conseiller) {
+			console.log(this.nbNotAttributedClients);
+			this.gestionConseillersService.attributeClientToConseiller(this.id, conseiller).subscribe(client => {
+			if (this.nbNotAttributedClients == 1)
+			{
+				this.router.navigate(['admin'])
+			}
+			else {
+				this.router.navigate(['admin/attribute_clients']);
+			}
+			},
+				error =>  {console.log(error);});
 		}
-	}
 
-}
+	}
 
