@@ -12,7 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var gestionClients_service_1 = require("../../service/gestionClients.service");
 var router_1 = require("@angular/router");
-var core_2 = require("@angular/core");
 var GestionClientComponent = /** @class */ (function () {
     function GestionClientComponent(router, gestionClientsService) {
         this.router = router;
@@ -42,10 +41,6 @@ var GestionClientComponent = /** @class */ (function () {
             });
         }
     };
-    __decorate([
-        core_2.Input(),
-        __metadata("design:type", Object)
-    ], GestionClientComponent.prototype, "client", void 0);
     GestionClientComponent = __decorate([
         core_1.Component({
             selector: 'app-gestion-client',

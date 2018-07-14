@@ -37,6 +37,7 @@ var FormConnexionComponent = /** @class */ (function () {
         var _this = this;
         console.log(this.guestConnexionForm.value);
         if (this.guestConnexionForm.valid) {
+            this.authentificationService.clearUserType();
             this.authentificationService.getUserAtConnexion(this.guestConnexionForm.value).subscribe(function (user) {
                 _this.user = user;
                 _this.authentificationService.inputUserInLocalSession(_this.user);
@@ -45,7 +46,6 @@ var FormConnexionComponent = /** @class */ (function () {
                 console.log(this.authentificationService.getUserInLocalSession());
                 console.log("Connexion réussi!");*/
                 //this.notifySideBar.emit(this.authentificationService.getUserType(this.user));
-                _this.authentificationService.clearUserType();
                 _this.authentificationService.setUserType(_this.authentificationService.getUserType(_this.user));
                 _this.authentificationService.connexionRedirection(_this.user);
             }, function (error) {

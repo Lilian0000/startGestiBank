@@ -36,23 +36,25 @@ var GestionClientsService = /** @class */ (function () {
     };
     //SPECIFIQUE A CLIENT notification
     GestionClientsService.prototype.getNumberOfNotAttClients = function () {
-        var nbClients = 0;
-        for (var i = 0; i < Clients_1.Clients.length; i++) {
-            if (Clients_1.Clients[i].idConseiller === null) {
+        /*var nbClients = 0;
+        for (var i=0; i<Clients.length; i++) {
+            if(Clients[i].idConseiller === null) {
                 nbClients++;
             }
         }
-        return nbClients;
+        return nbClients;*/
+        return this.http.get(this.apiUrl + '/nbnotattributed').pipe(map_1.map(function (res) { return res.json(); }), catchError_1.catchError(function (error) { return Observable_1.Observable.throw(error.json().error || "Server error"); }));
     };
     //SPECIFIQUE A CLIENTcomponent attribué les clients
     GestionClientsService.prototype.getNotAttributedClients = function () {
-        var clients = [];
-        for (var i = 0; i < Clients_1.Clients.length; i++) {
-            if (Clients_1.Clients[i].idConseiller === null) {
-                clients.push(Clients_1.Clients[i]);
+        /*var clients: Client[] = [];
+        for (var i=0; i<Clients.length; i++) {
+            if(Clients[i].idConseiller === null) {
+                clients.push(Clients[i]);
             }
         }
-        return clients;
+        return clients;*/
+        return this.http.get(this.apiUrl + '/notAttributed').pipe(map_1.map(function (res) { return res.json(); }), catchError_1.catchError(function (error) { return Observable_1.Observable.throw(error.json().error || "Server error"); }));
     };
     GestionClientsService.prototype.getClientById = function (id) {
         return this.http.get(this.apiUrl + '/' + id).pipe(map_1.map(function (res) { return res.json(); }), catchError_1.catchError(function (error) { return Observable_1.Observable.throw(error.json().error || "Server error"); }));
@@ -79,7 +81,7 @@ var GestionClientsService = /** @class */ (function () {
         return this.http.post(this.apiUrl, client).pipe(map_1.map(function (res) { return res.json(); }), catchError_1.catchError(function (error) { return Observable_1.Observable.throw(error.json().error || "Server error"); }));
     };
     GestionClientsService.prototype.editClient = function (client) {
-        console.log(client);
+        //console.log(client);
         return this.http.put(this.apiUrl + '/' + client.id, client).pipe(map_1.map(function (res) { return res.json(); }), catchError_1.catchError(function (error) { return Observable_1.Observable.throw(error.json().error || "Server error"); }));
         /*let oldClient = this.getClientById(client.id);
         client.idClient = oldClient.numeroclient;
@@ -90,9 +92,6 @@ var GestionClientsService = /** @class */ (function () {
     };
     GestionClientsService.prototype.deleteClient = function (id) {
         return this.http.delete(this.apiUrl + '/' + id).pipe(map_1.map(function (res) { return res.json(); }), catchError_1.catchError(function (error) { return Observable_1.Observable.throw(error.json().error || "Server error"); }));
-    };
-    GestionClientsService.prototype.attributeClientToConseiller = function (client, idConseiller) {
-        client.idConseiller = idConseiller;
     };
     //generation aleatoire de numéro client avec vérification si le numéroClient éxiste déjà
     GestionClientsService.prototype.idClientGenerator = function (client) {

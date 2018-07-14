@@ -24,6 +24,8 @@ var navbar_module_1 = require("./navbar/navbar.module");
 var guest_component_1 = require("./guest/guest.component");
 var gestion_comptes_service_1 = require("./service/gestion-comptes.service");
 var role_gard_service_1 = require("./service/role-gard.service");
+var unauthorized_espace_page_component_1 = require("./errorPages/unauthorized-espace-page/unauthorized-espace-page.component");
+var page_not_found_component_1 = require("./errorPages/page-not-found/page-not-found.component");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -34,6 +36,8 @@ var AppModule = /** @class */ (function () {
                 form_inscription_component_1.FormInscriptionComponent,
                 form_connexion_component_1.FormConnexionComponent,
                 guest_component_1.GuestComponent,
+                unauthorized_espace_page_component_1.UnauthorizedEspacePageComponent,
+                page_not_found_component_1.PageNotFoundComponent,
             ],
             imports: [
                 platform_browser_1.BrowserModule,

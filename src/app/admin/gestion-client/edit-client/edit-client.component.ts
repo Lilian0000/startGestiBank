@@ -28,7 +28,6 @@ ngOnInit() {
 	this.sub = this.route.params.subscribe(params => {
 		this.id = +params['id'];  
 		
-
 		this.gestionClientsService.getClientById(this.id).subscribe(client => {
 			this.client=client;
 			this.editClientForm = new FormGroup({
@@ -43,9 +42,7 @@ ngOnInit() {
 			});	
 
 		}
-
 		, err => {console.log(err);} );
-
 	});
 }
 

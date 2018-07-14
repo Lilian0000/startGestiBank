@@ -28,7 +28,7 @@ var EditClientComponent = /** @class */ (function () {
             _this.gestionClientsService.getClientById(_this.id).subscribe(function (client) {
                 _this.client = client;
                 _this.editClientForm = new forms_1.FormGroup({
-                    lastName2: new forms_1.FormControl(_this.client.lastName, forms_1.Validators.required),
+                    lastName: new forms_1.FormControl(_this.client.lastName, forms_1.Validators.required),
                     firstName: new forms_1.FormControl(_this.client.firstName, forms_1.Validators.required),
                     email: new forms_1.FormControl(_this.client.email, [
                         forms_1.Validators.required,
@@ -43,8 +43,8 @@ var EditClientComponent = /** @class */ (function () {
     EditClientComponent.prototype.onSubmit = function () {
         var _this = this;
         if (this.editClientForm.valid) {
-            console.log(">>> lastname on subit = " + this.editClientForm.controls['lastName2'].value);
-            var modifiedClient = new Client_1.Client(this.id, this.editClientForm.controls['lastName2'].value, this.editClientForm.controls['firstName'].value, this.editClientForm.controls['email'].value, null, this.editClientForm.controls['address'].value, this.editClientForm.controls['phonenumber'].value, null, null);
+            console.log(">>> lastname on subit = " + this.editClientForm.controls['lastName'].value);
+            var modifiedClient = new Client_1.Client(this.id, this.editClientForm.controls['lastName'].value, this.editClientForm.controls['firstName'].value, this.editClientForm.controls['email'].value, null, this.editClientForm.controls['address'].value, this.editClientForm.controls['phonenumber'].value, null, 0);
             this.gestionClientsService.editClient(modifiedClient).subscribe(function (bool) {
                 _this.router.navigate(['/admin/gestion_client']);
                 _this.editClientForm.reset();

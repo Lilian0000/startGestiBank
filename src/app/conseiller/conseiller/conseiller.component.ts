@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthentificationService } from '../../service/authentification.service';
 
 @Component({
   selector: 'app-conseiller',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConseillerComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authentificationService: AuthentificationService) { }
 
   ngOnInit() {
+  	this.authentificationService.clearUserType();
+	this.authentificationService.setUserType('conseiller');
   }
 
 }
