@@ -25,11 +25,17 @@ export class NavbarComponent implements OnInit {
     }
 
     ngOnInit(){
+      if (this.userType==null) {
+        this.userType = this.authentificationService.getUserType(this.authentificationService.getUserinSession());
+        this.listTitles = ROUTES.filter(listTitle => listTitle);
+      }
       this.authentificationService.getuserTypeasObs().subscribe(userType => {this.userType=userType;
       this.listTitles = ROUTES.filter(listTitle => listTitle);
+      });
+   
       const navbar: HTMLElement = this.element.nativeElement;
       this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
-      });  
+        
     }
 
     sidebarOpen() {

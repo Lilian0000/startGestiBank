@@ -15,13 +15,18 @@ export class FormConnexionComponent implements OnInit {
 	user;
 	guestConnexionForm: FormGroup;
 	errorMessage : String;
-
+	userType: string;
 	//@Output() notifySideBar: EventEmitter<any> = new EventEmitter();
 	
 	constructor(private router: Router,
 		private authentificationService: AuthentificationService) { }
 
 	ngOnInit() { 
+		this.userType = this.authentificationService.getUserType(this.authentificationService.getUserinSession());
+  	if (this.userType !== "guest")
+  	{
+  		this.authentificationService.redirectionWithUserType(this.userType);
+  	}
 		this.guestConnexionForm = new FormGroup({
 			email: new FormControl('', [
 				Validators.required,
@@ -48,6 +53,10 @@ export class FormConnexionComponent implements OnInit {
 						else {
 						this.errorMessage = "Email ou mot de passe incorrect!";}} );		
 					}
+	}
+
+	Cancel() {
+		this.router.navigate(['']);
 	}
 }
 

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Clients } from '../modeles/Clients';
 import { Client } from '../modeles/Client';
 import { Conseiller } from '../modeles/Conseiller';
+import { DemandeOuvertureCompte } from '../modeles/DemandeOuvertureCompte';
 import { Http, Response } from "@angular/http";
 import { map } from "rxjs/operators/map";
 import { catchError } from 'rxjs/operators/catchError';
@@ -110,6 +111,10 @@ export class GestionClientsService {
 				idClientExist = false;
 			}	
 		}
+	}
+
+	demandeOuvertureCompted(dOC): Observable<boolean> {
+		return  this.http.post(this.apiUrl + '/DOCpts', dOC).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
 	}
 
 }

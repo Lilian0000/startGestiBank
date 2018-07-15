@@ -16,6 +16,7 @@
 						<input type="password" class="form-control" formControlName="password" required/>
 					</div>
 					<button type="submit" name="Se connecter" class="btn btn-fill btn-info pull-right" [disabled]="!guestConnexionForm.valid">Se connecter</button>
+					<button type="button" class="btn btn-fill btn-warning pull-right" (click)="Cancel()">Cancel</button>
 				</form>
 				<p class="errorMessage">{{errorMessage}}</p>
 			</div>

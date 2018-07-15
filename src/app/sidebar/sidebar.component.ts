@@ -23,8 +23,11 @@ export const ROUTES: RouteInfo[] = [
     { path: 'admin/gestion_client', title: 'Gestions clients',  icon: '', class: '', userSpace: 'admin'  },
     { path: 'consulter', title: 'Consulter',  icon: '', class: '', userSpace: 'client'  },
     { path: 'gerer', title: 'Gérer',  icon: '', class: '', userSpace: 'client'  },
-    { path: 'demandeChequier', title: 'Demande chéquier',  icon: '', class: '', userSpace: 'client'  },
-    { path: 'contact', title: 'Contacter la banque',  icon: '', class: '', userSpace: 'client'  }
+    { path: 'DOC', title: 'Demande ouverture de compte',  icon: '', class: '', userSpace: 'client'  },
+    { path: 'contact', title: 'Contacter la banque',  icon: '', class: '', userSpace: 'client'  },
+    { path: 'conseiller', title: 'Dashboard', icon :'', class:'', userSpace:'conseiller'},
+    { path: 'conseiller', title: 'Gerer les demanandes', icon :'', class:'', userSpace:'conseiller'},
+    { path: 'conseiller', title: 'Gerer les clients', icon :'', class:'', userSpace:'conseiller'}
 ];
 
 @Component({
@@ -41,28 +44,15 @@ export class SidebarComponent implements OnInit {
   constructor(private authentificationService : AuthentificationService, private router: Router) { }
 
   ngOnInit() {
-    this.utilisateur=this.authentificationService.getUserType(this.authentificationService.getUserinSession());
-    console.log(this.utilisateur);
-    switch (this.utilisateur) {
-    case "client":
-      this.router.navigate(['client']);
-      break;
-    
-    case "conseiller":
-      this.router.navigate(['conseiller']);
-      break;
-
-    case "admin":
-      this.router.navigate(['admin']);
-      break;
-
-    default:
-      this.router.navigate(['']);
-      break;
+    if (this.utilisateur==null) {
+      this.utilisateur=this.authentificationService.getUserType(this.authentificationService.getUserinSession());
+      this.menuItems = ROUTES.filter(menuItem => menuItem.userSpace===this.utilisateur); 
     }
+   
     this.authentificationService.getuserTypeasObs().subscribe(userType => {this.utilisateur=userType;
     this.menuItems = ROUTES.filter(menuItem => menuItem.userSpace===this.utilisateur); 
     });
+    
   }
   isMobileMenu() {
       if ($(window).width() > 991) {
