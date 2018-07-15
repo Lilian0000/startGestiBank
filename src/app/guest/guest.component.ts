@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthentificationService } from '../service/authentification.service';
 
 @Component({
   selector: 'app-guest',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GuestComponent implements OnInit {
 
-  constructor() { }
+  userType:string;
+
+  constructor(private authentificationService: AuthentificationService) { }
 
   ngOnInit() {
+  	this.userType = this.authentificationService.getUserType(this.authentificationService.getUserinSession());
+  	if (this.userType !== "guest")
+  	{
+  		this.authentificationService.redirectionWithUserType(this.userType);
+  	}
   }
 
 }

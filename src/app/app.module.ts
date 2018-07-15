@@ -18,6 +18,7 @@ import { GestionComptesService } from './service/gestion-comptes.service'
 import { RoleGardService } from './service/role-gard.service';
 import { UnauthorizedEspacePageComponent } from './errorPages/unauthorized-espace-page/unauthorized-espace-page.component';
 import { PageNotFoundComponent } from './errorPages/page-not-found/page-not-found.component';
+import { GestionConseillersService } from './service/gestionConseillers.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,7 @@ import { PageNotFoundComponent } from './errorPages/page-not-found/page-not-foun
     SidebarModule,
     NavbarModule
   ],
-  providers: [AuthentificationService, GestionClientsService, GestionComptesService, RoleGardService],
+  providers: [AuthentificationService, GestionClientsService, GestionComptesService, RoleGardService, GestionConseillersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

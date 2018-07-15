@@ -44,4 +44,8 @@ export class GestionConseillersService {
 	attributeClientToConseiller(idClient, conseiller): Observable<Client> {
 		return  this.http.put(this.apiUrl + '/clients/' + idClient, conseiller).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
 	}
+
+	unAttributeClientToConseiller(idCons, client): Observable<boolean> {
+		return this.http.put(this.apiUrl + '/clients/desatribue/' + idCons, client).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error)));
+	}
 }
