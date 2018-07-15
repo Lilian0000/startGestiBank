@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { AuthentificationService } from '../../service/authentification.service';
 
 @Component({
-  selector: 'app-page-not-found',
-  templateUrl: './page-not-found.component.html',
-  styleUrls: ['./page-not-found.component.css']
+  selector: 'app-demandes-success',
+  templateUrl: './demandes-success.component.html',
+  styleUrls: ['./demandes-success.component.css']
 })
-export class PageNotFoundComponent implements OnInit {
+export class DemandesSuccessComponent implements OnInit {
 
   constructor(private authentificationService: AuthentificationService,private router: Router) { }
 

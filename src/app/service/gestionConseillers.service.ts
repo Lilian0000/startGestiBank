@@ -16,10 +16,14 @@ export class GestionConseillersService {
 	//récupère tout les Conseillers
 	getConseillers(): Observable<Conseiller[]> {
 		return  this.http.get(this.apiUrl).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
-}
+	}
 
 	getConseillerById(id: number) {
 		return Conseillers[id - 1];
+	}
+
+	getNbOfConseiller(){
+		return this.http.get(this.apiUrl +'/getNb').pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error)));
 	}
 
 	getConseillerBylastName(lastName: string) {

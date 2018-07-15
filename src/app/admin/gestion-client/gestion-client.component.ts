@@ -36,7 +36,7 @@ export class GestionClientComponent implements OnInit {
     if (client) {
       this.router.navigate(['admin/edit_client', client.id]);
     }
-  }s
+  }
   onDelete(client) {
     {
 

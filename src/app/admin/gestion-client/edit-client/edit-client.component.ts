@@ -13,7 +13,7 @@ import { Client } from '../../../modeles/Client';
 export class EditClientComponent implements OnInit {
 
 	id: number;
-	client: Client;
+	client;
 	editClientForm: FormGroup;
 	private sub: any;
 
@@ -30,6 +30,7 @@ ngOnInit() {
 		
 		this.gestionClientsService.getClientById(this.id).subscribe(client => {
 			this.client=client;
+			console.log(client);
 			this.editClientForm = new FormGroup({
 				lastName: new FormControl(this.client.lastName, Validators.required),
 				firstName: new FormControl(this.client.firstName, Validators.required),

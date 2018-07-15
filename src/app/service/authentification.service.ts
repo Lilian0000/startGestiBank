@@ -20,9 +20,11 @@ export class AuthentificationService {
 	constructor(private router: Router, private http: Http) {}
 	private apiUrl = 'http://localhost:9090/GestBankBack/users/connexion';
 
-	getUserAtConnexion(form): Observable<Boolean | {}> {
 
-		return  this.http.post(this.apiUrl, form).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error)));
+	// ---- FORMULAIRE CONNEXION ----
+	getUserAtConnexion(user): Observable<Boolean | {}> {
+
+		return  this.http.post(this.apiUrl, user).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error)));
 	}
 
 	connexionRedirection(user) {
@@ -39,6 +41,8 @@ export class AuthentificationService {
 		}
 		else { this.router.navigate([''])}
 	}
+
+// ---- GESTIONNAIRE DE SESSION ----
 //session permatente jusqu'à logout() : "Remember Me" 
 inputUserInLocalSession(user) {
 	localStorage.setItem('Token', JSON.stringify(user));				
@@ -99,6 +103,10 @@ logout() {
 	//this.router.navigate(['']);
 }
 
+
+
+
+// ---- GESTIONNAIRE DE NAVIGATION ----
 redirectionWithUserType(userType: string) {
 	switch (userType) {
 		case "client":
@@ -122,7 +130,6 @@ redirectionWithUserType(userType: string) {
 
 //partie du service servant à faire fonctionner les bar de nav en fonction des espaces
 //on créé d'abord un Subject que l'on pourra envoyer en tant qu'Observable afin de pouvoir faire une sousciption dessus
-//la souscription à ce Subject se fait dans AppComponent pour la navbar et dans le SideBarComponent pour la sidebar
 private subject = new Subject<string>();
 
 //fonction permettant d'input une string dans le Subject (utilisé dans les component devant provoquer une action sur les bars de nav !!!)

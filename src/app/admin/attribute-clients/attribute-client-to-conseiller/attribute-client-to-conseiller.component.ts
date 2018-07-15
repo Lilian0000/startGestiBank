@@ -43,7 +43,7 @@ export class AttributeClientToConseillerComponent implements OnInit {
 		}
 		
 		AttributeConseiller(conseiller) {
-			console.log(this.nbNotAttributedClients);
+			//console.log(this.nbNotAttributedClients);
 			this.gestionConseillersService.attributeClientToConseiller(this.id, conseiller).subscribe(client => {
 			if (this.nbNotAttributedClients == 1)
 			{
