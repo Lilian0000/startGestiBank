@@ -1,35 +1,47 @@
 <div class="row">
-<div class="col-md-1"></div>
-<div class="col-md-10 col-offset-md-1">
-	<div class="main-content" >
-		<div class="container-fluid">
-			<div class="card">
-				<div class="header">
-					<h4 class="title">Notifications</h4>
-				</div>
-				<div class="content">        
-					<div class="row">
-						<div class="col-md-4">
-							<a routerLink="attribute_clients" routerLinkActive="active">
-							<div class="alert {{notificationNotAttributedClients}}">
-								<h4>Vous avez {{nbNotAttributedClients}} client non attribués {{notifMessage}}</h4>
+	<div class="col-md-1"></div>
+	<div class="col-md-10 col-offset-md-1">
+		<div class="main-content" >
+			<div class="container-fluid">
+				<div class="card">
+					<div class="header">
+						<h4 class="title">Notifications</h4>
+					</div>
+					<div class="content">        
+						<div class="row ">
+							<div class="col-md-4">
+								<a routerLink="attribute_clients">
+									<div class="alert {{notificationNotAttributedClients}}">
+										<div *ngIf="!notAttributedClientsExist()">
+											<img class="centered-image" width="50px" src="/assets/img/warning_alert.png">
+											<h4 >Vous avez {{nbNotAttributedClients}} client non attribués !</h4>
+										</div>
+										<div *ngIf="notAttributedClientsExist()"> 
+											<img class="centered-image" width="50px" src="/assets/img/thumbs-up-2png.png">
+											<h4>Tout les clients sont attribué !</h4>
+										</div>
+									</div>
+								</a>
 							</div>
-						</a>
-						</div>
-						<div class="col-md-4">
-							<div class="alert alert-success">
-								<button type="button" aria-hidden="true" class="close">×</button>
-								<span><b> Success - </b> This is a regular notification made with ".alert-success"</span>
+							<div class="col-md-4">
+								<div class="alert alert-success">
+									<img class="centered-image" width="50px" src="/assets/img/conseillers_img.png">
+									<h4>Vous gérez : <br>
+									{{nbOfConseillers}} conseillers</h4>
+								</div>
 							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="alert alert-warning">
-								<button type="button" aria-hidden="true" class="close">×</button>
-								<span><b> Warning - </b> This is a regular notification made with ".alert-warning"</span>
-							</div>
-							<div class="alert alert-danger">
-								<button type="button" aria-hidden="true" class="close">×</button>
-								<span><b> Danger - </b> This is a regular notification made with ".alert-danger"</span>
+							<div class="col-md-4">
+								<a routerLink="gestion_client">
+									<div class="alert alert-warning">
+										<img class="centered-image" width="50px" src="/assets/img/Handshake.png">
+										<h4>La banque compte :
+										{{nbOfClients}} clients</h4>
+									</div>
+								</a>
+								<!--<div class="alert alert-danger">
+									<button type="button" aria-hidden="true" class="close">×</button>
+									<span><b> Danger - </b> This is a regular notification made with ".alert-danger"</span>
+								</div>-->
 							</div>
 						</div>
 					</div>
@@ -37,7 +49,6 @@
 			</div>
 		</div>
 	</div>
-</div>
 </div>
 
 

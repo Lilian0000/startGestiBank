@@ -22,6 +22,10 @@ export class GestionConseillersService {
 		return Conseillers[id - 1];
 	}
 
+	getNbOfConseiller(){
+		return this.http.get(this.apiUrl +'/getNb').pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error)));
+	}
+
 	getConseillerBylastName(lastName: string) {
 		for (var i=0; i<Conseillers.length; i++)
 			if(Conseillers[i].lastName === lastName) 

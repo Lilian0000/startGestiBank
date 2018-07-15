@@ -19,6 +19,7 @@ import { RoleGardService } from './service/role-gard.service';
 import { UnauthorizedEspacePageComponent } from './errorPages/unauthorized-espace-page/unauthorized-espace-page.component';
 import { PageNotFoundComponent } from './errorPages/page-not-found/page-not-found.component';
 import { GestionConseillersService } from './service/gestionConseillers.service';
+import { DemandesSuccessComponent } from './successPages/demandes-success/demandes-success.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { GestionConseillersService } from './service/gestionConseillers.service'
     GuestComponent,
     UnauthorizedEspacePageComponent,
     PageNotFoundComponent,
+    DemandesSuccessComponent,
     
   ],
   imports: [

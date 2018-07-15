@@ -1,62 +1,61 @@
-        <div class="row">
-          <div class="col-md-3"></div>
-          <div class="col-md-6">
-            <div class="card list-card">
-                <div class="header">
-                   
-                    <h4 class="title">Administration des Clients : Modifier un Client</h4>
-                    
-                    <div class="content">
-                        <form [formGroup]="editClientForm" (ngSubmit)="onSubmit()">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Nom</label>
-                                        <input type="text" class="form-control" value="{{client.lastName}}" formControlName="lastName">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Prenom</label>
-                                        <input type="text" class="form-control" value="{{client.firstName}}" formControlName="firstName">
-                                    </div>
-                                </div>    
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Address</label>
-                                        <input type="text" class="form-control" value="{{client.address}}" formControlName="address">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Email</label>
-                                        <input type="email" class="form-control" value="{{client.email}}" formControlName="email">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Phone number</label>
-                                        <input class="form-control" value="{{client.phonenumber}}" formControlName="phonenumber">
-                                    </div>
-                                </div>
-                            </div>
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <div class="card list-card">
+            <div class="header">
 
-                            
-                            <button type="submit" class="btn btn-info btn-fill pull-right" [disabled]="!editClientForm.valid">Submit</button>
-                            <button type="button" class="btn btn-warning btn-fill pull-right" (click)="redirectUserPage()">Cancel</button>
-                            <div class="clearfix"></div>
-                        </form>
-                    </div>
+                <h4 class="title">Administration des Clients : Modifier un Client</h4>
+
+                <div class="content">
+                    <form [formGroup]="editClientForm" (ngSubmit)="onSubmit()">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Nom</label>
+                                    <input type="text" class="form-control" value="{{client.lastName}}" formControlName="lastName">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Prenom</label>
+                                    <input type="text" class="form-control" value="{{client.firstName}}" formControlName="firstName">
+                                </div>
+                            </div>    
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Address</label>
+                                    <input type="text" class="form-control" value="{{client.address}}" formControlName="address">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="email" class="form-control" value="{{client.email}}" formControlName="email">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Phone number</label>
+                                    <input class="form-control" value="{{client.phonenumber}}" formControlName="phonenumber">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <button type="submit" class="btn btn-info btn-fill pull-right" [disabled]="!editClientForm.valid">Submit</button>
+                        <button type="button" class="btn btn-warning btn-fill pull-right" (click)="redirectUserPage()">Cancel</button>
+
+                    </form>
                 </div>
             </div>
-            <div>
-                <pre>{{editClientForm.value | json}}</pre>
-            </div>
-        </div>        
-        
-
+        </div>
+        <div>
+            <pre>{{editClientForm.value | json}}</pre>
+        </div>
+    </div>            
+</div>
 
