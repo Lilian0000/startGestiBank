@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/';
 import { AuthentificationService } from "../service/authentification.service";
 import { EventEmitter, Input, Output} from '@angular/core';
+import { User } from '../modeles/User';
+
 @Component({
 	selector: 'app-form-connexion',
 	templateUrl: './form-connexion.component.html',
@@ -16,6 +18,7 @@ export class FormConnexionComponent implements OnInit {
 	guestConnexionForm: FormGroup;
 	errorMessage : String;
 	userType: string;
+	userForm;
 	//@Output() notifySideBar: EventEmitter<any> = new EventEmitter();
 	
 	constructor(private router: Router,
@@ -33,18 +36,24 @@ export class FormConnexionComponent implements OnInit {
 				Validators.pattern("[^ @]*@[^ @]*")
 				]),
 			password: new FormControl('', Validators.required),
+			rememberMe: new FormControl('')
 		});
 		
 	}
 
 	onSubmit() {
-		console.log(this.guestConnexionForm.value)
+		console.log(this.guestConnexionForm.value);
+		console.log(this.guestConnexionForm.value.rememberMe);
 		if(this.guestConnexionForm.valid) {
-	
-			this.authentificationService.getUserAtConnexion(this.guestConnexionForm.value).subscribe(user => {this.user=user;
+			this.userForm= new User(null, null, null, this.guestConnexionForm.controls['email'].value, this.guestConnexionForm.controls['password'].value, null, null);
+			this.authentificationService.getUserAtConnexion(this.userForm).subscribe(user => {this.user=user;
 				this.authentificationService.clearUserType();
-				this.authentificationService.inputUserInLocalSession(this.user);
-				this.authentificationService.inputUserInTempSession(this.user);
+				if (this.guestConnexionForm.value.rememberMe) {
+					this.authentificationService.inputUserInLocalSession(this.user);
+				}
+				else {
+					this.authentificationService.inputUserInTempSession(this.user);
+				}
 				this.authentificationService.setUserType(this.authentificationService.getUserType(this.user));
 				this.authentificationService.connexionRedirection(this.user);
 			

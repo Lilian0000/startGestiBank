@@ -30,7 +30,7 @@ export class GestionClientsService {
 		return clients;
 	}
 	
-	//SPECIFIQUE A CLIENT notification
+	//SPECIFIQUE A ADMIN notification : recupere le nb de client non attribué.
 	getNumberOfNotAttClients(): Observable<number> {
 		/*var nbClients = 0;
 		for (var i=0; i<Clients.length; i++) {
@@ -43,7 +43,7 @@ export class GestionClientsService {
 
 	}
 	
-	//SPECIFIQUE A CLIENTcomponent attribué les clients
+	//SPECIFIQUE A ADMINcomponent attribué les clients
 	getNotAttributedClients(): Observable<Client[]> {
 		/*var clients: Client[] = [];
 		for (var i=0; i<Clients.length; i++) {
@@ -65,38 +65,38 @@ export class GestionClientsService {
 				{return Clients[i];}
 		}
 
-		getClientByIdClient(idClient: number) {
-			for (var i=0; i<Clients.length; i++)
-				if(Clients[i].numeroclient === idClient) 
-					{return Clients[i];}
-			}
+	getClientByIdClient(idClient: number) {
+		for (var i=0; i<Clients.length; i++)
+			if(Clients[i].numeroclient === idClient) 
+				{return Clients[i];}
+		}
 
-			getClientByMail(email: string) {
-				for (var i=0; i<Clients.length; i++)
-					if(Clients[i].email === email) 
-						{return Clients[i];}
-				}
+	getClientByMail(email: string) {
+		for (var i=0; i<Clients.length; i++)
+			if(Clients[i].email === email) 
+				{return Clients[i];}
+		}
 
 
 
-				addClient(client): Observable<Client> {
-					return  this.http.post(this.apiUrl, client).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
-				}			
+	addClient(client): Observable<Client> {
+		return  this.http.post(this.apiUrl, client).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
+	}			
 
-				editClient(client): Observable<Client> {
-					//console.log(client);
-					return  this.http.put(this.apiUrl + '/' + client.id, client).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
-					/*let oldClient = this.getClientById(client.id);
-					client.idClient = oldClient.numeroclient;
-					client.idConseiller = oldClient.idConseiller;
-					client.password = oldClient.password;
-					let index = (client.id - 1);
-					Clients.splice(index, 1, client);*/
-				}
+	editClient(client): Observable<Client> {
+		//console.log(client);
+		return  this.http.put(this.apiUrl + '/' + client.id, client).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
+		/*let oldClient = this.getClientById(client.id);
+		client.idClient = oldClient.numeroclient;
+		client.idConseiller = oldClient.idConseiller;
+		client.password = oldClient.password;
+		let index = (client.id - 1);
+		Clients.splice(index, 1, client);*/
+	}
 
-				deleteClient(id: number): Observable<number> {
-					return  this.http.delete(this.apiUrl + '/' + id).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
-				}
+	deleteClient(id: number): Observable<number> {
+		return  this.http.delete(this.apiUrl + '/' + id).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
+	}
 
 
 
