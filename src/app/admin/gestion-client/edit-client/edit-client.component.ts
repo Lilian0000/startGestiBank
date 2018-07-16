@@ -25,7 +25,7 @@ export class EditClientComponent implements OnInit {
 
 ngOnInit() {
 
-	this.sub = this.route.params.subscribe(params => {
+	this.route.params.subscribe(params => {
 		this.id = +params['id'];  
 		
 		this.gestionClientsService.getClientById(this.id).subscribe(client => {
