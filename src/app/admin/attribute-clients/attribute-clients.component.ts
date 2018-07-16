@@ -21,7 +21,6 @@ export class AttributeClientsComponent implements OnInit {
   constructor(private router: Router, private gestionClientsService: GestionClientsService) { }
 
   ngOnInit() {
-    this.RedirectAdminPage();
   	this.getClients();
       
   }

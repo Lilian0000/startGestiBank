@@ -33,10 +33,10 @@
                                 <td *ngIf=isAttributed(client)>{{client.idConseiller}}</td>
                                 <td *ngIf=!isAttributed(client)>client non attribué</td>
                                 <td>
-                                    <button type="button" class="btn btn-success btn-fill" (click)="editClientPage(client)">Edit</button>
-                                    <button type="button" class="btn btn-danger delete btn-fill" (click)="onDelete(client)">Delete</button>
+                                    <button type="button" class="btn btn-success btn-fill" (click)="editClientPage(client)">Modifier</button>
+                                    <button type="button" class="btn btn-danger delete btn-fill" (click)="onDelete(client)">Supprimer</button>
                                     <div> 
-                                        <button [disabled]="!isAttributed(client)" type="button" class="btn btn-warning btn-fill" (click)="unAttributeClient(client)">Desattribué client</button>
+                                        <button [disabled]="!isAttributed(client)" type="button" class="btn btn-warning btn-fill" (click)="unAttributeClient(client)">Desattribuer client</button>
                                     </div>
                                 </td>          
                             </tr>  
