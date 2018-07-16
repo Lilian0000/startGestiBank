@@ -17,6 +17,7 @@ export class OperationCompteComponent implements OnInit {
 
 	rib: number;
 	id: number;
+	operations;
 	comptes;
 	editOperationForm: FormGroup;
 
@@ -27,42 +28,42 @@ export class OperationCompteComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.router.routerState.parent(this.route)
-		.params.subscribe(params => {
+		this.route.parent.params.subscribe(params => {
 			this.rib =  params["rib"];
 		});
-		
+
 		this.gestionComptesService.getComptesByClient(this.authentificationService.getUserinSession().id).subscribe(comptes => {this.comptes=comptes;}
 			, err => {console.log(err);} 
 			);
 
 		this.editOperationForm = new FormGroup({
 			montant: new FormControl('', Validators.required),
-			operationType: new FormControl('', Validators.required),
 			compteEmetteur: new FormControl('', Validators.required),
 			compteRecepteur: new FormControl('', Validators.required)
 		})
 		, err => {console.log(err);};
-}
+	}
 
-onSubmit() {
-	if(this.editOperationForm.valid) {
+	onSubmit() {
+		if(this.editOperationForm.valid) {
 
-		this.editOperationForm.reset();
+			this.editOperationForm.reset();
+			this.router.navigate(['/client']);
+		}
+	}
+
+	addOperation(){
+		this.gestionComptesService.addOperation(this.editOperationForm.controls['compteEmetteur'].value, this.editOperationForm.controls['montant'].value, "retrait").subscribe(operations => {this.operations=operations;}
+			, err => {console.log(err);} 
+			);	
+		this.gestionComptesService.addOperation(this.editOperationForm.controls['compteRecepteur'].value, this.editOperationForm.controls['montant'].value, "depot").subscribe(operations => {this.operations=operations;}
+			, err => {console.log(err);} 
+			);	
+		
+	}
+
+	redirectComptePage() {
 		this.router.navigate(['/client']);
 	}
-}
-
-addOperation(){
-	console.log("Ajout d'opération");
-	this.gestionComptesService.addOperation(this.editOperationForm.controls['compteEmetteur'].value, this.editOperationForm.controls['compteRecepteur'].value, this.editOperationForm.controls['montant'].value, this.editOperationForm.controls['operationType'].value).subscribe(operations => {this.operations=operations;}
-		, err => {console.log(err);} 
-		);
-	console.log("Ajout d'opération fin");
-}
-
-redirectComptePage() {
-	this.router.navigate(['/client']);
-}
 
 }
