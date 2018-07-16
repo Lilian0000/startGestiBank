@@ -19,7 +19,7 @@ export class GestionConseillersService {
 	}
 
 	getConseillerById(id: number) {
-		return Conseillers[id - 1];
+		return  this.http.get(this.apiUrl + '/' + id).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
 	}
 
 	getNbOfConseiller(){
@@ -33,16 +33,11 @@ export class GestionConseillersService {
 		}
 		
 	addConseiller(conseiller) {
-		conseiller.id = Conseillers.length + 1;
-		Conseillers.push(conseiller);
+		return  this.http.post(this.apiUrl, conseiller).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
 	}
 
-	deleteConseiller(conseiller) {
-		let index;
-		index = Conseillers.indexOf(conseiller);
-		if (Conseillers.indexOf(conseiller) >= 0) {
-		Conseillers.splice(index, 1);
-		}
+	deleteConseiller(id: number): Observable<number> {
+		return  this.http.delete(this.apiUrl + '/' + id).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
 	}
 	
 	attributeClientToConseiller(idClient, conseiller): Observable<Client> {
@@ -52,4 +47,9 @@ export class GestionConseillersService {
 	unAttributeClientToConseiller(idCons, client): Observable<boolean> {
 		return this.http.put(this.apiUrl + '/clients/desatribue/' + idCons, client).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error)));
 	}
+
+	editConseiller(conseiller): Observable<Conseiller> {
+		//console.log(client);
+		return  this.http.put(this.apiUrl + '/' + conseiller.id, conseiller).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
+    }
 }

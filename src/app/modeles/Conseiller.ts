@@ -11,7 +11,7 @@ export class Conseiller extends User {
 		address: string,
 		phonenumber: string,		
 		public matricule: string,
-		public contractStartingDate: Date) 
+		public contratStartingDate: Date) 
 
 	{super(id, lastName, firstName, email, password, address, phonenumber);} 
 

@@ -8,6 +8,7 @@ import { ContactBanqueComponent } from './guest/contact-banque/contact-banque.co
 import { UnauthorizedEspacePageComponent } from './errorPages/unauthorized-espace-page/unauthorized-espace-page.component';
 import { PageNotFoundComponent } from './errorPages/page-not-found/page-not-found.component';
 import { DemandesSuccessComponent } from './successPages/demandes-success/demandes-success.component';
+import {GestionConseillerComponent} from './admin/gestion-conseiller/gestion-conseiller.component';
 
 
 const routes: Routes = [

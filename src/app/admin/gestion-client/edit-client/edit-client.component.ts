@@ -25,12 +25,17 @@ export class EditClientComponent implements OnInit {
 
 ngOnInit() {
 
+			
 	this.sub = this.route.params.subscribe(params => {
 		this.id = +params['id'];  
 		
 		this.gestionClientsService.getClientById(this.id).subscribe(client => {
 			this.client=client;
 			console.log(client);
+		}
+		, err => {console.log(err);} );
+	});
+	
 			this.editClientForm = new FormGroup({
 				lastName: new FormControl(this.client.lastName, Validators.required),
 				firstName: new FormControl(this.client.firstName, Validators.required),
@@ -40,11 +45,7 @@ ngOnInit() {
 					]),
 				address: new FormControl(this.client.address, Validators.required),
 				phonenumber: new FormControl(this.client.phonenumber, Validators.required),
-			});	
-
-		}
-		, err => {console.log(err);} );
-	});
+			});
 }
 
 onSubmit() {
