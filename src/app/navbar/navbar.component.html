@@ -1,4 +1,3 @@
-
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -8,8 +7,6 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-                <a class="navbar-brand" href="#" >{{getTitle()}}</a>
-            <!--<img src="../assets/img/logoo.jpg"/>-->
             <a class="navbar-brand" href="#" >{{getTitle()}}</a>
             <a *ngIf=!isGuest() class="navbar-toggle" data-toggle="collapase" (click)="Deconexion()">
                 <p>deco</p>
@@ -17,10 +14,11 @@
 
             <a *ngIf=isGuest() class="navbar-toggle" data-toggle="collapase" routerLink="/connexion">
                 <p>Co</p>
-          </a>
+            </a>
+            <!--<img src="../assets/img/logoo.jpg"/>-->
         </div>
         <div class="collapse navbar-collapse">
-           
+         
             <!--<ul class="nav navbar-nav navbar-left">
                 <li>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -77,48 +75,30 @@
                         <li><a href="#">Separated link</a></li>
                     </ul>
                 </li>-->
+
                 <li *ngIf=isGuest()>
                     <a routerLink="/connexion">
                         <img src="../assets/img/connexion.jpg"/>
                         <!--<p>Se connecter</p>-->
                     </a>
-                    <li *ngIf=isGuest()>
-                        <a routerLink="/inscription">
-                            <img src="../assets/img/inscription.jpg"/>
-                        </a>            
-
+                </li>
+                <li *ngIf=isGuest()>
+                    <a routerLink="/inscription">
+                        <img src="../assets/img/inscription.jpg"/>
+                    </a>            
 
                     <div class="logo">
                         <a routerLink="/connexion">
                         </a>
                     </div>
-                    </li>
-                    <li *ngIf=!isGuest()>
-                        <a (click)="Deconexion()">
-                            <img src="../assets/img/deconnexion.jpg"/>
-                <li *ngIf=isGuest()>
-                    <a routerLink="/inscription">
-                        <p>Inscription</p>
+                </li>
+                <li *ngIf=!isGuest()>
+                    <a (click)="Deconexion()">
+                        <img src="../assets/img/deconnexion.jpg"/>
                     </a>
-                    <li *ngIf=isGuest()>
-                        <a routerLink="/connexion">
-                            <p>Se connecter</p>
-                        </a>
-                    </li>
-                    <li *ngIf=!isGuest()>
-                        <a (click)="Deconexion()">
-                            <p>Se deconnecter</p>
-
-                        </a>
-                    </li>
-                    <li class="separator hidden-lg hidden-md"></li>
-                </ul>
-            </div>
+                </li>
+                <li class="separator hidden-lg hidden-md"></li>
+            </ul>
         </div>
-    </nav>
-       <!--<ul class="nav navbar-nav navbar-right navbar-toggle" data-toggle="collapse">
-           <li>dapjdizaojda</li>
-       </ul>-->
-
-
-
+    </div>
+</nav>

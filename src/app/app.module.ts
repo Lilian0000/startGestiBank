@@ -16,7 +16,6 @@ import { NavbarModule } from './navbar/navbar.module';
 import { GuestComponent } from './guest/guest.component';
 import { GestionComptesService } from './service/gestion-comptes.service';
 import { ContactBanqueComponent } from './guest/contact-banque/contact-banque.component'
-import { GestionComptesService } from './service/gestion-comptes.service'
 import { RoleGardService } from './service/role-gard.service';
 import { UnauthorizedEspacePageComponent } from './errorPages/unauthorized-espace-page/unauthorized-espace-page.component';
 import { PageNotFoundComponent } from './errorPages/page-not-found/page-not-found.component';
