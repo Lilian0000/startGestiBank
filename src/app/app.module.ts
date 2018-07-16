@@ -14,7 +14,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SidebarModule } from './sidebar/sidebar.module';
 import { NavbarModule } from './navbar/navbar.module';
 import { GuestComponent } from './guest/guest.component';
-import {GestionComptesService} from './service/gestion-comptes.service'
+import {GestionComptesService} from './service/gestion-comptes.service';
+import { ContactBanqueComponent } from './guest/contact-banque/contact-banque.component'
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import {GestionComptesService} from './service/gestion-comptes.service'
     FormInscriptionComponent,
     FormConnexionComponent,
     GuestComponent,
+    ContactBanqueComponent,
     
   ],
   imports: [
