@@ -30,6 +30,7 @@ export class AttributeClientToConseillerComponent implements OnInit {
 		private gestionClientsService: GestionClientsService) {}
 
 	ngOnInit() {
+
 		this.sub = this.route.params.subscribe(params => {
 			this.id = +params['id'];
 			this.gestionClientsService.getClientById(this.id).subscribe(client => {this.client=client;},
@@ -39,7 +40,8 @@ export class AttributeClientToConseillerComponent implements OnInit {
 			this.gestionConseillersService.getConseillers().subscribe(conseillers => {this.conseillers= conseillers;},
 				error => {console.log(error);});
 			this.gestionClientsService.getNumberOfNotAttClients().subscribe(nbofnotatt => {this.nbNotAttributedClients=nbofnotatt;},
-				error => {console.log(error);})
+				error => {console.log(error);});
+
 		}
 		
 		AttributeConseiller(conseiller) {
