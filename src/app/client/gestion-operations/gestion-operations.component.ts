@@ -19,25 +19,20 @@ export class GestionOperationsComponent implements OnInit {
 
 	ngOnInit() {
 		this.sub = this.route.params.subscribe(params => {
-			this.rib = params['rib'] , err => {console.log(err);}
-		});
+			this.rib = params['rib']} , err => {console.log(err);}
+		);
 		this.getOperations();
 	}
 
 	getOperations() {
 		this.gestionComptesService.getOperationsByCompte(this.rib).subscribe(operations => {this.operations=operations;
-		console.log(this.operations);
+			console.log(this.operations);
 		}
 		, err => {console.log(err);} 
 		);
 	}
 
-	addOperation(){
-		console.log("Ajout d'opération");
-		this.gestionComptesService.addOperation(this.rib, 100).subscribe(operations => {this.operations=operations;}
-			, err => {console.log(err);} 
-			);
-		console.log("Ajout d'opération fin");
+	redirectOperationPage() {
+		this.router.navigate(['/client/operations/'+this.rib+'/op']);
 	}
-
 }

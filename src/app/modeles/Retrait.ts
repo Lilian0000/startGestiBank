@@ -9,7 +9,7 @@ export class Retrait extends Operation {
 		)
 	
 	{
-		super(id, somme, date)
+		super(id, somme, date, "RETRAIT")
 	} 
 
 	

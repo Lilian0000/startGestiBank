@@ -63,16 +63,18 @@ export class GestionComptesService {
 		return  this.http.get(this.apiUrl + 'comptes/' + rib + '/operations').pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
 	}
 
-	addOperation(rib: number, somme: number): Observable<Operation>{	
-		if (somme > 0){
-			let depot: Depot = new Depot(null, somme, new Date());
-			return  this.http.put(this.apiUrl + 'comptes/' + rib + '/operations', depot).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
+	addOperation(ribE: number, ribR: number, somme: number, typeOperation: string): Observable<Operation>{	
+		let depot: Depot = new Depot(null, somme, new Date());
+		let retrait: Retrait = new Retrait(null, somme, new Date());
+		console.log(typeOperation);
+		if (typeOperation === "Depot"){
+			this.http.put(this.apiUrl + 'comptes/' + ribR + '/operations', depot).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
+			return this.http.put(this.apiUrl + 'comptes/' + ribE + '/operations', retrait).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
 
 		}
 		else {
-			let retrait: Retrait = new Retrait(null, somme, new Date());
-			return  this.http.put(this.apiUrl + 'comptes/' + rib + '/operations', retrait).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
-
+			this.http.put(this.apiUrl + 'comptes/' + ribE + '/operations', depot).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
+			return this.http.put(this.apiUrl + 'comptes/' + ribR + '/operations', retrait).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
 		}
 	}
 }
