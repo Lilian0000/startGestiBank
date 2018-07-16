@@ -12,53 +12,37 @@ import { map } from 'rxjs/operators';
 import { catchError } from 'rxjs/operators';
 import { EventEmitter, Input, Output} from '@angular/core';
 import { Subject } from 'rxjs/Subject';
+import { Http, Response } from "@angular/http";
 
 @Injectable()
 export class AuthentificationService {
 	
-	constructor(private router: Router) {}
+	constructor(private router: Router, private http: Http) {}
+	private apiUrl = 'http://localhost:9090/GestBankBack/users/connexion';
 
 
-getUserAtConnexion(email: string, password: string) {
+	// ---- FORMULAIRE CONNEXION ----
+	getUserAtConnexion(user): Observable<Boolean | {}> {
 
-	let User;
+		return  this.http.post(this.apiUrl, user).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error)));
+	}
 
-	for (var i=0; i<Clients.length; i++) {
-		if (email === Clients[i].email) 
-		{
-			if (password === Clients[i].password)
-				{User = Clients[i];}
+	connexionRedirection(user) {
+		console.log(user);
+		if (user.matricule) {
+			if (user.fonction) {
+				this.router.navigate(['/admin']);
+			}
+			else {this.router.navigate(['/conseiller']);}
 		}
-	}
-	for (var i=0; i<Conseillers.length; i++) {
-		if (email === Conseillers[i].email) 
-		{
-			if (password === Conseillers[i].password)
-				{User = Conseillers[i];}
+		else if (user.numeroclient) {
+			this.router.navigate(['/client']);
+			console.log('i go to client');
 		}
-	}
-	for (var i=0; i<Admins.length; i++) {
-		if (email === Admins[i].email) 
-		{
-			if (password === Admins[i].password)
-				{User = Admins[i];}
-		}
+		else { this.router.navigate([''])}
 	}
 
-	return User;
-}
-
-connexionRedirection(user) {
-	if (user.numeroclient) {
-		this.router.navigate(['/client']);
-	}
-	if (user.matricule) {
-		if (user.fonction) {
-			this.router.navigate(['/admin']);
-		}
-	else {this.router.navigate(['/conseiller']);}
-	}
-}
+// ---- GESTIONNAIRE DE SESSION ----
 //session permatente jusqu'à logout() : "Remember Me" 
 inputUserInLocalSession(user) {
 	localStorage.setItem('Token', JSON.stringify(user));				
@@ -80,20 +64,27 @@ getUserInTempSession() {
 //recupère l'objet User quelque soit le type de session
 getUserinSession() {
 	if (this.getUserInLocalSession())
-	{return JSON.parse(localStorage.getItem('Token'));}
+		{return JSON.parse(localStorage.getItem('Token'));}
 	else
-	{return JSON.parse(sessionStorage.getItem('Token'));}
+		{return JSON.parse(sessionStorage.getItem('Token'));}
 }
 //fonction prenant un objet user (client/admin ou conseiller) et renvoie une String correspondant au type d'utilisateur
 getUserType(user) : string {
-	if (user.numeroclient) {
-		return "client";
-	}
-	if (user.matricule) {
-		if (user.fonction) {
-			return "admin";
+	if (user) {
+		if (user.numeroclient) {
+			return "client";
 		}
-	else {return "conseiller";}
+		if (user.matricule) {
+			if (user.fonction) {
+				return "admin";
+			}
+			else {
+				return "conseiller";
+			}
+		}
+	}
+	else {
+		return "guest";
 	}
 }
 
@@ -109,40 +100,51 @@ isConnected() {
 logout() {
 	sessionStorage.removeItem('Token');
 	localStorage.removeItem('Token');
-	this.router.navigate(['']);
+	//this.router.navigate(['']);
 }
 
-/*myObservable = Observable.of(this.getUserinSession())
 
-myObserver = {
-	next: user => this.getUserType(user),
-	error: err => console.error,
-	complete: () => console.log('Observer is done'),
-};
 
-getUserTypeinSession(): Observable<any> {
-	return this.getUserType(this.getUserinSession()).asObservable();
-}*/
 
-//onConnexion: EventEmmitter<any> = new EventEmitter<any>();
+// ---- GESTIONNAIRE DE NAVIGATION ----
+redirectionWithUserType(userType: string) {
+	switch (userType) {
+		case "client":
+		this.router.navigate(['client']);
+		break;
+		
+		case "conseiller":
+		this.router.navigate(['conseiller']);
+		break;
+
+		case "admin":
+		this.router.navigate(['admin']);
+		break;
+
+		default:
+		this.router.navigate(['']);
+		break;
+	}
+}
+
 
 //partie du service servant à faire fonctionner les bar de nav en fonction des espaces
 //on créé d'abord un Subject que l'on pourra envoyer en tant qu'Observable afin de pouvoir faire une sousciption dessus
-//la souscription à ce Subject se fait dans AppComponent pour la navbar et dans le SideBarComponent pour la sidebar
-private subject = new Subject<any>();
- 	
+private subject = new Subject<string>();
+
 //fonction permettant d'input une string dans le Subject (utilisé dans les component devant provoquer une action sur les bars de nav !!!)
 setUserType(usertype: string) {
-  this.subject.next(usertype);
+	this.subject.next(usertype);
 }
 
 //vide le Subject
 clearUserType() {
-  this.subject.next();
+	this.subject.next();
 }
 
 //récupère la string  "type d'utilisateur" comme observable
-getuserTypeasObs(): Observable<any> {
-  return this.subject.asObservable();
+getuserTypeasObs(): Observable<string> {
+	return this.subject.asObservable();
 }
+
 }

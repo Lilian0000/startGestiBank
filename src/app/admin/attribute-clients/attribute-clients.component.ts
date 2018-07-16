@@ -17,7 +17,6 @@ import { EventEmitter, Input, Output} from '@angular/core';
 export class AttributeClientsComponent implements OnInit {
 
 	clients;
-	@Input() client;
 
   constructor(private router: Router, private gestionClientsService: GestionClientsService) { }
 
@@ -26,9 +25,14 @@ export class AttributeClientsComponent implements OnInit {
       
   }
   getClients() {
-  	this.clients = this.gestionClientsService.getNotAttributedClients();
+  	this.gestionClientsService.getNotAttributedClients().subscribe(clients => {this.clients=clients;}, 
+      error => {console.log(error);});
   }
   AttributeClientToConseiller(client) {
       this.router.navigate(['admin/attribute_clients/attribute_client_to_conseiller', client.id]);
     }
+
+  RedirectAdminPage() {
+    this.router.navigate(['admin']);
+  }
 }

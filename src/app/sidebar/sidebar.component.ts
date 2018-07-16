@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AppComponent } from '../app.component';
 import { AuthentificationService } from '../service/authentification.service';
-import { Subscription } from 'rxjs/Subscription';
+import { Router } from '@angular/router';
+
 declare const $: any;
 declare interface RouteInfo {
     path: string;
@@ -22,8 +23,11 @@ export const ROUTES: RouteInfo[] = [
     { path: 'admin/gestion_client', title: 'Gestions clients',  icon: '', class: '', userSpace: 'admin'  },
     { path: 'consulter', title: 'Consulter',  icon: '', class: '', userSpace: 'client'  },
     { path: 'gerer', title: 'Gérer',  icon: '', class: '', userSpace: 'client'  },
-    { path: 'demandeChequier', title: 'Demande chéquier',  icon: '', class: '', userSpace: 'client'  },
-    { path: 'contact', title: 'Contacter la banque',  icon: '', class: '', userSpace: 'client'  }
+    { path: 'DOC', title: 'Demande ouverture de compte',  icon: '', class: '', userSpace: 'client'  },
+    { path: 'contact', title: 'Contacter la banque',  icon: '', class: '', userSpace: 'client'  },
+    { path: 'conseiller', title: 'Dashboard', icon :'', class:'', userSpace:'conseiller'},
+    { path: 'conseiller', title: 'Gerer les demanandes', icon :'', class:'', userSpace:'conseiller'},
+    { path: 'conseiller', title: 'Gerer les clients', icon :'', class:'', userSpace:'conseiller'}
 ];
 
 @Component({
@@ -33,16 +37,22 @@ export const ROUTES: RouteInfo[] = [
 export class SidebarComponent implements OnInit {
   //On reçoit le paramètre utilisateur en input depuis le composant app.component.ts
  
-  subscription: Subscription;
+  
   menuItems: any[];
-  utilisateur;
+  utilisateur: string;
 
-  constructor(private authentificationService : AuthentificationService) { }
+  constructor(private authentificationService : AuthentificationService, private router: Router) { }
 
   ngOnInit() {
-    this.subscription = this.authentificationService.getuserTypeasObs().subscribe(userType => { this.utilisateur = userType; 
-    this.menuItems = ROUTES.filter(menuItem => menuItem.userSpace===this.utilisateur);
+    if (this.utilisateur==null) {
+      this.utilisateur=this.authentificationService.getUserType(this.authentificationService.getUserinSession());
+      this.menuItems = ROUTES.filter(menuItem => menuItem.userSpace===this.utilisateur); 
+    }
+   
+    this.authentificationService.getuserTypeasObs().subscribe(userType => {this.utilisateur=userType;
+    this.menuItems = ROUTES.filter(menuItem => menuItem.userSpace===this.utilisateur); 
     });
+    
   }
   isMobileMenu() {
       if ($(window).width() > 991) {

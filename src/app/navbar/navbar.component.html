@@ -10,6 +10,14 @@
             </button>
                 <a class="navbar-brand" href="#" >{{getTitle()}}</a>
             <!--<img src="../assets/img/logoo.jpg"/>-->
+            <a class="navbar-brand" href="#" >{{getTitle()}}</a>
+            <a *ngIf=!isGuest() class="navbar-toggle" data-toggle="collapase" (click)="Deconexion()">
+                <p>deco</p>
+            </a>
+
+            <a *ngIf=isGuest() class="navbar-toggle" data-toggle="collapase" routerLink="/connexion">
+                <p>Co</p>
+          </a>
         </div>
         <div class="collapse navbar-collapse">
            
@@ -69,7 +77,6 @@
                         <li><a href="#">Separated link</a></li>
                     </ul>
                 </li>-->
-
                 <li *ngIf=isGuest()>
                     <a routerLink="/connexion">
                         <img src="../assets/img/connexion.jpg"/>
@@ -89,6 +96,19 @@
                     <li *ngIf=!isGuest()>
                         <a (click)="Deconexion()">
                             <img src="../assets/img/deconnexion.jpg"/>
+                <li *ngIf=isGuest()>
+                    <a routerLink="/inscription">
+                        <p>Inscription</p>
+                    </a>
+                    <li *ngIf=isGuest()>
+                        <a routerLink="/connexion">
+                            <p>Se connecter</p>
+                        </a>
+                    </li>
+                    <li *ngIf=!isGuest()>
+                        <a (click)="Deconexion()">
+                            <p>Se deconnecter</p>
+
                         </a>
                     </li>
                     <li class="separator hidden-lg hidden-md"></li>
@@ -96,3 +116,9 @@
             </div>
         </div>
     </nav>
+       <!--<ul class="nav navbar-nav navbar-right navbar-toggle" data-toggle="collapse">
+           <li>dapjdizaojda</li>
+       </ul>-->
+
+
+
