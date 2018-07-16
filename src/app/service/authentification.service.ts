@@ -21,11 +21,9 @@ export class AuthentificationService {
 	private apiUrl = 'http://localhost:9090/GestBankBack/users/connexion';
 
 
-	
-
-
 	// ---- FORMULAIRE CONNEXION ----
 	getUserAtConnexion(user): Observable<Boolean | {}> {
+
 		return  this.http.post(this.apiUrl, user).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error)));
 	}
 
@@ -44,21 +42,7 @@ export class AuthentificationService {
 		else { this.router.navigate([''])}
 	}
 
-
-connexionRedirection(user) {
-	if (user.numeroclient) {
-		this.router.navigate(['/client']);
-	}
-	if (user.matricule) {
-		if (user.fonction) {
-			this.router.navigate(['/admin']);
-		}
-		else {this.router.navigate(['/conseiller']);}
-	}
-}
-
 // ---- GESTIONNAIRE DE SESSION ----
-
 //session permatente jusqu'à logout() : "Remember Me" 
 inputUserInLocalSession(user) {
 	localStorage.setItem('Token', JSON.stringify(user));				
@@ -98,6 +82,7 @@ getUserType(user) : string {
 				return "conseiller";
 			}
 		}
+	}
 	else {
 		return "guest";
 	}
@@ -145,9 +130,7 @@ redirectionWithUserType(userType: string) {
 
 //partie du service servant à faire fonctionner les bar de nav en fonction des espaces
 //on créé d'abord un Subject que l'on pourra envoyer en tant qu'Observable afin de pouvoir faire une sousciption dessus
-//la souscription à ce Subject se fait dans AppComponent pour la navbar et dans le SideBarComponent pour la sidebar
 private subject = new Subject<string>();
-
 
 //fonction permettant d'input une string dans le Subject (utilisé dans les component devant provoquer une action sur les bars de nav !!!)
 setUserType(usertype: string) {
@@ -160,7 +143,6 @@ clearUserType() {
 }
 
 //récupère la string  "type d'utilisateur" comme observable
-
 getuserTypeasObs(): Observable<string> {
 	return this.subject.asObservable();
 }
