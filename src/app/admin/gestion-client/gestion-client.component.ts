@@ -20,9 +20,9 @@ export class GestionClientComponent implements OnInit {
   
   constructor(private router: Router, private gestionClientsService: GestionClientsService, private gestionConseillersService: GestionConseillersService) { }
 
+
   ngOnInit() {
     this.getClients();
-
   }
   getClients() {
     this.gestionClientsService.getClients().subscribe(clients => {this.clients=clients;}
@@ -38,16 +38,13 @@ export class GestionClientComponent implements OnInit {
     }
   }
   onDelete(client) {
-    {
-
       this.gestionClientsService.deleteClient(client.id).subscribe(
         res => {
           this.getClients();
           this.router.navigate(['admin/gestion_client']);
         });
-
-    }
   }
+  
   unAttributeClient(client) {
     this.gestionConseillersService.unAttributeClientToConseiller(client.idConseiller, client).subscribe(
       boolean => {this.getClients();}, error => {console.log(error)});

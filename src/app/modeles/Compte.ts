@@ -1,16 +1,16 @@
 export class Compte { 
 
 	constructor(
-		public IBAN: string,
-		public dateDeCreation: Date,
-		public Solde: number,
-		public Decouvert: number
+		public rib: number,
+		public dateCreation: Date,
+		public solde: number,
+		public description: string
 		) 
 	{
-		this.IBAN=IBAN; 
-		this.dateDeCreation=dateDeCreation; 
-		this.Solde=Solde; 
-		this.Decouvert=Decouvert; 
+		this.rib=rib; 
+		this.dateCreation=dateCreation; 
+		this.solde=solde; 
+		this.description=description; 
 	}
 	
 }

@@ -1,0 +1,39 @@
+<div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-10 col-offset-md-1"> 
+		<div class="container-fluid">
+			<div class="card">
+				<div class="header">
+					<h4 class="title">Liste des operations</h4>                      
+				</div>
+				<div class="content table-responsive table-full-width">
+					<table class="table table-hover table-striped">
+						<thead>
+							<tr>
+								<th>Id</th>
+								<th>Somme</th>
+								<th>Date</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr *ngFor="let operation of operations">
+								<th scope="row">{{operation.id}}</th>
+								<td>{{operation.somme}}</td>
+								<td>{{operation.date}}</td>
+                            <!--
+                            <td>
+                                <button type="button" class="btn btn-success btn-fill" (click)="editClientPage(client)">Edit</button>
+                                <button type="button" class="btn btn-danger delete btn-fill" (click)="onDelete(client)">Delete</button>
+                            </td>   
+                        -->
+                    </tr>  
+                </tbody>
+            </table>
+            <button type="button" class="btn btn-primary btn-fill float-right" (click)="addOperation()">Nouvelle opération</button>   
+
+        </div>
+    </div> 
+    <router-outlet></router-outlet>   
+</div>
+</div>
