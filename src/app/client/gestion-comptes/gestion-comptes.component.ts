@@ -3,6 +3,7 @@ import {GestionComptesService} from '../../service/gestion-comptes.service'
 import { Router } from '@angular/router';
 import { AuthentificationService } from '../../service/authentification.service';
 
+
 @Component({
 	selector: 'app-gestion-comptes',
 	templateUrl: './gestion-comptes.component.html',
@@ -31,6 +32,7 @@ export class GestionComptesComponent implements OnInit {
 			);
 		console.log("Ajout de compte fin");
 	}
+
 
 	editComptePage(rib: number) {
 		this.router.navigate(['client/operations', rib]);

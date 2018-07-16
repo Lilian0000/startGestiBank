@@ -1,28 +1,36 @@
-
 <div class="row">
-          <div class="col-md-3"></div>
-              <div class="col-md-6">
-                <div class="card list-card">
-<div class="header">
-	 <h4 class="title">Connexion</h4>
-</div>
-<div class="content">
-<form novalidate [formGroup]="guestConnexionForm" (ngSubmit)="onSubmit()">
-	<div class="form-group">
-		<label>Email </label>
-		<input type="Email" class="form-control" formControlName="email" required/>
+	<div class="col-md-3"></div>
+	<div class="col-md-6">
+		<div class="card list-card">
+			<div class="header">
+				<h4 class="title">Connexion</h4>
+			</div>
+			<div class="content">
+				<form novalidate [formGroup]="guestConnexionForm" (ngSubmit)="onSubmit()">
+					<div class="form-group">
+						<label>Email </label>
+						<input type="Email" class="form-control" formControlName="email" required/>
+					</div>
+					<div class="form-group">
+						<label>Mot de passe</label>
+						<input type="password" class="form-control" formControlName="password" required/>
+					</div>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-sm-8"></div>
+							<div class="col-sm-3">
+								<label class="rememberMelabel">Se souvenir de moi</label>
+							</div>
+							<div class="col-sm-1">
+								<input id="rememberMe" type="checkbox" name="rememberMe" class="form-control" formControlName="rememberMe" value="Yes"/>
+							</div>
+						</div>
+					</div>
+					<button type="submit" name="Se connecter" class="btn btn-fill btn-info pull-right" [disabled]="!guestConnexionForm.valid">Se connecter</button>
+					<button type="button" class="btn btn-fill btn-warning pull-right" (click)="Cancel()">Cancel</button>
+				</form>
+				<p class="errorMessage">{{errorMessage}}</p>
+			</div>
+		</div>
 	</div>
-	<div class="form-group">
-		<label>Mot de passe</label>
-		<input type="password" class="form-control" formControlName="password" required/>
-	</div>
-	
-		
-		<button type="submit" name="Se connecter" class="btn btn-fill btn-info pull-right" >Se connecter</button>
-	
-	
-</form>
-</div>
-</div>
-</div>
 </div>

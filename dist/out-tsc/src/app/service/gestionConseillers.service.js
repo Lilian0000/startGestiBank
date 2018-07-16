@@ -11,11 +11,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var Conseillers_1 = require("../modeles/Conseillers");
+var http_1 = require("@angular/http");
+var map_1 = require("rxjs/operators/map");
+var catchError_1 = require("rxjs/operators/catchError");
+var Observable_1 = require("rxjs/Observable");
 var GestionConseillersService = /** @class */ (function () {
-    function GestionConseillersService() {
+    function GestionConseillersService(http) {
+        this.http = http;
+        this.apiUrl = 'http://localhost:9090/GestBankBack/conseillers';
     }
     //récupère tout les Conseillers
-    GestionConseillersService.prototype.getConseillers = function () { return Conseillers_1.Conseillers; };
+    GestionConseillersService.prototype.getConseillers = function () {
+        return this.http.get(this.apiUrl).pipe(map_1.map(function (res) { return res.json(); }), catchError_1.catchError(function (error) { return Observable_1.Observable.throw(error.json().error || "Server error"); }));
+    };
     GestionConseillersService.prototype.getConseillerById = function (id) {
         return Conseillers_1.Conseillers[id - 1];
     };
@@ -36,9 +44,12 @@ var GestionConseillersService = /** @class */ (function () {
             Conseillers_1.Conseillers.splice(index, 1);
         }
     };
+    GestionConseillersService.prototype.attributeClientToConseiller = function (idClient, conseiller) {
+        return this.http.put(this.apiUrl + '/clients/' + idClient, conseiller).pipe(map_1.map(function (res) { return res.json(); }), catchError_1.catchError(function (error) { return Observable_1.Observable.throw(error.json().error || "Server error"); }));
+    };
     GestionConseillersService = __decorate([
         core_1.Injectable(),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [http_1.Http])
     ], GestionConseillersService);
     return GestionConseillersService;
 }());

@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GestionClientsService } from "../service/gestionClients.service";
+import { AuthentificationService } from "../service/authentification.service";
 import { Observable } from 'rxjs/';
 import { Client } from '../modeles/Client';
+
 
 @Component({
 	selector: 'app-form-inscription',
@@ -16,12 +18,19 @@ export class FormInscriptionComponent implements OnInit {
 	id: number;
 	client: Client;
 	clientForm: FormGroup;
+	userType: string;
 
 	constructor(private route: ActivatedRoute, 
 		private router: Router, 
-		private gestionClients: GestionClientsService) { }
+		private gestionClients: GestionClientsService,
+		private authentificationService: AuthentificationService) { }
 
 	ngOnInit() {
+		this.userType = this.authentificationService.getUserType(this.authentificationService.getUserinSession());
+  	if (this.userType !== "guest")
+  	{
+  		this.authentificationService.redirectionWithUserType(this.userType);
+  	}
 
 		this.clientForm = new FormGroup({
 			firstName: new FormControl('', Validators.required),
@@ -34,10 +43,6 @@ export class FormInscriptionComponent implements OnInit {
 			address: new FormControl('', Validators.required),
 			phonenumber: new FormControl('', Validators.required),
 		});
-
-		if(this.id) {
-			this.gestionClients.getClientById(this.id);
-		}
 	}
 
 	onSubmit() {
@@ -50,7 +55,7 @@ export class FormInscriptionComponent implements OnInit {
 				this.clientForm.controls['address'].value,
 				this.clientForm.controls['phonenumber'].value,
 				null,
-				null);
+				0);
 			this.gestionClients.addClient(client).subscribe(client => { 
 				this.clientForm.reset();
 				this.router.navigate(['/client']);

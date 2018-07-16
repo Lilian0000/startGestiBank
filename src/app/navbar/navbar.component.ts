@@ -7,11 +7,10 @@ import { Router } from '@angular/router';
     // moduleId: module.id,
     selector: 'navbar-cmp',
     templateUrl: 'navbar.component.html'
-})
+  })
 
-export class NavbarComponent implements OnInit{
-    //On reçoit le paramètre utilisateur en input depuis le composant app.component.ts
-    @Input() utilisateur;
+export class NavbarComponent implements OnInit {
+    userType;
 
     private listTitles: any[];
     location: Location;
@@ -22,50 +21,60 @@ export class NavbarComponent implements OnInit{
     constructor(location: Location,  private element: ElementRef, private authentificationService : AuthentificationService,
       private router: Router) {
       this.location = location;
-          this.sidebarVisible = false;
+      this.sidebarVisible = false;
     }
 
     ngOnInit(){
-     this.authentificationService.clearUserType();
-     this.authentificationService.setUserType(this.utilisateur);
+      if (this.userType==null) {
+        this.userType = this.authentificationService.getUserType(this.authentificationService.getUserinSession());
+        this.listTitles = ROUTES.filter(listTitle => listTitle);
+      }
+      this.authentificationService.getuserTypeasObs().subscribe(userType => {this.userType=userType;
       this.listTitles = ROUTES.filter(listTitle => listTitle);
+      });
+   
       const navbar: HTMLElement = this.element.nativeElement;
       this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
+        
     }
-    sidebarOpen() {
-        const toggleButton = this.toggleButton;
-        const body = document.getElementsByTagName('body')[0];
-        setTimeout(function(){
-            toggleButton.classList.add('toggled');
-        }, 500);
-        body.classList.add('nav-open');
 
-        this.sidebarVisible = true;
+    sidebarOpen() {
+      const toggleButton = this.toggleButton;
+      const body = document.getElementsByTagName('body')[0];
+      setTimeout(function(){
+        toggleButton.classList.add('toggled');
+      }, 500);
+      body.classList.add('nav-open');
+
+      this.sidebarVisible = true;
     };
+
     sidebarClose() {
-        const body = document.getElementsByTagName('body')[0];
-        this.toggleButton.classList.remove('toggled');
-        this.sidebarVisible = false;
-        body.classList.remove('nav-open');
+      const body = document.getElementsByTagName('body')[0];
+      this.toggleButton.classList.remove('toggled');
+      this.sidebarVisible = false;
+      body.classList.remove('nav-open');
     };
+
     sidebarToggle() {
         // const toggleButton = this.toggleButton;
         // const body = document.getElementsByTagName('body')[0];
         if (this.sidebarVisible === false) {
-            this.sidebarOpen();
+          this.sidebarOpen();
         } else {
-            this.sidebarClose();
+          this.sidebarClose();
         }
-    };
+     };
 
-    Deconexion() {
-    this.authentificationService.logout();
-    console.log(this.authentificationService.getUserInTempSession());
-    console.log(this.authentificationService.getUserInLocalSession());
-    this.authentificationService.clearUserType();
-    this.authentificationService.setUserType('guest');
-    this.router.navigate(['']);
-  }
+      Deconexion() {
+        this.authentificationService.logout();
+        this.userType = "guest";
+        console.log(this.authentificationService.getUserInTempSession());
+        console.log(this.authentificationService.getUserInLocalSession());
+        this.authentificationService.clearUserType();
+        this.authentificationService.setUserType('guest');
+        this.router.navigate(['']);
+     }
     /*
     getTitle(){
       var titlee = this.location.prepareExternalUrl(this.location.path());
@@ -79,13 +88,13 @@ export class NavbarComponent implements OnInit{
     }
     */
     getTitle(){
-      return 'Espace '+ this.utilisateur;
+      return 'Espace '+ this.userType;
     }
 
-   isGuest(){
-     if (this.utilisateur==='guest')
-      return true;
-    else 
-      return false;
-   }
-}
+    isGuest(){
+      if (this.userType==='guest')
+        return true;
+      else 
+        return false;
+    }
+  }

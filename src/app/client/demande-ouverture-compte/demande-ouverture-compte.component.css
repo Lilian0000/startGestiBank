@@ -1,0 +1,17 @@
+hr {
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+.formField {
+	margin-bottom: 40px;
+	margin-top: 40px;
+}
+
+label {
+	color: black;
+}
+
+.header {
+	background-color: lightgrey; 
+}
