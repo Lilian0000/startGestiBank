@@ -13,7 +13,7 @@ declare interface RouteInfo {
     userSpace: string;
 }
 export const ROUTES: RouteInfo[] = [
-    { path: 'accueil', title: 'Accueil',  icon: '', class: '', userSpace: 'guest'  },
+    { path: '', title: 'Accueil',  icon: '', class: '', userSpace: 'guest'  },
     { path: 'simulateurCredit', title: 'Simulateur de crédit',  icon: '', class: '', userSpace: 'guest'  },
     { path: 'convertisseurDevise', title: 'Convertisseur de devise',  icon: '', class: '', userSpace: 'guest'  },
     { path: 'contact', title: 'Contacter la banque',  icon: '', class: '', userSpace: 'guest'  },
@@ -32,7 +32,8 @@ export const ROUTES: RouteInfo[] = [
 
 @Component({
   selector: 'app-sidebar',
-  templateUrl: './sidebar.component.html'
+  templateUrl: './sidebar.component.html',
+  styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
   //On reçoit le paramètre utilisateur en input depuis le composant app.component.ts

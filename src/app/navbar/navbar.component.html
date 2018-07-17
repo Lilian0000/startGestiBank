@@ -8,12 +8,14 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="#" >{{getTitle()}}</a>
-            <a *ngIf=!isGuest() class="navbar-toggle" data-toggle="collapase" (click)="Deconexion()">
-                <p>deco</p>
+            <a *ngIf=!isGuest() class="navbar-toggle" data-toggle="collapse" (click)="Deconexion()">
+                <img src="../assets/img/icond.jpg">
             </a>
-
-            <a *ngIf=isGuest() class="navbar-toggle" data-toggle="collapase" routerLink="/connexion">
-                <p>Co</p>
+             <a *ngIf=isGuest() class="navbar-toggle" data-toggle="collapse" routerLink="/inscription">
+                <img src="../assets/img/iconi.jpg">
+            </a>
+             <a *ngIf=isGuest() class="navbar-toggle" data-toggle="collapse" routerLink="/connexion">
+                <img src="../assets/img/iconc.jpg">
             </a>
             <!--<img src="../assets/img/logoo.jpg"/>-->
         </div>
