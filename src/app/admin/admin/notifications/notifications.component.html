@@ -10,18 +10,16 @@
 					<div class="content">        
 						<div class="row ">
 							<div class="col-md-4">
-								<a routerLink="attribute_clients">
 									<div class="alert {{notificationNotAttributedClients}}">
-										<div *ngIf="!notAttributedClientsExist()">
+										<a *ngIf="!notAttributedClientsExist()" routerLink="attribute_clients">
 											<img class="centered-image" width="50px" src="/assets/img/warning_alert.png">
 											<h4 >Vous avez {{nbNotAttributedClients}} client non attribués !</h4>
-										</div>
-										<div *ngIf="notAttributedClientsExist()"> 
+										</a>
+										<a *ngIf="notAttributedClientsExist()"> 
 											<img class="centered-image" width="50px" src="/assets/img/thumbs-up-2png.png">
 											<h4>Tout les clients sont attribué !</h4>
-										</div>
+										</a>
 									</div>
-								</a>
 							</div>
 							<div class="col-md-4">
 								<div class="alert alert-success">

@@ -6,8 +6,18 @@
             <div class="container-fluid">
                 <div class="card list-card">
                     <div class="header">
-                        <h4 class="title">Liste des clients</h4>                      
-                    </div>
+                        <img class="handpointer" width="50px" src="/assets/img/warning_alert.png" (click)="getClients()">
+                        <h4 class="title">Liste des clients</h4>
+
+                        <form [formGroup]="researchForm" class="form-inline pull-right form-group">
+
+                            <label for="research">Rechercher un client</label>
+                            <input type="text" class="form-control" formControlName="research">
+                            <img class="centered-image handpointer" width="50px" src="/assets/img/warning_alert.png" (click)="RechercheClientParNom()">
+                            
+                        </form>   
+                    </div>                   
+
                     <div class="content table-responsive table-full-width">
                       <table class="table table-hover table-striped">
                         <thead>
@@ -31,12 +41,12 @@
                                 <td>{{client.email}}</td>
                                 <td>{{client.numeroclient}}</td>
                                 <td *ngIf=isAttributed(client)>{{client.idConseiller}}</td>
-                                <td *ngIf=!isAttributed(client)>client non attribué</td>
+                                <td *ngIf=!isAttributed(client)>Client non attribué</td>
                                 <td>
-                                    <button type="button" class="btn btn-success btn-fill" (click)="editClientPage(client)">Edit</button>
-                                    <button type="button" class="btn btn-danger delete btn-fill" (click)="onDelete(client)">Delete</button>
+                                    <button type="button" class="btn btn-success btn-fill" (click)="editClientPage(client)">Modifier</button>
+                                    <button type="button" class="btn btn-danger delete btn-fill" (click)="onDelete(client)">Supprimer</button>
                                     <div> 
-                                        <button [disabled]="!isAttributed(client)" type="button" class="btn btn-warning btn-fill" (click)="unAttributeClient(client)">Desattribué client</button>
+                                        <button [disabled]="!isAttributed(client)" type="button" class="btn btn-warning btn-fill" (click)="unAttributeClient(client)">Desattribuer client</button>
                                     </div>
                                 </td>          
                             </tr>  
@@ -48,4 +58,4 @@
             <router-outlet></router-outlet>   
         </div>
         <!--</div> -->
-
+    </div>

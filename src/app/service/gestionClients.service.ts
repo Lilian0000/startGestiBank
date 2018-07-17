@@ -35,26 +35,14 @@ export class GestionClientsService {
 	
 	//SPECIFIQUE A ADMIN notification : recupere le nb de client non attribué.
 	getNumberOfNotAttClients(): Observable<number> {
-		/*var nbClients = 0;
-		for (var i=0; i<Clients.length; i++) {
-			if(Clients[i].idConseiller === null) {
-				nbClients++;
-			}
-		}
-		return nbClients;*/
+		
 		return  this.http.get(this.apiUrl + '/nbnotattributed').pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
 
 	}
 	
 	//SPECIFIQUE A ADMINcomponent attribué les clients
 	getNotAttributedClients(): Observable<Client[]> {
-		/*var clients: Client[] = [];
-		for (var i=0; i<Clients.length; i++) {
-			if(Clients[i].idConseiller === null) {
-				clients.push(Clients[i]);
-			}
-		}
-		return clients;*/
+		
 		return  this.http.get(this.apiUrl + '/notAttributed').pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
 	}
 
@@ -102,18 +90,8 @@ export class GestionClientsService {
 	}
 
 
-
-	//generation aleatoire de numéro client avec vérification si le numéroClient éxiste déjà
-	idClientGenerator(client) {
-		let idClientExist: boolean = true;
-		while (idClientExist) {
-			let tempIdClient : number = Math.round(Math.random()*(9999-1111));
-			if(!this.getClientByIdClient(tempIdClient))
-			{
-				client.numeroclient = tempIdClient;
-				idClientExist = false;
-			}	
-		}
+	researcheClientByName(research: string): Observable<Client[]> {
+		return  this.http.get(this.apiUrl + '/researched/' + research).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
 	}
 
 	demandeOuvertureCompted(dOC): Observable<boolean> {

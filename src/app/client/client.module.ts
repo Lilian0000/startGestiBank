@@ -6,6 +6,7 @@ import { GestionComptesComponent } from './gestion-comptes/gestion-comptes.compo
 import { GestionOperationsComponent } from './gestion-operations/gestion-operations.component';
 import { DemandeOuvertureCompteComponent } from './demande-ouverture-compte/demande-ouverture-compte.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { OperationCompteComponent } from './operation-compte/operation-compte.component';
 
 
 @NgModule({
@@ -16,7 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule
   ],
 
-  declarations: [ClientComponent, GestionComptesComponent, GestionOperationsComponent,  DemandeOuvertureCompteComponent]
+  declarations: [ClientComponent, GestionComptesComponent, GestionOperationsComponent,  DemandeOuvertureCompteComponent, OperationCompteComponent]
 })
 
 export class ClientModule { }

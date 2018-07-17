@@ -19,7 +19,7 @@ export const ROUTES: RouteInfo[] = [
     { path: 'contact', title: 'Contacter la banque',  icon: '', class: '', userSpace: 'guest'  },
     { path: 'admin', title: 'Dashboard',  icon: '', class: '', userSpace: 'admin'  },
     { path: 'admin/attribute_clients', title: "Demandes d'affectation",  icon: '', class: '', userSpace: 'admin'  },
-    { path: 'gestionConseillers', title: 'Gestion conseillers',  icon: '', class: '', userSpace: 'admin'  },
+    { path: 'admin/gestion_conseiller', title: 'Gestion conseillers',  icon: '', class: '', userSpace: 'admin'  },
     { path: 'admin/gestion_client', title: 'Gestions clients',  icon: '', class: '', userSpace: 'admin'  },
     { path: 'consulter', title: 'Consulter',  icon: '', class: '', userSpace: 'client'  },
     { path: 'gerer', title: 'Gérer',  icon: '', class: '', userSpace: 'client'  },

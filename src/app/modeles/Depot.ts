@@ -9,7 +9,7 @@ export class Depot extends Operation {
 		)
 	
 	{
-		super(id, somme, date)
+		super(id, somme, date, "DEPOT")
 	} 
 
 	

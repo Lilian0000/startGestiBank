@@ -33,8 +33,11 @@ td, th {
     margin-right: auto;
 }
 
-.main-panel
-{
+.main-panel {
 	background: url('/assets/img/a1.jpg'); 
-
 }
+
+.handpointer {
+	cursor: pointer;
+}
+

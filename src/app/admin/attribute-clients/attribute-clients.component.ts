@@ -35,4 +35,6 @@ export class AttributeClientsComponent implements OnInit {
   RedirectAdminPage() {
     this.router.navigate(['admin']);
   }
+
+  
 }
