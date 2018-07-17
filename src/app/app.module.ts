@@ -21,6 +21,8 @@ import { UnauthorizedEspacePageComponent } from './errorPages/unauthorized-espac
 import { PageNotFoundComponent } from './errorPages/page-not-found/page-not-found.component';
 import { GestionConseillersService } from './service/gestionConseillers.service';
 import { DemandesSuccessComponent } from './successPages/demandes-success/demandes-success.component';
+import { InfosComponent } from './guest/infos/infos.component';
+import { MeteoComponent } from './guest/meteo/meteo.component';
 import { WeatherService } from './service/weather.service';
 import { MeteoChildComponent } from './guest/meteo-child/meteo-child.component';
 
@@ -34,6 +36,8 @@ import { MeteoChildComponent } from './guest/meteo-child/meteo-child.component';
     UnauthorizedEspacePageComponent,
     PageNotFoundComponent,
     DemandesSuccessComponent,
+    InfosComponent,
+    MeteoComponent
     MeteoChildComponent
   ],
   imports: [
