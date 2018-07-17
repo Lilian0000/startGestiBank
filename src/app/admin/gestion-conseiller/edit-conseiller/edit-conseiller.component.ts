@@ -59,7 +59,6 @@ export class EditConseillerComponent implements OnInit {
 
   onSubmit() {
 	if(this.editConseillerForm.valid) {
-		console.log (">>> lastname on subit = "+this.editConseillerForm.controls['lastName'].value);
 		let modifiedConseiller: Conseiller = new Conseiller
 		(this.id,
 			this.editConseillerForm.controls['lastName'].value,

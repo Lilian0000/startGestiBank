@@ -17,12 +17,19 @@ export class GestionClientComponent implements OnInit {
 
   clients;
   conseiller;
+  researchForm: FormGroup;
   
   constructor(private router: Router, private gestionClientsService: GestionClientsService, private gestionConseillersService: GestionConseillersService) { }
 
 
   ngOnInit() {
     this.getClients();
+    this.researchForm = new FormGroup({
+    research: new FormControl('', Validators.required),
+    }) 
+
+    
+
   }
   getClients() {
     this.gestionClientsService.getClients().subscribe(clients => {this.clients=clients;}
@@ -58,5 +65,10 @@ export class GestionClientComponent implements OnInit {
     else {
       return true;
     }
+  }
+
+  RechercheClientParNom() {
+    this.gestionClientsService.researcheClientByName(this.researchForm.controls["research"].value).subscribe(clients => {this.clients=clients},
+      error => console.log(error));
   }
 }
