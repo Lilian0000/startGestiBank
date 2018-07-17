@@ -53,13 +53,9 @@ export class OperationCompteComponent implements OnInit {
 	}
 
 	addOperation(){
-		this.gestionComptesService.addOperation(this.editOperationForm.controls['compteEmetteur'].value, this.editOperationForm.controls['montant'].value, "retrait").subscribe(operations => {this.operations=operations;}
+		this.gestionComptesService.addOperation(this.editOperationForm.controls['compteEmetteur'].value, this.editOperationForm.controls['compteRecepteur'].value, this.editOperationForm.controls['montant'].value).subscribe(comptes => {this.comptes=comptes;}
 			, err => {console.log(err);} 
-			);	
-		this.gestionComptesService.addOperation(this.editOperationForm.controls['compteRecepteur'].value, this.editOperationForm.controls['montant'].value, "depot").subscribe(operations => {this.operations=operations;}
-			, err => {console.log(err);} 
-			);	
-		
+			);			
 	}
 
 	redirectComptePage() {

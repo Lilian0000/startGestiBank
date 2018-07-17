@@ -3,6 +3,7 @@ import { Compte } from '../modeles/Compte';
 import { Clients } from '../modeles/Clients';
 import { Client } from '../modeles/Client';
 import { Depot } from '../modeles/Depot';
+import { Transaction } from '../modeles/Transaction';
 import { Retrait } from '../modeles/Retrait';
 import { Conseiller } from '../modeles/Conseiller';
 import { Http, Response } from "@angular/http";
@@ -63,20 +64,10 @@ export class GestionComptesService {
 		return  this.http.get(this.apiUrl + 'comptes/' + rib + '/operations').pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
 	}
 
-	addOperation(rib: number, somme: number, typeOperation: string): Observable<Operation>{	
+	addOperation(rib1: number, rib2: number, somme: number): Observable<Operation[]>{	
 		let depot: Depot = new Depot(null, somme, new Date());
 		let retrait: Retrait = new Retrait(null, somme, new Date());
-		console.log(typeOperation);
-		if (typeOperation == "depot"){
-			console.log("ceci est un depot la con de toi");
-			return this.http.put(this.apiUrl + 'comptes/' + rib + '/operations', depot).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
-		}
-		if (typeOperation == "retrait"){
-			console.log("ceci est un retrait la con de toi");
-			return this.http.put(this.apiUrl + 'comptes/' + rib + '/operations', retrait).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
-		}
-		else {
-			console.log("Ni un retrait ni un depot, WTF!!!");
-		}
+		let transaction: Transaction = new Transaction(rib1, rib2, depot, retrait);
+		return this.http.put(this.apiUrl + 'comptes/operations', transaction).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
 	}
 }

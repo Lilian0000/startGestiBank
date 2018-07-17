@@ -101,21 +101,6 @@ export class GestionClientsService {
 		return  this.http.delete(this.apiUrl + '/' + id).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
 	}
 
-
-
-	//generation aleatoire de numéro client avec vérification si le numéroClient éxiste déjà
-	idClientGenerator(client) {
-		let idClientExist: boolean = true;
-		while (idClientExist) {
-			let tempIdClient : number = Math.round(Math.random()*(9999-1111));
-			if(!this.getClientByIdClient(tempIdClient))
-			{
-				client.numeroclient = tempIdClient;
-				idClientExist = false;
-			}	
-		}
-	}
-
 	demandeOuvertureCompted(dOC): Observable<boolean> {
 		return  this.http.post(this.apiUrl + '/DOCpts', dOC).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
 	}
