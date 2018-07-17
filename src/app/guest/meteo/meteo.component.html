@@ -1,9 +1,23 @@
-<div class="row">
-  <div class="col-md-10 col-md-8">
-  	<img src="assets/img/meteo.gif"><br>
-            <span class="input-label city">Ville :</span>
-            <input type="text" placeholder="Lyon,fr" class="form-control" formControlName="ville">
-            <button class="btn btn-primary">Recherche</button>
-          </div>
+<button *ngIf="boolShouldIClose" type="submit" class="btn btn-close btn-fill btn-danger pull-right pull-right" (click)="redirectGuestPage()">x</button>
+<div class="header">
+	
+	<h4 class="title">Recherche météo :</h4>
 </div>
+
+<form [formGroup]="researcheWeatherForm" (ngSubmit)="onSubmit()">
+	
+	<div class="row">
+
+		<div class="col-md-4"></div>
+		<div class="col-md-4">
+			<div class="form-group">
+			<label>Ville :</label>
+			<input type="text" placeholder="Lyon" class="form-control" formControlName="researchWeaterInput">
+			</div>
+		</div>
+		<div class="col-md-4"></div>
+	</div>
+	<button type="submit" class="btn btn-primary btn-fill btnsubmit pull-right" [disabled]="!researcheWeatherForm.valid">Rechercher</button>
+</form>
+
 

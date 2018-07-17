@@ -1,10 +1,11 @@
 <div id="main-content">
-	<div class="container-fluid">
+	<p class="errorMessage">{{errorMessage}}</p>
 		<div class="card">
 			<div class="header">
 				<img *ngIf="isClear()" src="/assets/img/sun.gif" class="centered-image">
 				<img *ngIf="isClouds()" src="/assets/img/cloud.gif" class="centered-image">
 				<img *ngIf="isRain()" src="/assets/img/rain.gif" class="centered-image">
+				<!--<img *ngIf="isSearching()" src="/assets/img/searching.gif" width="100px" class="centered-image">-->
 			</div>
 			<div class="content table-responsive table-full-width">
 				<table class="table table-hover table-striped">
@@ -17,5 +18,4 @@
 				</table>
 			</div>
 		</div>
-	</div>
 </div>

@@ -41,3 +41,10 @@ td, th {
 	cursor: pointer;
 }
 
+.meteo-duo-component {
+	margin: 10px;
+}
+
+.main-panel {
+	margin-top : 20px;
+}

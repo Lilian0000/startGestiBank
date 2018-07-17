@@ -1,8 +1,18 @@
-<div class="col-md-8">
-		<app-infos></app-infos>
+<div class="row">
+	<app-infos></app-infos>
+</div>
+<div class="row">
+	<div class="col-md-4"></div>
+	<div class="col-md-4">
+		<div class="container-fluid card meteo-duo-component">
+			<div class="row">
+				<app-meteo></app-meteo>
+			</div>
+			<div class="row">
+				<router-outlet></router-outlet> 
+			</div>
+		</div>
 	</div>
-<div class="col-md-2">
-			<app-meteo></app-meteo>
-	</div>
-<app-meteo-child></app-meteo-child>
+	<div class="col-md-4"></div>
+</div>
 
