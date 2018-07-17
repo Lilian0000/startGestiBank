@@ -3,3 +3,10 @@
 	width: 100px;
     height: 100px;
 }
+
+.btn-primary
+{
+  color: #ffffff;
+  background-color: #5F9EA0;
+   border-color: #5F9EA0; 
+}
