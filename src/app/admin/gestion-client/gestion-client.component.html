@@ -6,8 +6,18 @@
             <div class="container-fluid">
                 <div class="card list-card">
                     <div class="header">
-                        <h4 class="title">Liste des clients</h4>                      
-                    </div>
+                        <img class="handpointer" width="50px" src="/assets/img/warning_alert.png" (click)="getClients()">
+                        <h4 class="title">Liste des clients</h4>
+
+                        <form [formGroup]="researchForm" class="form-inline pull-right form-group">
+
+                            <label for="research">Rechercher un client</label>
+                            <input type="text" class="form-control" formControlName="research">
+                            <img class="centered-image handpointer" width="50px" src="/assets/img/warning_alert.png" (click)="RechercheClientParNom()">
+                            
+                        </form>   
+                    </div>                   
+
                     <div class="content table-responsive table-full-width">
                       <table class="table table-hover table-striped">
                         <thead>
@@ -48,4 +58,4 @@
             <router-outlet></router-outlet>   
         </div>
         <!--</div> -->
-
+    </div>
