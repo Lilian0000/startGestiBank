@@ -11,7 +11,7 @@ export const Conseillers: Conseiller[] = [
 		address: "55 Rue de la Croix Blanche, 01000, Bourg-en-Bresse",
 		phonenumber: "0658479845",
 		matricule: "7845",
-		contractStartingDate: new Date('January 12, 2015'),
+		contratStartingDate: new Date('January 12, 2015'),
 	},
 
 	{
@@ -23,7 +23,7 @@ export const Conseillers: Conseiller[] = [
 		address: "55 Rue de la Croix Blanche, 01000, Bourg-en-Bresse",
 		phonenumber: "0658479845",
 		matricule: "1758",
-		contractStartingDate: new Date('February 17, 2017'),
+		contratStartingDate: new Date('February 17, 2017'),
 	},
 	
 ];

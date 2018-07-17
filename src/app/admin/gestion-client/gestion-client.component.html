@@ -31,7 +31,7 @@
                                 <td>{{client.email}}</td>
                                 <td>{{client.numeroclient}}</td>
                                 <td *ngIf=isAttributed(client)>{{client.idConseiller}}</td>
-                                <td *ngIf=!isAttributed(client)>client non attribué</td>
+                                <td *ngIf=!isAttributed(client)>Client non attribué</td>
                                 <td>
                                     <button type="button" class="btn btn-success btn-fill" (click)="editClientPage(client)">Modifier</button>
                                     <button type="button" class="btn btn-danger delete btn-fill" (click)="onDelete(client)">Supprimer</button>
