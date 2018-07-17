@@ -1,0 +1,49 @@
+<div class="row">
+	<div class="col-md-3"></div>
+	<div class="col-md-6">
+		<div class="card list-card">
+			<div class="header">
+
+				<h4 class="title">Administration des Clients : Modifier un Client</h4>
+
+				<div class="content">
+					<form [formGroup]="editOperationForm" (ngSubmit)="onSubmit()">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Montant</label>
+									<input type="number" class="form-control"formControlName="montant">
+								</div>
+							</div>
+							
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="form-group">
+									<label>Compte emetteur</label>
+									<select id="compteE" formControlName="compteEmetteur">
+										<option *ngFor="let compte of comptes" [value]="compte.rib">{{compte.rib}}</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Compte récepteur</label>
+									<select id="compteR" formControlName="compteRecepteur">
+										<option *ngFor="let compte of comptes" [value]="compte.rib">{{compte.rib}}</option>
+									</select>
+								</div>
+							</div>
+						</div>
+
+
+						<button type="submit" class="btn btn-primary btn-fill float-right" (click)="addOperation()">Nouvelle opération</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>            
+</div>
+

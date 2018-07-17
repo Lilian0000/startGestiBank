@@ -13,14 +13,15 @@
 								<th>Id</th>
 								<th>Somme</th>
 								<th>Date</th>
-								<th></th>
+								<th>Type d'opération</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr *ngFor="let operation of operations">
+							<tr *ngFor="let operation of operations?.operations">
 								<th scope="row">{{operation.id}}</th>
 								<td>{{operation.somme}}</td>
 								<td>{{operation.date}}</td>
+								<td>{{operation.OPERATION_TYPE}}</td>
                             <!--
                             <td>
                                 <button type="button" class="btn btn-success btn-fill" (click)="editClientPage(client)">Edit</button>
@@ -29,9 +30,8 @@
                         -->
                     </tr>  
                 </tbody>
-            </table>
-            <button type="button" class="btn btn-primary btn-fill float-right" (click)="addOperation()">Nouvelle opération</button>   
-
+            </table>   
+            <button type="button" class="btn btn-primary btn-fill float-right" (click)="redirectOperationPage()">Nouvelle opération</button>
         </div>
     </div> 
     <router-outlet></router-outlet>   
