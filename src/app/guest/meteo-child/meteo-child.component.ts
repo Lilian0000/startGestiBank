@@ -9,35 +9,39 @@ import { WeatherService } from '../../service/weather.service';
 export class MeteoChildComponent implements OnInit {
 
 	location= {
-		city:'strasbourg',
-		code:'fr'
+		city:'moscow',
+		code:'ru'
 	}
 
-	weatherObj;
+	
+	name: string;
 	temp : number;
 	typeDeTemp: string;
+	windSpeed: string;
 
 	constructor(private weatherService: WeatherService) { }
 
 	ngOnInit() {
-		//if ((this.location.city) !== '')
-	//{
-	this.weatherService.getWeather(this.location.city, this.location.code).subscribe(res => {this.weatherObj = res;
-		this.temp = Math.round(res.main.temp - 273.15);
-		console.log(this.weatherObj);}, error => {console.log(error)});
-	//}
+		if ((this.location.city) !== '')
+	{
+	this.weatherService.getWeather(this.location.city, this.location.code).subscribe(res => {
+		this.name= res.name;
+		this.windSpeed = res.wind.speed;
+		this.typeDeTemp = res.weather[0].main;
+		this.temp = Math.round(res.main.temp - 273.15);}, error => {console.log(error)});
 	}
+}
 
 	isClear() {
-		if (this.weatherObj.weather[0].main == 'Clear') {
-			this.typeDeTemp = 'Nuageux';
+		if (this.typeDeTemp == 'Clear') {
+			this.typeDeTemp = 'Ensoleillé';
 			return true;
 		}
 		else {return false};	
 	}
 
 	isClouds() {
-		if (this.weatherObj.weather[0].main == 'Clouds') {
+		if (this.typeDeTemp == 'Clouds') {
 			this.typeDeTemp = 'Nuageux';
 			return true;
 		}
@@ -45,7 +49,7 @@ export class MeteoChildComponent implements OnInit {
 	}
 
 	isRain() {
-		if (this.weatherObj.weather[0].main == 'Rain' || this.weatherObj.weather[0].main == 'Thunderstorm') {
+		if (this.typeDeTemp == 'Rain' || this.typeDeTemp == 'Thunderstorm') {
 			this.typeDeTemp = 'Pluvieux'
 			return true;
 		}

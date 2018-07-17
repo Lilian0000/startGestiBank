@@ -1,13 +1,21 @@
 <div id="main-content">
 	<div class="container-fluid">
 		<div class="card">
-			<img *ngIf="isClear()" src="/assets/img/sun.gif">
-			<img *ngIf="isClouds()" src="/assets/img/cloud.gif">
-			<img *ngIf="isRain()" src="/assets/img/rain.gif">
-			<h2> Ville : {{weatherObj.name}}</h2>
-			<h2> Temperature : {{temp}}°C</h2>
-			<h2> Type de temps : {{typeDeTemp}}</h2>
-			<h2> Vitesse du vent : {{weatherObj.wind.speed}} km/h</h2>
+			<div class="header">
+				<img *ngIf="isClear()" src="/assets/img/sun.gif" class="centered-image">
+				<img *ngIf="isClouds()" src="/assets/img/cloud.gif" class="centered-image">
+				<img *ngIf="isRain()" src="/assets/img/rain.gif" class="centered-image">
+			</div>
+			<div class="content table-responsive table-full-width">
+				<table class="table table-hover table-striped">
+					<tbody>
+						<tr><td>Ville : {{name}}</td></tr>
+						<tr><td>Temperature : {{temp}}°C</td></tr>
+						<tr><td>Type de temps : {{typeDeTemp}}</td></tr>
+						<tr><td>Vitesse du vent : {{windSpeed}} km/h</td></tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 </div>
