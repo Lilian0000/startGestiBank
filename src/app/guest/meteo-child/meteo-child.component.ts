@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { WeatherService } from '../../service/weather.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
 	selector: 'app-meteo-child',
 	templateUrl: './meteo-child.component.html',
 	styleUrls: ['./meteo-child.component.css']
 })
+
 export class MeteoChildComponent implements OnInit {
 
 	location= {
-		city:'moscow',
-		code:'ru'
+		city:'',
+		code:'fr'
 	}
 
 	
@@ -18,20 +20,27 @@ export class MeteoChildComponent implements OnInit {
 	temp : number;
 	typeDeTemp: string;
 	windSpeed: string;
+	errorMessage: string;
 
-	constructor(private weatherService: WeatherService) { }
+	constructor(private route: ActivatedRoute, private weatherService: WeatherService) { }
 
 	ngOnInit() {
-		if ((this.location.city) !== '')
-	{
-	this.weatherService.getWeather(this.location.city, this.location.code).subscribe(res => {
-		this.name= res.name;
-		this.windSpeed = res.wind.speed;
-		this.typeDeTemp = res.weather[0].main;
-		this.temp = Math.round(res.main.temp - 273.15);}, error => {console.log(error)});
+		this.route.params.subscribe(params => {
+			this.location.city = params.research;
+			console.log(params);
+			//this.location.city = params;
+				this.weatherService.getWeather(this.location.city, this.location.code).subscribe(res => {
+					this.errorMessage ="";
+					this.name= res.name;
+					this.windSpeed = res.wind.speed;
+					this.typeDeTemp = res.weather[0].main;
+					this.temp = Math.round(res.main.temp - 273.15);
+				}, error => {this.errorMessage = "Cette ville n'existe pas !";}
+				);
+			}, error => {console.log(error);}
+		);
+		
 	}
-}
-
 	isClear() {
 		if (this.typeDeTemp == 'Clear') {
 			this.typeDeTemp = 'Ensoleillé';
@@ -56,4 +65,19 @@ export class MeteoChildComponent implements OnInit {
 		else {return false};	
 	}
 
+	/*isSearching() {
+		if(this.isClear() == false)
+		{
+			if(this.isRain() == false)
+			{
+				if(this.isClouds() == false) {
+					return true;
+				}
+			
+			}
+		}
+		else {
+			return false;
+		}
+	}*/
 }

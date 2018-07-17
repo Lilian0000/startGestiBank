@@ -8,19 +8,21 @@ import { ContactBanqueComponent } from './guest/contact-banque/contact-banque.co
 import { UnauthorizedEspacePageComponent } from './errorPages/unauthorized-espace-page/unauthorized-espace-page.component';
 import { PageNotFoundComponent } from './errorPages/page-not-found/page-not-found.component';
 import { DemandesSuccessComponent } from './successPages/demandes-success/demandes-success.component';
-import {GestionConseillerComponent} from './admin/gestion-conseiller/gestion-conseiller.component';
-
+import { GestionConseillerComponent } from './admin/gestion-conseiller/gestion-conseiller.component';
+import { MeteoChildComponent } from './guest/meteo-child/meteo-child.component';
 
 const routes: Routes = [
-{path: '', component: GuestComponent},
+{path: '', component: GuestComponent,
+	children: [{path: 'meteoChild/:research', component: MeteoChildComponent}]
+},
 {path: 'inscription', component: FormInscriptionComponent},
 {path: 'connexion', component: FormConnexionComponent},
 {path:'contact', component: ContactBanqueComponent},
 {path: 'unauthorizedUserSpace', component : UnauthorizedEspacePageComponent},
 {path: 'errorPage', component: PageNotFoundComponent },
 {path: 'demandeSuccessPage', component: DemandesSuccessComponent}
-//{path: '**', redirectTo:''}
 
+//{path: '**', redirectTo:''}
 ];
 
 @NgModule({

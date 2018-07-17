@@ -22,7 +22,6 @@ export class GuestComponent implements OnInit {
   	if (this.userType !== "guest")
   	{
   		this.authentificationService.redirectionWithUserType(this.userType);
-     
   	}
   }
 

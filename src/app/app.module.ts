@@ -37,7 +37,7 @@ import { MeteoChildComponent } from './guest/meteo-child/meteo-child.component';
     PageNotFoundComponent,
     DemandesSuccessComponent,
     InfosComponent,
-    MeteoComponent
+    MeteoComponent,
     MeteoChildComponent
   ],
   imports: [
