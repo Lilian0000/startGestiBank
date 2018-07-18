@@ -7,10 +7,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NotificationsComponent } from './conseiller/notifications/notifications.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    ConseillerRoutingModule
-  ],
-  declarations: [ConseillerComponent, ListeClientComponent, NotificationsComponent]
+	imports: [
+	CommonModule,
+	ConseillerRoutingModule, 
+	],
+	declarations: [ConseillerComponent, ListeClientComponent, NotificationsComponent]
 })
 export class ConseillerModule { }

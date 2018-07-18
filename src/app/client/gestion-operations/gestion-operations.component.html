@@ -17,7 +17,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr *ngFor="let operation of operations?.operations">
+							<tr *ngFor="let operation of operations">
 								<th scope="row">{{operation.id}}</th>
 								<td>{{operation.somme}}</td>
 								<td>{{operation.date}}</td>
@@ -32,6 +32,7 @@
                 </tbody>
             </table>   
             <button type="button" class="btn btn-primary btn-fill float-right" (click)="redirectOperationPage()">Nouvelle opération</button>
+            <button type="button" class="btn btn-primary btn-fill float-right" (click)="redirectComptePage()">Retour</button>
         </div>
     </div> 
     <router-outlet></router-outlet>   

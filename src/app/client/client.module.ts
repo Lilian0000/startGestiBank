@@ -7,17 +7,18 @@ import { GestionOperationsComponent } from './gestion-operations/gestion-operati
 import { DemandeOuvertureCompteComponent } from './demande-ouverture-compte/demande-ouverture-compte.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OperationCompteComponent } from './operation-compte/operation-compte.component';
-
+import { OrderModule } from 'ngx-order-pipe';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    ClientRoutingModule,
-    FormsModule,
-    ReactiveFormsModule
-  ],
+	imports: [
+	CommonModule,
+	ClientRoutingModule,
+	FormsModule,
+	ReactiveFormsModule,
+	OrderModule
+	],
 
-  declarations: [ClientComponent, GestionComptesComponent, GestionOperationsComponent,  DemandeOuvertureCompteComponent, OperationCompteComponent]
+	declarations: [ClientComponent, GestionComptesComponent, GestionOperationsComponent,  DemandeOuvertureCompteComponent, OperationCompteComponent]
 })
 
 export class ClientModule { }
