@@ -73,8 +73,6 @@ export class EditConseillerComponent implements OnInit {
 		this.gestionConseillersService.editConseiller(modifiedConseiller).subscribe(bool => {
 			this.router.navigate(['/admin/gestion_conseiller']);
 			this.editConseillerForm.reset();});
-		
-		
 	}
 }
 

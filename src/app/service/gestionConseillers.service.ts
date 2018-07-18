@@ -52,4 +52,10 @@ export class GestionConseillersService {
 		//console.log(client);
 		return  this.http.put(this.apiUrl + '/' + conseiller.id, conseiller).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
     }
+
+    getClientsByConseiller(id: number) : Observable<Client[]>{
+	return this.http.get(this.apiUrl + '/' + id + '/clients').pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
+	}
+
 }
+

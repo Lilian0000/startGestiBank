@@ -23,16 +23,8 @@ export class GestionClientsService {
 	getNbOfClients(): Observable<number> {
 		return  this.http.get(this.apiUrl + '/getNb').pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
 	}
-	getClientsByConseiller(idConseiller: number){
-		let clients: Client[] = [];
-		for (var i=0; i<Clients.length; i++) {
-			if(Clients[i].idConseiller === idConseiller) {
-				clients.push(Clients[i]);
-			}
-		}
-		return clients;
-	}
 	
+
 	//SPECIFIQUE A ADMIN notification : recupere le nb de client non attribué.
 	getNumberOfNotAttClients(): Observable<number> {
 		/*var nbClients = 0;
