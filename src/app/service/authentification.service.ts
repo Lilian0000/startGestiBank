@@ -39,7 +39,7 @@ export class AuthentificationService {
 			this.router.navigate(['/client']);
 			console.log('i go to client');
 		}
-		else { this.router.navigate([''])}
+		else {this.router.navigate([''])}
 	}
 
 // ---- GESTIONNAIRE DE SESSION ----

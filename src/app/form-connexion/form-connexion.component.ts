@@ -19,7 +19,6 @@ export class FormConnexionComponent implements OnInit {
 	errorMessage : String;
 	userType: string;
 	userForm;
-	//@Output() notifySideBar: EventEmitter<any> = new EventEmitter();
 	
 	constructor(private router: Router,
 		private authentificationService: AuthentificationService) { }

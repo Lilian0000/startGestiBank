@@ -23,7 +23,6 @@ export class GestionClientsService {
 		return  this.http.get(this.apiUrl + '/getNb').pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
 	}
 	
-
 	//SPECIFIQUE A ADMIN notification : recupere le nb de client non attribué.
 	getNumberOfNotAttClients(): Observable<number> {
 		return  this.http.get(this.apiUrl + '/nbnotattributed').pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
@@ -38,26 +37,6 @@ export class GestionClientsService {
 	getClientById(id: number): Observable<Client> {
 		return  this.http.get(this.apiUrl + '/' + id).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
 	}
-
-	getClientBylastName(lastName: string) {
-		for (var i=0; i<Clients.length; i++)
-			if(Clients[i].lastName === lastName) 
-				{return Clients[i];}
-		}
-
-	getClientByIdClient(idClient: number) {
-		for (var i=0; i<Clients.length; i++)
-			if(Clients[i].numeroclient === idClient) 
-				{return Clients[i];}
-		}
-
-	getClientByMail(email: string) {
-		for (var i=0; i<Clients.length; i++)
-			if(Clients[i].email === email) 
-				{return Clients[i];}
-		}
-
-
 
 	addClient(client): Observable<Client> {
 		return  this.http.post(this.apiUrl, client).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));

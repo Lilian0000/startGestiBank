@@ -17,7 +17,7 @@ export class GuestComponent implements OnInit {
  
 
   ngOnInit() {
-    
+
   	this.userType = this.authentificationService.getUserType(this.authentificationService.getUserinSession());
   	if (this.userType !== "guest")
   	{

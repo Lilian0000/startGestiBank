@@ -25,15 +25,6 @@ const adminRoutes: Routes = [
 	{path :'admin/add_conseiller', component: AddConseillerComponent, canActivate: [RoleGard], data: {expectedRole: 'admin'}},
 	{path :'admin/gestion_conseiller', component: GestionConseillerComponent, canActivate: [RoleGard], data: {expectedRole: 'admin'}},
 	{path :'admin/edit_conseiller/:id', component: EditConseillerComponent, canActivate: [RoleGard], data: {expectedRole: 'admin'}}
-		/*children: [
-			{
-				path: 'add_client', component: AddClientComponent,
-			},
-			{
-				path: 'edit_client/:id', component: EditClientComponent,
-			}	
-		]
-	}*/
 ];
 
 @NgModule({

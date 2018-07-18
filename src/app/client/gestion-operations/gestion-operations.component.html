@@ -22,17 +22,11 @@
 								<td>{{operation.somme}}</td>
 								<td>{{operation.date | date:'fullDate'}}</td>
 								<td>{{operation.OPERATION_TYPE}}</td>
-                            <!--
-                            <td>
-                                <button type="button" class="btn btn-success btn-fill" (click)="editClientPage(client)">Edit</button>
-                                <button type="button" class="btn btn-danger delete btn-fill" (click)="onDelete(client)">Delete</button>
-                            </td>   
-                        -->
                     </tr>  
                 </tbody>
             </table>   
-            <button type="button" class="btn btn-primary btn-fill float-right" (click)="redirectOperationPage()">Nouvelle opération</button>
-            <button type="button" class="btn btn-primary btn-fill float-right" (click)="redirectComptePage()">Retour</button>
+            <button type="button" class="btn btn-primary btn-fill pull-right" (click)="redirectOperationPage()">Nouvelle opération</button>
+            <button type="button" class="btn btn-primary btn-fill pull-right" (click)="redirectComptePage()">Retour</button>
         </div>
     </div> 
     <router-outlet></router-outlet>   

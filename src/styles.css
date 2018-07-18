@@ -8,6 +8,14 @@
 /*Overwrite bootstrap*/
 .btn { margin: 5px; }
 
+.main-panel {
+	background: url('/assets/img/a1.jpg'); 
+}
+
+td, th {
+	text-align: center;
+}
+
 /* classes créé par Félix */
 .list-card { padding-bottom: 50px; }
 
@@ -23,28 +31,18 @@
 	padding-top : 15px;
 }
 
-td, th {
-	text-align: center;
-}
-
 .centered-image {
 	display: block;
     margin-left: auto;
     margin-right: auto;
 }
 
-.main-panel {
-	background: url('/assets/img/a1.jpg'); 
-}
 
+/*permet d'avoir le pointeur main quand on passe sur l'element. Utile pour les icones ou component réactif qui ne sont pas des liens !!!*/
 .handpointer {
 	cursor: pointer;
 }
 
 .meteo-duo-component {
 	margin: 10px;
-}
-
-.main-panel {
-	margin-top : 20px;
 }
