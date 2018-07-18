@@ -26,8 +26,8 @@ export const ROUTES: RouteInfo[] = [
     { path: 'DOC', title: 'Demande ouverture de compte',  icon: '', class: '', userSpace: 'client'  },
     { path: 'contact', title: 'Contacter la banque',  icon: '', class: '', userSpace: 'client'  },
     { path: 'conseiller', title: 'Dashboard', icon :'', class:'', userSpace:'conseiller'},
-    { path: 'conseiller', title: 'Gerer les demanandes', icon :'', class:'', userSpace:'conseiller'},
-    { path: 'conseiller', title: 'Gerer les clients', icon :'', class:'', userSpace:'conseiller'}
+    { path: 'conseiller/gestion_demandes', title: 'Gerer les demandes', icon :'', class:'', userSpace:'conseiller'},
+    { path: 'conseiller/gestion_clients', title: 'Gerer les clients', icon :'', class:'', userSpace:'conseiller'}
 ];
 
 @Component({
@@ -48,13 +48,12 @@ export class SidebarComponent implements OnInit {
     if (this.utilisateur==null) {
       this.utilisateur=this.authentificationService.getUserType(this.authentificationService.getUserinSession());
       this.menuItems = ROUTES.filter(menuItem => menuItem.userSpace===this.utilisateur); 
-    }
-   
+       
     this.authentificationService.getuserTypeasObs().subscribe(userType => {this.utilisateur=userType;
     this.menuItems = ROUTES.filter(menuItem => menuItem.userSpace===this.utilisateur); 
-    });
-    
+    }); 
   }
+}
   isMobileMenu() {
       if ($(window).width() > 991) {
           return false;

@@ -4,6 +4,7 @@ export class DemandeOuvertureCompte {
 		public id: number,
 		public idClient: number,
 		public idConseiller: number,
-		public description: string
+		public description: string,
+		public date: Date
 		) {}
 }
