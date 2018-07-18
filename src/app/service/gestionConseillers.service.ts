@@ -25,12 +25,6 @@ export class GestionConseillersService {
 	getNbOfConseiller(){
 		return this.http.get(this.apiUrl +'/getNb').pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error)));
 	}
-
-	getConseillerBylastName(lastName: string) {
-		for (var i=0; i<Conseillers.length; i++)
-			if(Conseillers[i].lastName === lastName) 
-				{return Conseillers[i];}
-		}
 		
 	addConseiller(conseiller) {
 		return  this.http.post(this.apiUrl, conseiller).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
@@ -49,7 +43,6 @@ export class GestionConseillersService {
 	}
 
 	editConseiller(conseiller): Observable<Conseiller> {
-		//console.log(client);
 		return  this.http.put(this.apiUrl + '/' + conseiller.id, conseiller).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
     }
 

@@ -28,7 +28,6 @@ export class MeteoChildComponent implements OnInit {
 		this.route.params.subscribe(params => {
 			this.location.city = params.research;
 			console.log(params);
-			//this.location.city = params;
 				this.weatherService.getWeather(this.location.city, this.location.code).subscribe(res => {
 					this.errorMessage ="";
 					this.name= res.name;
@@ -74,19 +73,4 @@ export class MeteoChildComponent implements OnInit {
 
 	}
 
-	/*isSearching() {
-		if(this.isClear() == false)
-		{
-			if(this.isRain() == false)
-			{
-				if(this.isClouds() == false) {
-					return true;
-				}
-			
-			}
-		}
-		else {
-			return false;
-		}
-	}*/
 }

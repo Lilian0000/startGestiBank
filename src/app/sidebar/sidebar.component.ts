@@ -36,9 +36,7 @@ export const ROUTES: RouteInfo[] = [
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-  //On reçoit le paramètre utilisateur en input depuis le composant app.component.ts
- 
-  
+
   menuItems: any[];
   utilisateur: string;
 
@@ -48,11 +46,11 @@ export class SidebarComponent implements OnInit {
     if (this.utilisateur==null) {
       this.utilisateur=this.authentificationService.getUserType(this.authentificationService.getUserinSession());
       this.menuItems = ROUTES.filter(menuItem => menuItem.userSpace===this.utilisateur); 
-       
+       }
     this.authentificationService.getuserTypeasObs().subscribe(userType => {this.utilisateur=userType;
     this.menuItems = ROUTES.filter(menuItem => menuItem.userSpace===this.utilisateur); 
     }); 
-  }
+  
 }
   isMobileMenu() {
       if ($(window).width() > 991) {
