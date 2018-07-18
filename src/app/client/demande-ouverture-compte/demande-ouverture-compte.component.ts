@@ -26,6 +26,7 @@ export class DemandeOuvertureCompteComponent implements OnInit {
   }
 
   onSubmit() {
+
 	this.demandeOuvertureCompte = new DemandeOuvertureCompte(null, this.client.id, this.client.idConseiller, this.DemandeForm.value.description, null);
 	this.gestionClientsService.demandeOuvertureCompted(this.demandeOuvertureCompte).subscribe(demandeOuvertureCompte => {
 		console.log(demandeOuvertureCompte);

@@ -27,21 +27,23 @@ export class GestionDemandesComponent implements OnInit {
   		this.gestionDemandesService.getDemandesByConseiller(this.id_c).subscribe(
   		demandes=>{this.demandes=demandes;
   		console.log(this.demandes);
+        if (this.demandes.length == 0){
+      this.router.navigate(['conseiller']);
+    }
   	});
   }
   	
   refuser(demande: DemandeOuvertureCompte){
   	this.gestionDemandesService.deleteDemande(this.id_c, demande.id).subscribe(res=>{
   		this.getDemandes();
-  		this.router.navigate(['conseillers/gestion_demandes']);
   		});
   }
 
   accepterDemande(demande: DemandeOuvertureCompte){
   		this.gestionDemandesService.accepterDemande(demande).subscribe(res=>{
   			console.log(res);
-  			 this.getDemandes();
-  			this.router.navigate(['conseillers/gestion_demandes']);
+  			this.getDemandes();
   		});
   }
+
 }
