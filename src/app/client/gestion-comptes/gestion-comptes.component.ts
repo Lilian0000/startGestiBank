@@ -1,8 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Pipe, PipeTransform} from '@angular/core';
 import {GestionComptesService} from '../../service/gestion-comptes.service'
 import { Router } from '@angular/router';
 import { AuthentificationService } from '../../service/authentification.service';
-
 
 @Component({
 	selector: 'app-gestion-comptes',
@@ -20,19 +19,20 @@ export class GestionComptesComponent implements OnInit {
 	}
 
 	getComptes() {
-		this.gestionComptesService.getComptesByClient(this.authentificationService.getUserinSession().id).subscribe(comptes => {this.comptes=comptes;}
-			, err => {console.log(err);} 
-			);
-	}
+		this.gestionComptesService.getComptesByClient(this.authentificationService.getUserinSession().id).subscribe(comptes => {this.comptes = comptes.sort((obj1, obj2) => {
+			if (obj1.rib > obj2.rib) {
+				return 1;
+			}
 
-	addCompte(){
-		console.log("Ajout de compte");
-		this.gestionComptesService.addCompte(this.authentificationService.getUserinSession().id).subscribe(comptes => {this.comptes=comptes;}
-			, err => {console.log(err);} 
-			);
-		console.log("Ajout de compte fin");
-	}
+			if (obj1.rib < obj2.rib) {
+				return -1;
+			}
 
+			return 0;);
+	}
+	, err => {console.log(err);} 
+	);
+	}
 
 	editComptePage(rib: number) {
 		this.router.navigate(['client/operations', rib]);

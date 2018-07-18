@@ -20,7 +20,6 @@ export class EditClientComponent implements OnInit {
 	constructor(private route: ActivatedRoute, 
 		private router: Router, 
 		private gestionClientsService: GestionClientsService) { 
-	//this.router.routeReuseStrategy.shouldReuseRoute = function(){return false;}  
 }
 
  ngOnInit() {
@@ -47,6 +46,19 @@ export class EditClientComponent implements OnInit {
 		, err => {console.log(err);} );
 	});
 	
+
+	this.editClientForm = new FormGroup({
+		lastName: new FormControl(this.client.lastName, Validators.required),
+		firstName: new FormControl(this.client.firstName, Validators.required),
+		email: new FormControl(this.client.email, [
+			Validators.required,
+			Validators.pattern("[^ @]*@[^ @]*")
+			]),
+		address: new FormControl(this.client.address, Validators.required),
+		phonenumber: new FormControl(this.client.phonenumber, Validators.required),
+	});
+}
+
 	
   }
 
@@ -59,6 +71,7 @@ export class EditClientComponent implements OnInit {
   		phonenumber:this.client.phonenumber
   	})	
  }
+
 
 onSubmit() {
 	if(this.editClientForm.valid) {
@@ -74,10 +87,9 @@ onSubmit() {
 			null,
 			0);
 		this.gestionClientsService.editClient(modifiedClient).subscribe(bool => {
+      this.editClientForm.reset();
 			this.router.navigate(['/admin/gestion_client']);
-			this.editClientForm.reset();});
-		
-		
+			});
 	}
 }
 
