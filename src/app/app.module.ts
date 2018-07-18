@@ -21,7 +21,10 @@ import { UnauthorizedEspacePageComponent } from './errorPages/unauthorized-espac
 import { PageNotFoundComponent } from './errorPages/page-not-found/page-not-found.component';
 import { GestionConseillersService } from './service/gestionConseillers.service';
 import { DemandesSuccessComponent } from './successPages/demandes-success/demandes-success.component';
-
+import { InfosComponent } from './guest/infos/infos.component';
+import { MeteoComponent } from './guest/meteo/meteo.component';
+import { WeatherService } from './service/weather.service';
+import { MeteoChildComponent } from './guest/meteo-child/meteo-child.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,10 @@ import { DemandesSuccessComponent } from './successPages/demandes-success/demand
     ContactBanqueComponent,
     UnauthorizedEspacePageComponent,
     PageNotFoundComponent,
-    DemandesSuccessComponent
+    DemandesSuccessComponent,
+    InfosComponent,
+    MeteoComponent,
+    MeteoChildComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +52,7 @@ import { DemandesSuccessComponent } from './successPages/demandes-success/demand
     SidebarModule,
     NavbarModule
   ],
-  providers: [AuthentificationService, GestionClientsService, GestionComptesService, RoleGardService, GestionConseillersService],
+  providers: [AuthentificationService, GestionClientsService, GestionComptesService, RoleGardService, GestionConseillersService, WeatherService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

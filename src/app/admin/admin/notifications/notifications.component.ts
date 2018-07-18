@@ -23,6 +23,8 @@ export class NotificationsComponent implements OnInit {
   constructor(private gestionClientsService: GestionClientsService, private gestionConseillersService: GestionConseillersService) { }
 
   ngOnInit() {
+
+    
     this.gestionClientsService.getNumberOfNotAttClients().subscribe(nbNotAttributed => {this.nbNotAttributedClients=nbNotAttributed;
        this.notificationColorChange();
       }, 

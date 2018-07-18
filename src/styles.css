@@ -33,6 +33,18 @@ td, th {
     margin-right: auto;
 }
 
+.main-panel {
+	background: url('/assets/img/a1.jpg'); 
+}
+
 .handpointer {
 	cursor: pointer;
+}
+
+.meteo-duo-component {
+	margin: 10px;
+}
+
+.main-panel {
+	margin-top : 20px;
 }

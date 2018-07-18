@@ -35,3 +35,10 @@ textarea {
 button {
   margin-left: .5em;
 }*/
+
+.btn-primary
+{
+  color: #ffffff;
+  background-color: #5F9EA0;
+   border-color: #5F9EA0; 
+}

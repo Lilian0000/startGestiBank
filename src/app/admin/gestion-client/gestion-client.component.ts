@@ -17,15 +17,24 @@ export class GestionClientComponent implements OnInit {
 
   clients;
   conseiller;
+  researchForm: FormGroup;
+  shouldIRefresh: boolean = false;
   
   constructor(private router: Router, private gestionClientsService: GestionClientsService, private gestionConseillersService: GestionConseillersService) { }
 
 
   ngOnInit() {
     this.getClients();
+    this.researchForm = new FormGroup({
+    research: new FormControl('', Validators.required),
+    }) 
+
+    
+
   }
   getClients() {
-    this.gestionClientsService.getClients().subscribe(clients => {this.clients=clients;}
+    this.gestionClientsService.getClients().subscribe(clients => {this.clients=clients;
+      this.shouldIRefresh=false;}
       , err => {console.log(err);} 
       );
   }
@@ -47,7 +56,7 @@ export class GestionClientComponent implements OnInit {
   
   unAttributeClient(client) {
     this.gestionConseillersService.unAttributeClientToConseiller(client.idConseiller, client).subscribe(
-      boolean => {this.getClients();}, error => {console.log(error)});
+      boolean => {this.getClients();}, error => {console.log(error);});
   }
 
   isAttributed(client): boolean{
@@ -59,4 +68,13 @@ export class GestionClientComponent implements OnInit {
       return true;
     }
   }
+
+  RechercheClientParNom() {
+    this.gestionClientsService.researcheClientByName(this.researchForm.controls["research"].value).subscribe(clients => {this.clients=clients;
+     this.shouldIRefresh = true;
+    },
+      error => console.log(error));
+  }
+
+
 }

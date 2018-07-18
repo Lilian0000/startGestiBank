@@ -15,26 +15,38 @@ export class EditClientComponent implements OnInit {
 	id: number;
 	client;
 	editClientForm: FormGroup;
-	private sub: any;
+
 
 	constructor(private route: ActivatedRoute, 
 		private router: Router, 
 		private gestionClientsService: GestionClientsService) { 
-	//this.router.routeReuseStrategy.shouldReuseRoute = function(){return false;}  
 }
 
-ngOnInit() {
-	
-	this.sub = this.route.params.subscribe(params => {
+ ngOnInit() {
+  	console.log(this.client);
+  	// declaration du formulaire
+  	this.editClientForm = new FormGroup({
+				lastName: new FormControl('', Validators.required),
+				firstName: new FormControl('', Validators.required),
+				email: new FormControl('', [
+					Validators.required,
+					Validators.pattern("[^ @]*@[^ @]*")
+					]),
+				address: new FormControl('', Validators.required),
+				phonenumber: new FormControl('', Validators.required),
+			});
+
+	this.route.params.subscribe(params => {
 		this.id = +params['id'];  
-		
 		this.gestionClientsService.getClientById(this.id).subscribe(client => {
 			this.client=client;
-			console.log(client);
+			this.updateFormulaire();
+			console.log(this.client);
 		}
 		, err => {console.log(err);} );
 	});
 	
+
 	this.editClientForm = new FormGroup({
 		lastName: new FormControl(this.client.lastName, Validators.required),
 		firstName: new FormControl(this.client.firstName, Validators.required),
@@ -46,6 +58,20 @@ ngOnInit() {
 		phonenumber: new FormControl(this.client.phonenumber, Validators.required),
 	});
 }
+
+	
+  }
+
+  updateFormulaire(){
+  	this.editClientForm.patchValue({
+  		lastName: this.client.lastName,
+  		firstName: this.client.firstName,
+  		email: this.client.email,
+  		address:this.client.address,
+  		phonenumber:this.client.phonenumber
+  	})	
+ }
+
 
 onSubmit() {
 	if(this.editClientForm.valid) {
@@ -61,10 +87,9 @@ onSubmit() {
 			null,
 			0);
 		this.gestionClientsService.editClient(modifiedClient).subscribe(bool => {
+      this.editClientForm.reset();
 			this.router.navigate(['/admin/gestion_client']);
-			this.editClientForm.reset();});
-		
-		
+			});
 	}
 }
 

@@ -1,0 +1,33 @@
+<div id="main-content">
+    <div class="container-fluid">
+        <div class="card list-card">
+            <div class="header">
+                <h4 class="title">Liste des demandes d'ouverture de comptes</h4>                      
+            </div>
+            <div class="content table-responsive table-full-width">
+              <table class="table table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>id client</th>
+                        <th>description</th>
+                        <th>date de demande</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let demande of demandes">
+                        <th scope="row">{{demande.id}}</th>
+                        <td>{{demande.idClient}}</td>
+                        <td>{{demande.description}}</td>
+                        <td>{{demande.date | date:'fullDate'}}</td>
+                        <td>
+                            <button type="button" class="btn btn-success btn-fill" (click)="accepterDemande(demande)">Accepter</button>
+                            <button type="button" class="btn btn-danger delete btn-fill" (click)="refuser(demande)">Refuser</button>
+                        </td>          
+                    </tr>  
+                </tbody>
+            </table>         
+        </div>
+    </div> 
+    <router-outlet></router-outlet>   
+</div>

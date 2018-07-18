@@ -6,8 +6,21 @@
             <div class="container-fluid">
                 <div class="card list-card">
                     <div class="header">
-                        <h4 class="title">Liste des clients</h4>                      
-                    </div>
+                        <form [formGroup]="researchForm" class="form-inline form-group">
+                           
+                            <div class="pull-right">
+                                <label for="research">Rechercher un client</label>
+                                <input type="text" class="form-control" formControlName="research">
+                                <img *ngIf="!shouldIRefresh" class="handpointer" width="50px" src="/assets/img/search_black.png" (click)="RechercheClientParNom()">
+                                <img *ngIf="shouldIRefresh" class="handpointer pull-right" width="50px" src="/assets/img/iconerechargement.png" (click)="getClients()">
+                            </div>
+                            
+                        </form>
+                        <h4 class="title">Liste des clients</h4>
+
+                        
+                    </div> 
+
                     <div class="content table-responsive table-full-width">
                       <table class="table table-hover table-striped">
                         <thead>
@@ -48,4 +61,4 @@
             <router-outlet></router-outlet>   
         </div>
         <!--</div> -->
-
+    </div>
