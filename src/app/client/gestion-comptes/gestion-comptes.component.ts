@@ -28,10 +28,11 @@ export class GestionComptesComponent implements OnInit {
 				return -1;
 			}
 
-			return 0;);
+			return 0;});
 	}
 	, err => {console.log(err);} 
 	);
+
 	}
 
 	editComptePage(rib: number) {
