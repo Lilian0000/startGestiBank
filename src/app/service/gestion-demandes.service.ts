@@ -20,7 +20,7 @@ export class GestionDemandesService {
 	}
 
  deleteDemande(id_c: number, id_d:number) : Observable<number>{
- 	return this.http.delete(this.apiUrl+'/conseillers/'+id_c+'/demandes/'+id_d).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
+ 	return this.http.delete(this.apiUrl+'/demandes/'+id_d).pipe(map((res:Response) => res.json()), catchError((error:any) => Observable.throw(error.json().error || "Server error")));
  }
 
  accepterDemande(demande: DemandeOuvertureCompte): Observable<Compte>{

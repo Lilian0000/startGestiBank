@@ -10,23 +10,25 @@
 					<div class="content">        
 						<div class="row ">
 							<div class="col-md-4">
-									<div class="alert {{notificationNotAttributedClients}}">
-										<a *ngIf="!notAttributedClientsExist()" routerLink="attribute_clients">
-											<img class="centered-image" width="50px" src="/assets/img/warning_alert.png">
-											<h4 >Vous avez {{nbNotAttributedClients}} client non attribués !</h4>
-										</a>
-										<a *ngIf="notAttributedClientsExist()"> 
-											<img class="centered-image" width="50px" src="/assets/img/thumbs-up-2png.png">
-											<h4>Tout les clients sont attribué !</h4>
-										</a>
-									</div>
+								<div class="alert {{notificationNotAttributedClients}}">
+									<a *ngIf="!notAttributedClientsExist()" routerLink="attribute_clients">
+										<img class="centered-image" width="50px" src="/assets/img/warning_alert.png">
+										<h4 >Vous avez {{nbNotAttributedClients}} client non attribués !</h4>
+									</a>
+									<a *ngIf="notAttributedClientsExist()"> 
+										<img class="centered-image" width="50px" src="/assets/img/thumbs-up-2png.png">
+										<h4>Tout les clients sont attribué !</h4>
+									</a>
+								</div>
 							</div>
 							<div class="col-md-4">
-								<div class="alert alert-success">
-									<img class="centered-image" width="50px" src="/assets/img/conseillers_img.png">
-									<h4>Vous gérez : <br>
-									{{nbOfConseillers}} conseillers</h4>
-								</div>
+								<a routerLink="gestion_conseiller">
+									<div class="alert alert-success">
+										<img class="centered-image" width="50px" src="/assets/img/conseillers_img.png">
+										<h4>Vous gérez : <br>
+										{{nbOfConseillers}} conseillers</h4>
+									</div>
+								</a>
 							</div>
 							<div class="col-md-4">
 								<a routerLink="gestion_client">

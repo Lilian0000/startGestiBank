@@ -57,8 +57,6 @@ export class EditClientComponent implements OnInit {
 		address: new FormControl(this.client.address, Validators.required),
 		phonenumber: new FormControl(this.client.phonenumber, Validators.required),
 	});
-}
-
 	
   }
 

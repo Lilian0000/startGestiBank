@@ -16,17 +16,17 @@ export class MeteoComponent implements OnInit {
   ngOnInit() {
 
   	this.researcheWeatherForm = new FormGroup({
-				researchWeaterInput: new FormControl('', Validators.compose([
-    Validators.required,
-    Validators.pattern('[A-Za-z]{3,}')
-  ]))
-			});
+      researchWeaterInput: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern('[A-Za-z]{3,}')
+        ]))
+    });
 
   }
 
- onSubmit() {
+  onSubmit() {
     this.boolShouldIClose = true;
-  	this.router.navigate(['meteoChild', this.researcheWeatherForm.controls['researchWeaterInput'].value]);
+    this.router.navigate(['meteoChild', this.researcheWeatherForm.controls['researchWeaterInput'].value]);
   }
 
   redirectGuestPage() {
@@ -37,8 +37,9 @@ export class MeteoComponent implements OnInit {
   allValid() {
     if (!this.researcheWeatherForm.valid || this.boolShouldIClose == true) {
       return false;
-  }
-  else {
-    return true;
+    }
+    else {
+      return true;
+    }
   }
 }
