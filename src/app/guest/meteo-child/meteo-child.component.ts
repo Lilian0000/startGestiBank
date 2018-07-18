@@ -46,7 +46,7 @@ export class MeteoChildComponent implements OnInit {
 			this.typeDeTemp = 'Ensoleillé';
 			return true;
 		}
-		else {return false};	
+		else {return false;}	
 	}
 
 	isClouds() {
@@ -54,15 +54,24 @@ export class MeteoChildComponent implements OnInit {
 			this.typeDeTemp = 'Nuageux';
 			return true;
 		}
-		else {return false};	
+		else {return false;}	
 	}
 
 	isRain() {
 		if (this.typeDeTemp == 'Rain' || this.typeDeTemp == 'Thunderstorm') {
-			this.typeDeTemp = 'Pluvieux'
+			this.typeDeTemp = 'Pluvieux';
 			return true;
 		}
-		else {return false};	
+		else {return false;}	
+	}
+
+	isMist () {
+		if (this.typeDeTemp == 'Mist') {
+			this.typeDeTemp = 'Brouillard';
+			return true;
+		}
+		else {return false;}
+
 	}
 
 	/*isSearching() {

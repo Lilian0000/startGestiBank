@@ -33,4 +33,12 @@ export class MeteoComponent implements OnInit {
     this.boolShouldIClose = false;
     this.router.navigate(['']);
   }
+
+  allValid() {
+    if (!this.researcheWeatherForm.valid || this.boolShouldIClose == true) {
+      return false;
+  }
+  else {
+    return true;
+  }
 }
