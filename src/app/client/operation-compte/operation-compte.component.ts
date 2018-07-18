@@ -49,11 +49,11 @@ export class OperationCompteComponent implements OnInit {
 		, err => {console.log(err);};
 	}
 
-	onSubmit() {
+	/*onSubmit() {
 		if(this.editOperationForm.valid) {
 			this.addOperation();
 		}
-	}
+	}*/
 
 	addOperation(){
 		this.gestionComptesService.addOperation(this.editOperationForm.controls['compteEmetteur'].value, 
