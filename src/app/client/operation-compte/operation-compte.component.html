@@ -4,7 +4,7 @@
 		<div class="card list-card">
 			<div class="header">
 
-				<h4 class="title">Administration des Clients : Modifier un Client</h4>
+				<h4 class="title">Virement</h4>
 
 				<div class="content">
 					<form [formGroup]="editOperationForm" (ngSubmit)="onSubmit()">
@@ -39,7 +39,7 @@
 						</div>
 
 
-						<button type="submit" class="btn btn-primary btn-fill float-right" (click)="addOperation()">Valider</button>
+						<button type="submit" class="btn btn-primary btn-fill float-right" [disabled]="!editOperationForm.valid" (click)="addOperation()">Valider</button>
 						<button type="button" class="btn btn-primary btn-fill float-right" (click)="redirectComptePage()">Retour</button>
 					</form>
 				</div>

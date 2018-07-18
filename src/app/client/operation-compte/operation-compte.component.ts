@@ -38,14 +38,14 @@ export class OperationCompteComponent implements OnInit {
 
 		function compteMatchValidator(g: FormGroup) {
 			return (control: AbstractControl) => g.get('compteEmetteur').value === g.get('compteRecepteur').value
-			? null : {'mismatch': false};
+			? null : {'mismatch': true};
 		}
 
 		this.editOperationForm = new FormGroup({
 			montant: new FormControl('', Validators.required),
 			compteEmetteur: new FormControl('', Validators.required),
-			compteRecepteur: new FormControl('', [Validators.required, compteMatchValidator]
-		)})
+			compteRecepteur: new FormControl('', Validators.required
+		)}, compteMatchValidator)
 		, err => {console.log(err);};
 	}
 

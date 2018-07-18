@@ -20,7 +20,7 @@
 							<tr *ngFor="let operation of operations">
 								<th scope="row">{{operation.id}}</th>
 								<td>{{operation.somme}}</td>
-								<td>{{operation.date}}</td>
+								<td>{{operation.date | date:'fullDate'}}</td>
 								<td>{{operation.OPERATION_TYPE}}</td>
                             <!--
                             <td>
